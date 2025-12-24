@@ -13,6 +13,8 @@ Proje klasör yapısı (Components, Layouts, Pages, Assets) düzenlendi.
 
 GitHub depo (repository) kurulumu yapılarak versiyon kontrolü sağlandı.
 
+Proje canlıya alındı. [https://e-commerce-two-fawn-25.vercel.app/]
+
 T02: Ana Sayfa ve Layout Geliştirme
 Kullanıcının ilk karşılaştığı bileşenler ve ana sayfa yapısı Figma tasarımlarına sadık kalınarak kodlandı.
 
@@ -34,5 +36,3 @@ Filtreleme Barı: Görünüm değiştirme (grid/list) ve sıralama seçeneklerin
 Ürün Grid Yapısı: Masaüstünde 4'lü, mobilde dikey dizilen ürün listeleme alanı oluşturuldu.
 
 Sayfalama & Markalar: Sayfa altına Pagination (sayfalama) butonları ve marka iş birliği logoları eklendi.
-
-T03 başarıyla tamamlandı. Bir sonraki aşama olan T04: Ürün Detay Sayfası üzerinde çalışmaya devam edeceğim.
