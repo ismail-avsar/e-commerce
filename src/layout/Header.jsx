@@ -47,7 +47,7 @@ const Header = () => {
             </ul>
 
             {/* Sağ İkon Grubu - Sağ Taraf */}
-            <div className="flex items-center gap-5 md:gap-8">
+            <div className="flex items-center gap-5 md:gap-6">
 
               {/* User Icon & Text - Mobilde sadece ikon, desktopta metinli */}
               <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
