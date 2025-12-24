@@ -2,7 +2,7 @@ import { Grid2X2, List, ChevronDown } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 
 const ShopPage = () => {
-    // Kategori resim numaraları (shop-1.jpg ... shop-5.jpg için)
+
     const categories = [1, 2, 3, 4, 5];
 
     // Ürün listesi (Mock data)
@@ -22,22 +22,22 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 2. CATEGORY CARDS (5 Tane Yan Yana) */}
+            {/* 2. CATEGORY CARDS */}
             <section className="bg-[#FAFAFA] pb-12 px-6">
                 <div className="container mx-auto">
-                    {/* md:grid-cols-5 diyerek 5 sütuna böldük */}
-                    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <div className="flex flex-wrap gap-4">
                         {categories.map((cat) => (
-                            <div key={cat} className="relative h-[223px] group cursor-pointer overflow-hidden">
-                                {/* GÜNCELLENEN KISIM: Senin verdiğin dosya yolu */}
-                                <img
-                                    src={`/assets/shop/shop-${cat}.jpg`}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    alt={`Category ${cat}`}
-                                />
-                                <div className="absolute inset-0 bg-black/25 flex flex-col items-center justify-center text-white">
-                                    <h5 className="font-bold uppercase text-base">CLOTHS</h5>
-                                    <p className="text-sm">5 Items</p>
+                            <div key={cat} className="w-full md:w-[19%]">
+                                <div className="relative h-[223px] group cursor-pointer overflow-hidden">
+                                    <img
+                                        src={`/assets/shop/shop-${cat}.jpg`}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        alt={`Category ${cat}`}
+                                    />
+                                    <div className="absolute inset-0 bg-black/25 flex flex-col items-center justify-center text-white">
+                                        <h5 className="font-bold uppercase text-base">CLOTHS</h5>
+                                        <p className="text-sm">5 Items</p>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -76,32 +76,24 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 4. PRODUCT GRID (4 Tane Yan Yana) */}
+            {/* 4. PRODUCT GRID */}
             <section className="py-12 px-6 bg-white">
                 <div className="container mx-auto">
-                    {/* lg:grid-cols-4 ile masaüstünde 4 ürün yan yana */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px]">
+                    <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[48px]">
                         {products.map((p) => (
-                            <ProductCard
+                            <div
                                 key={p}
-                                image={`/assets/products/product-${(p % 8) + 1}.jpg`}
-                                title="Graphic Design"
-                                category="English Department"
-                                originalPrice="16.48"
-                                salePrice="6.48"
-                            />
+                                className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
+                            >
+                                <ProductCard
+                                    image={`/assets/products/product-${(p % 8) + 1}.jpg`}
+                                    title="Graphic Design"
+                                    category="English Department"
+                                    originalPrice="16.48"
+                                    salePrice="6.48"
+                                />
+                            </div>
                         ))}
-                    </div>
-
-                    {/* 5. PAGINATION */}
-                    <div className="flex justify-center mt-12">
-                        <div className="flex border border-[#BDBDBD] rounded overflow-hidden shadow-sm">
-                            <button className="px-6 py-4 bg-[#F3F3F3] text-[#BDBDBD] text-sm font-bold border-r border-[#BDBDBD] hover:bg-gray-200">First</button>
-                            <button className="px-5 py-4 bg-white text-[#23A6F0] text-sm font-bold border-r border-[#BDBDBD] hover:bg-gray-50">1</button>
-                            <button className="px-5 py-4 bg-[#23A6F0] text-white text-sm font-bold border-r border-[#BDBDBD]">2</button>
-                            <button className="px-5 py-4 bg-white text-[#23A6F0] text-sm font-bold border-r border-[#BDBDBD] hover:bg-gray-50">3</button>
-                            <button className="px-6 py-4 bg-white text-[#23A6F0] text-sm font-bold hover:bg-gray-50">Next</button>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -110,7 +102,6 @@ const ShopPage = () => {
             <section className="bg-[#FAFAFA] py-12 px-6">
                 <div className="container mx-auto">
                     <div className="flex flex-col md:flex-row flex-wrap justify-between items-center gap-8 md:gap-12 px-8">
-                        {/* Logolar (varsa assets/brands/ altında olmalı) */}
                         <img src="/assets/brands/fa-brands-1.png" alt="hooli" className="h-16 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity" />
                         <img src="/assets/brands/fa-brands-2.png" alt="lyft" className="h-16 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity" />
                         <img src="/assets/brands/fa-brands-3.png" alt="brand" className="h-16 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity" />

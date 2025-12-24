@@ -1,4 +1,6 @@
 import ProductCard from '../components/ProductCard';
+import HomeSlider from "../components/HomeSlider";
+
 
 const HomePage = () => {
     const products = [1, 2, 3, 4, 5, 6, 7, 8]; /* Dinamik Import */
@@ -6,20 +8,8 @@ const HomePage = () => {
     return (
         <div className="w-full">
             {/* 1. HERO SECTION */}
-            <section className="relative bg-brand-blue min-h-[716px] flex flex-col md:flex-row items-center justify-center text-white overflow-hidden">
-                <img
-                    src="/assets/header/header.jpg"
-                    alt="Hero"
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                />
-                <div className="relative z-10 container mx-auto px-6 md:px-4 flex flex-col items-center md:items-start text-center md:text-left gap-8">
-                    <h5 className="font-bold tracking-widest uppercase">Summer 2020</h5>
-                    <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-md">NEW COLLECTION</h1>
-                    <p className="text-xl max-w-sm">We know how large objects will act, but things on a small scale.</p>
-                    <button className="bg-brand-green px-10 py-4 text-2xl font-bold rounded-sm hover:scale-105 transition-transform">
-                        SHOP NOW
-                    </button>
-                </div>
+            <section className="relative overflow-hidden">
+                <HomeSlider />
             </section>
 
             {/* 2. EDITOR'S PICK */}
@@ -57,13 +47,25 @@ const HomePage = () => {
                 <div className="container mx-auto">
                     <div className="flex flex-col items-center text-center mb-12">
                         <h4 className="text-xl text-text-gray font-normal">Featured Products</h4>
-                        <h3 className="text-2xl font-bold text-primary-dark mt-2 tracking-tight">BESTSELLER PRODUCTS</h3>
-                        <p className="text-sm text-text-gray mt-2">Problems trying to resolve the conflict between</p>
+                        <h3 className="text-2xl font-bold text-primary-dark mt-2 tracking-tight">
+                            BESTSELLER PRODUCTS
+                        </h3>
+                        <p className="text-sm text-text-gray mt-2">
+                            Problems trying to resolve the conflict between
+                        </p>
                     </div>
-                    <div className="flex flex-wrap justify-center gap-[30px]">
+
+                    <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[48px]">
                         {products.map((p) => (
-                            <div key={p} className="w-full md:w-[238px]">
-                                <ProductCard /* Dinamik Import */
+                            <div
+                                key={p}
+                                className="
+            w-full
+            md:w-[calc(50%-15px)]
+            lg:w-[calc(25%-22.5px)]
+          "
+                            >
+                                <ProductCard
                                     image={`/assets/products/product-${p}.jpg`}
                                     title="Graphic Design"
                                     category="English Department"
@@ -76,7 +78,8 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* 4. VITA CLASSIC SLIDER (Yeşil Arka Plan) */}
+
+            {/* 4. VITA CLASSIC SLIDER */}
             <section className="bg-brand-green pt-16 md:pt-28 overflow-hidden">
                 <div className="container mx-auto px-6 md:px-4 flex flex-col md:flex-row items-center gap-8 md:gap-20">
                     <div className="text-center md:text-left text-white flex flex-col gap-7 md:w-1/2">
@@ -119,8 +122,8 @@ const HomePage = () => {
                             We know how large objects will act, but things on a small scale.
                         </p>
                         <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                            <button className="bg-brand-green text-white px-10 py-4 text-sm font-bold rounded-sm uppercase">Buy Now</button>
-                            <button className="border-2 border-brand-green text-brand-green px-10 py-4 text-sm font-bold rounded-sm uppercase">Read More</button>
+                            <button className="bg-brand-blue text-white px-10 py-4 text-sm font-bold rounded-sm uppercase">Buy Now</button>
+                            <button className="border-2 border-brand-blue text-brand-blue px-10 py-4 text-sm font-bold rounded-sm uppercase">Learn More</button>
                         </div>
                     </div>
                 </div>
@@ -137,7 +140,7 @@ const HomePage = () => {
                         </p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-[30px]">
-                        {[1, 2, 3].map((num) => (
+                        {[1, 2, 3].map((num) => (  // Dinamik Import
                             <div key={num} className="w-full md:w-[328px] bg-white shadow-md flex flex-col">
                                 <div className="relative h-[300px]">
                                     <img src={`/assets/blog/blog-${num}.jpg`} alt={`Blog ${num}`} className="w-full h-full object-cover" />

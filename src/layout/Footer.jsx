@@ -3,7 +3,7 @@ import { Facebook, Instagram, Twitter } from 'lucide-react';
 const Footer = () => {
     return (
         <footer>
-            {/* Üst Bar - Logo ve Sosyal */}
+            {/* Üst Bar */}
             <div className="bg-light-gray py-10">
                 <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
                     {/* Logo */}
