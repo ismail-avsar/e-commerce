@@ -33,10 +33,10 @@ const Header = () => {
         <div className="container mx-auto px-6 md:px-4">
           <div className="flex justify-between items-center">
 
-            {/* Logo - Sol Taraf */}
+            {/* Logo */}
             <h3 className="text-2xl font-bold text-primary-dark shrink-0">Bandage</h3>
 
-            {/* Desktop Menü - Orta */}
+            {/* Desktop Menü */}
             <ul className="hidden md:flex items-center gap-4 text-sm text-text-gray font-bold tracking-tight">
               <li><Link to="/">Home</Link></li>
               <li><Link to="/shop">Shop</Link></li>
@@ -46,31 +46,21 @@ const Header = () => {
               <li><Link to="/pages">Pages</Link></li>
             </ul>
 
-            {/* Sağ İkon Grubu - Sağ Taraf */}
+            {/* Sağ İkon Grubu */}
             <div className="flex items-center gap-5 md:gap-6">
-
-              {/* User Icon & Text - Mobilde sadece ikon, desktopta metinli */}
               <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
                 <User size={24} className="md:w-4 md:h-4" />
                 <span className="hidden md:inline text-sm font-bold">Login / Register</span>
               </div>
-
-              {/* Search Icon */}
               <div className="cursor-pointer text-primary-dark md:text-brand-blue">
                 <Search size={24} className="md:w-5 md:h-5" />
               </div>
-
-              {/* Shopping Cart Icon */}
               <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
                 <ShoppingCart size={24} className="md:w-5 md:h-5" />
               </div>
-
-              {/* Wishlist Icon - Sadece Desktop */}
               <div className="hidden md:flex items-center gap-1 cursor-pointer text-brand-blue">
                 <Heart size={20} />
               </div>
-
-              {/* Hamburger Menu - Sadece Mobil */}
               <button
                 className="md:hidden text-primary-dark p-1"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}

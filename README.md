@@ -1,33 +1,38 @@
 Bandage E-Commerce Project
-Bu proje, modern bir e-ticaret platformunun ön yüz (front-end) geliştirmesini kapsayıp, Vite + React kullanılarak geliştirilmiş olup, tamamen Mobile-First (Önce Mobil) yaklaşımıyla tasarlanmıştır.
+Bu proje, bir e-ticaret platformunun kullanıcı arayüzünü (UI) modern web teknolojileriyle geliştirmeyi amaçlayan bir web geliştirme sürecidir.
 
-Canlı Demo
-Projenin canlı versiyonuna buradan ulaşabilirsiniz: [(https://e-commerce-two-fawn-25.vercel.app/)]
+Proje Geliştirme Süreci
+T01: Proje Kurulumu ve Altyapı
+Projenin temel iskeleti oluşturulmuş ve geliştirme ortamı hazırlanmıştır.
 
-Kullanılan Teknolojiler
-Framework: React (Vite)
+Vite kullanılarak React projesi başlatıldı.
 
-Styling: Tailwind CSS (Pure Tailwind, No Custom CSS)
+Tailwind CSS entegrasyonu yapılarak tasarım altyapısı kuruldu.
 
-State Management: Redux & Redux Thunk
+Proje klasör yapısı (Components, Layouts, Pages, Assets) düzenlendi.
 
-Routing: React Router v5
+GitHub depo (repository) kurulumu yapılarak versiyon kontrolü sağlandı.
 
-Icons: Lucide-React
+T02: Ana Sayfa ve Layout Geliştirme
+Kullanıcının ilk karşılaştığı bileşenler ve ana sayfa yapısı Figma tasarımlarına sadık kalınarak kodlandı.
 
-HTTP Client: Axios
+Header & Footer: Tüm sayfalarda sabit kalacak şekilde global layout olarak tasarlandı.
 
-Notifications: React-Toastify
+Responsive Tasarım: Masaüstü ve mobil uyumlu navigasyon menüsü (hamburger menu) eklendi.
 
-Layout: Sadece Flexbox (Grid kullanılmamıştır)
+Slider & Ürün Kartları: Ana sayfadaki görsel slider yapısı ve tekrar eden ürün kartları için temel bileşenler oluşturuldu.
 
-Proje Özellikleri (T01 & T02)
-Mobile-First Approach: Tüm arayüz önce mobil cihazlar için tasarlanmış, ardından masaüstü ekranlara uyarlanmıştır.
+T03: Mağaza (Shop) Sayfası ve Yönlendirme
+Ürünlerin listelendiği mağaza sayfası ve sayfalar arası geçiş dinamikleri eklendi.
 
-Layout Pattern: Next.js dökümantasyonundaki yapıya uygun olarak Header, PageContent ve Footer şeklinde modüler bir yapı kurulmuştur.
+React Router: react-router-dom v5 kullanılarak / (Home) ve /shop rotaları aktif edildi.
 
-Single Header Policy: Tüm sayfalar için tek bir dinamik Header ve tek bir Menü bileşeni kullanılmıştır.
+Kategori Kartları: Üst kısımda 5 adet kategori görseli içeren dinamik yapı kuruldu.
 
-Flex-Only Design: Tasarımın tamamında Tailwind'in Flexbox sınıfları kullanılmış, grid yapısından kaçınılmıştır.
+Filtreleme Barı: Görünüm değiştirme (grid/list) ve sıralama seçeneklerini içeren bar tasarlandı.
 
-Pixel-Perfect: Figma tasarımlarına (renk paleti, tipografi, boşluklar) sadık kalınmıştır.
+Ürün Grid Yapısı: Masaüstünde 4'lü, mobilde dikey dizilen ürün listeleme alanı oluşturuldu.
+
+Sayfalama & Markalar: Sayfa altına Pagination (sayfalama) butonları ve marka iş birliği logoları eklendi.
+
+T03 başarıyla tamamlandı. Bir sonraki aşama olan T04: Ürün Detay Sayfası üzerinde çalışmaya devam edeceğim.
