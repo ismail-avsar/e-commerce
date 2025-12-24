@@ -1,214 +1,84 @@
 import ProductCard from '../components/ProductCard';
 
 const HomePage = () => {
+
+    const products = [1, 2, 3, 4, 5, 6, 7, 8]; /* Dinamik import */
+
     return (
         <div className="w-full">
-            {/* 1. HERO SLIDER */}
-            <section className="relative bg-[#23A6F0] h-[753px] flex items-center justify-center">
+            {/* 1. HERO SECTION (Mobile First) */}
+            <section className="relative bg-brand-blue min-h-[716px] flex flex-col md:flex-row items-center justify-center text-white overflow-hidden">
                 <img
                     src="/assets/header/header.jpg"
-                    alt="New Collection"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    alt="Hero"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
                 />
-                <div className="relative z-10 container mx-auto px-4 text-center text-white flex flex-col items-center gap-9">
-                    <h5 className="text-base font-bold">SUMMER 2020</h5>
-                    <h1 className="text-[40px] font-bold leading-[50px]">NEW COLLECTION</h1>
-                    <p className="text-xl leading-[30px] max-w-[291px]">
-                        We know how large objects will act, but things on a small scale.
-                    </p>
-                    <button className="bg-brand-green text-white px-10 py-4 text-2xl font-bold rounded">
+                <div className="relative z-10 container mx-auto px-6 md:px-4 flex flex-col items-center md:items-start text-center md:text-left gap-8">
+                    <h5 className="font-bold tracking-widest">SUMMER 2020</h5>
+                    <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-md">NEW COLLECTION</h1>
+                    <p className="text-xl max-w-sm">We know how large objects will act, but things on a small scale.</p>
+                    <button className="bg-brand-green px-10 py-4 text-2xl font-bold rounded-sm hover:scale-105 transition-transform">
                         SHOP NOW
                     </button>
                 </div>
             </section>
 
-            {/* 2. EDITOR'S PICK / CATEGORIES */}
-            <section className="bg-light-gray py-20">
-                <div className="container mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <h2 className="text-2xl font-bold text-primary-dark mb-2.5">EDITOR'S PICK</h2>
-                        <p className="text-sm text-text-gray">Problems trying to resolve the conflict between</p>
+            {/* 2. EDITOR'S PICK (Sadece Flex Layout) */}
+            <section className="bg-light-gray py-20 px-6">
+                <div className="container mx-auto">
+                    <div className="flex flex-col items-center text-center mb-12">
+                        <h2 className="text-2xl font-bold text-primary-dark tracking-tight">EDITOR'S PICK</h2>
+                        <p className="text-sm text-text-gray mt-2">Problems trying to resolve the conflict between</p>
                     </div>
 
-                    <div className="flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-[30px]">
-                        {/* MEN */}
-                        <div className="relative h-[500px] md:w-[calc(50%-15px)]">
-                            <img
-                                src="/assets/categories/men.jpg"
-                                alt="Men"
-                                className="w-full h-full object-cover"
-                            />
-                            <button className="absolute bottom-6 left-8 bg-white px-12 py-3 font-bold text-primary-dark">
-                                MEN
-                            </button>
+                    {/* Flex Container - Mobile: Column, Desktop: Row */}
+                    <div className="flex flex-col md:flex-row gap-[30px] justify-center">
+                        {/* Men */}
+                        <div className="relative w-full md:w-[510px] h-[500px]">
+                            <img src="/assets/categories/men.jpg" className="w-full h-full object-cover" alt="Men" />
+                            <button className="absolute bottom-6 left-8 bg-white px-12 py-3 font-bold text-primary-dark">MEN</button>
                         </div>
 
-                        {/* WOMEN */}
-                        <div className="relative h-[500px] md:w-[calc(50%-15px)]">
-                            <img
-                                src="/assets/categories/women.jpg"
-                                alt="Women"
-                                className="w-full h-full object-cover"
-                            />
-                            <button className="absolute bottom-6 left-8 bg-white px-12 py-3 font-bold text-primary-dark">
-                                WOMEN
-                            </button>
+                        {/* Women */}
+                        <div className="relative w-full md:w-[240px] h-[500px]">
+                            <img src="/assets/categories/women.jpg" className="w-full h-full object-cover" alt="Women" />
+                            <button className="absolute bottom-6 left-5 bg-white px-10 py-3 font-bold text-primary-dark">WOMEN</button>
                         </div>
 
-                        {/* ACCESSORIES */}
-                        <div className="relative h-[242px] md:w-[calc(50%-15px)]">
-                            <img
-                                src="/assets/categories/accessories.jpg"
-                                alt="Accessories"
-                                className="w-full h-full object-cover"
-                            />
-                            <button className="absolute bottom-6 left-4 bg-white px-7 py-3 font-bold text-primary-dark text-sm">
-                                ACCESSORIES
-                            </button>
-                        </div>
-
-                        {/* KIDS */}
-                        <div className="relative h-[242px] md:w-[calc(50%-15px)]">
-                            <img
-                                src="/assets/categories/kids.jpg"
-                                alt="Kids"
-                                className="w-full h-full object-cover"
-                            />
-                            <button className="absolute bottom-6 left-4 bg-white px-10 py-3 font-bold text-primary-dark text-sm">
-                                KIDS
-                            </button>
+                        {/* Accessories & Kids (Vertical Flex) */}
+                        <div className="flex flex-col gap-[30px] w-full md:w-[240px]">
+                            <div className="relative h-[242px]">
+                                <img src="/assets/categories/accessories.jpg" className="w-full h-full object-cover" alt="Acc" />
+                                <button className="absolute bottom-6 left-5 bg-white px-6 py-3 font-bold text-primary-dark text-sm">ACCESSORIES</button>
+                            </div>
+                            <div className="relative h-[242px]">
+                                <img src="/assets/categories/kids.jpg" className="w-full h-full object-cover" alt="Kids" />
+                                <button className="absolute bottom-6 left-5 bg-white px-10 py-3 font-bold text-primary-dark text-sm">KIDS</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* 3. BESTSELLER PRODUCTS */}
-            <section className="bg-white py-20">
-                <div className="container mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <h4 className="text-xl text-text-gray mb-2.5">Featured Products</h4>
-                        <h2 className="text-2xl font-bold text-primary-dark mb-2.5">BESTSELLER PRODUCTS</h2>
-                        <p className="text-sm text-text-gray">Problems trying to resolve the conflict between</p>
+            <section className="py-20 px-6">
+                <div className="container mx-auto">
+                    <div className="flex flex-col items-center text-center mb-12">
+                        <h4 className="text-xl text-text-gray font-normal">Featured Products</h4>
+                        <h3 className="text-2xl font-bold text-primary-dark mt-2 tracking-tight">BESTSELLER PRODUCTS</h3>
+                        <p className="text-sm text-text-gray mt-2">Problems trying to resolve the conflict between</p>
                     </div>
 
-                    <div className="flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-[30px]">
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                            <ProductCard   // Dinamik Import
-                                key={num}
-                                image={`/assets/products/product-${num}.jpg`}
-                                title="Graphic Design"
-                                category="English Department"
-                                originalPrice="16.48"
-                                salePrice="6.48"
-                            />
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 4. VITA CLASSIC SLIDER */}
-            <section className="bg-brand-green py-28">
-                <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-20">
-                    <div className="text-center md:text-left text-white flex flex-col gap-9 md:w-1/2">
-                        <h4 className="text-xl">SUMMER 2020</h4>
-                        <h1 className="text-[40px] font-bold leading-[50px]">Vita Classic Product</h1>
-                        <p className="text-sm leading-5 max-w-[291px] mx-auto md:mx-0">
-                            We know how large objects will act, We know how are objects will act, We know
-                        </p>
-                        <div className="flex flex-col md:flex-row items-center gap-5">
-                            <span className="text-2xl font-bold">$16.48</span>
-                            <button className="bg-brand-green text-white px-10 py-4 text-sm font-bold rounded">
-                                ADD TO CART
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="md:w-1/2 flex justify-center">
-                        <img
-                            src="/assets/hero/slider-2.png"
-                            alt="Vita Classic Product"
-                            className="max-w-[443px] h-auto"
-                        />
-                    </div>
-                </div>
-            </section>
-
-            {/* 5. NEURAL UNIVERSE */}
-            <section className="bg-white py-28">
-                <div className="container mx-auto px-4 flex flex-col md:flex-row-reverse items-center gap-8">
-                    <div className="text-center md:text-left flex flex-col gap-8 md:w-1/2">
-                        <h5 className="text-base font-bold text-muted">SUMMER 2020</h5>
-                        <h1 className="text-[40px] font-bold leading-[50px] text-primary-dark">
-                            Part of the Neural Universe
-                        </h1>
-                        <p className="text-xl text-text-gray leading-[30px]">
-                            We know how large objects will act, but things on a small scale.
-                        </p>
-                        <div className="flex flex-col md:flex-row gap-2.5">
-                            <button className="bg-brand-green text-white px-10 py-4 text-sm font-bold rounded">
-                                BUY NOW
-                            </button>
-                            <button className="border-2 border-brand-green text-brand-green px-10 py-4 text-sm font-bold rounded">
-                                READ MORE
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="md:w-1/2">
-                        <img
-                            src="/assets/hero/slider-1.png"
-                            alt="Neural Universe"
-                            className="w-full h-auto"
-                        />
-                    </div>
-                </div>
-            </section>
-
-            {/* 6. FEATURED POSTS / BLOG */}
-            <section className="bg-white py-20">
-                <div className="container mx-auto px-4">
-                    <div className="text-center mb-20">
-                        <h6 className="text-sm font-bold text-brand-blue mb-2.5">Practice Advice</h6>
-                        <h2 className="text-[40px] font-bold text-primary-dark mb-2.5">Featured Posts</h2>
-                        <p className="text-sm text-text-gray">
-                            Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col gap-8 md:grid md:grid-cols-3 md:gap-[30px]">
-                        {[1, 2, 3].map((num) => (
-                            <div key={num} className="bg-white shadow-sm">
-                                <div className="relative h-[300px]">
-                                    <img // Dinamik Import 
-                                        src={`/assets/blog/blog-${num}.jpg`}
-                                        alt={`Blog ${num}`}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <span className="absolute top-5 left-5 bg-danger text-white px-2.5 text-sm font-bold">
-                                        NEW
-                                    </span>
-                                </div>
-                                <div className="p-6 flex flex-col gap-2.5">
-                                    <div className="flex gap-4 text-xs text-text-gray">
-                                        <span className="text-[#8EC2F2]">Google</span>
-                                        <span>Trending</span>
-                                        <span>New</span>
-                                    </div>
-                                    <h4 className="text-xl text-primary-dark">
-                                        Loudest à la Madison #1 (L'integral)
-                                    </h4>
-                                    <p className="text-sm text-text-gray leading-5">
-                                        We focus on ergonomics and meeting you where you work. It's only a keystroke away.
-                                    </p>
-                                    <div className="flex justify-between items-center py-4">
-                                        <span className="text-xs text-text-gray">22 April 2021</span>
-                                        <span className="text-xs text-text-gray">10 comments</span>
-                                    </div>
-                                    <a href="#" className="text-sm font-bold text-text-gray flex items-center gap-2.5">
-                                        Learn More
-                                        <span className="text-brand-blue">→</span>
-                                    </a>
-                                </div>
+                    <div className="flex flex-wrap justify-center gap-[30px]">
+                        {products.map((p) => (
+                            <div key={p} className="w-full md:w-[238px]">
+                                <ProductCard /* Dinamik import */
+                                    image={`/assets/products/product-${p}.jpg`}
+                                    title="Graphic Design"
+                                    category="English Department"
+                                    originalPrice="16.48"
+                                    salePrice="6.48"
+                                />
                             </div>
                         ))}
                     </div>

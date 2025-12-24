@@ -1,79 +1,93 @@
-import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, User, Search, ShoppingCart, Heart, Menu, } from 'lucide-react';
+import { useState } from 'react';
+import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, User, Search, ShoppingCart, Heart, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header>
-      {/* Top Bar - Desktop */}
-      <div className="hidden md:flex bg-dark-navy text-white text-sm py-2">
+    <header className="w-full flex flex-col">
+      {/* TOP BAR - Sadece Desktop */}
+      <div className="hidden md:flex bg-primary-dark text-white text-sm py-3">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          {/* Sol: Tel & Email */}
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Phone size={16} />
-              <span>(212) 123 45 78</span>
+              <span className="font-bold">(212) 123 45 78</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail size={16} />
-              <span>ismail@abc.com</span>
+              <span className="font-bold">ismail@abc.com</span>
             </div>
           </div>
-
-          {/* Orta: Follow Us */}
-          <div>
-            <span className="font-bold">Follow Us and get a chance to win 80% off</span>
-          </div>
-
-          {/* Sağ: Sosyal Medya */}
+          <div className="font-bold">Follow Us and get a chance to win 80% off</div>
           <div className="flex items-center gap-3">
-            <span>Follow Us :</span>
-            <Instagram size={16} />
-            <Youtube size={16} />
-            <Facebook size={16} />
-            <Twitter size={16} />
+            <span className="font-bold">Follow Us :</span>
+            <Instagram size={16} /><Youtube size={16} /><Facebook size={16} /><Twitter size={16} />
           </div>
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <nav className="bg-white py-4">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          {/* Logo */}
-          <h3 className="text-2xl font-bold text-primary-dark">Bandage</h3>
+      {/* MAIN NAVBAR */}
+      <nav className="bg-white py-6">
+        <div className="container mx-auto px-6 md:px-4">
+          <div className="flex justify-between items-center">
 
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex items-center gap-6 text-sm font-bold">
-            <li><a href="/" className="text-text-gray">Home</a></li>
-            <li><a href="/shop" className="text-text-gray">Shop</a></li>
-            <li><a href="/about" className="text-text-gray">About</a></li>
-            <li><a href="/blog" className="text-text-gray">Blog</a></li>
-            <li><a href="/contact" className="text-text-gray">Contact</a></li>
-            <li><a href="/pages" className="text-text-gray">Pages</a></li>
-          </ul>
+            {/* Logo - Sol Taraf */}
+            <h3 className="text-2xl font-bold text-primary-dark shrink-0">Bandage</h3>
 
-          {/* Sağ Icons */}
-          <div className="flex items-center gap-4">
-            {/* Desktop: Login/Register */}
-            <div className="hidden md:flex items-center gap-2 text-brand-blue text-sm font-bold">
-              <User size={16} />
-              <span>Login / Register</span>
+            {/* Desktop Menü - Orta */}
+            <ul className="hidden md:flex items-center gap-4 text-sm text-text-gray font-bold tracking-tight">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/shop">Shop</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/blog">Blog</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/pages">Pages</Link></li>
+            </ul>
+
+            {/* Sağ İkon Grubu - Sağ Taraf */}
+            <div className="flex items-center gap-5 md:gap-8">
+
+              {/* User Icon & Text - Mobilde sadece ikon, desktopta metinli */}
+              <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
+                <User size={24} className="md:w-4 md:h-4" />
+                <span className="hidden md:inline text-sm font-bold">Login / Register</span>
+              </div>
+
+              {/* Search Icon */}
+              <div className="cursor-pointer text-primary-dark md:text-brand-blue">
+                <Search size={24} className="md:w-5 md:h-5" />
+              </div>
+
+              {/* Shopping Cart Icon */}
+              <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
+                <ShoppingCart size={24} className="md:w-5 md:h-5" />
+              </div>
+
+              {/* Wishlist Icon - Sadece Desktop */}
+              <div className="hidden md:flex items-center gap-1 cursor-pointer text-brand-blue">
+                <Heart size={20} />
+              </div>
+
+              {/* Hamburger Menu - Sadece Mobil */}
+              <button
+                className="md:hidden text-primary-dark p-1"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
             </div>
+          </div>
 
-            {/* Mobil: User Icon (Siyah) */}
-            <User size={21} className="md:hidden text-primary-dark" />
-
-            {/* Search Icon */}
-            <Search size={20} className="text-brand-blue md:text-brand-blue" />
-
-            {/* Cart Icon */}
-            <ShoppingCart size={20} className="text-brand-blue md:text-brand-blue cursor-pointer" />
-
-            {/* Wishlist (Sadece Desktop) */}
-            <div className="flex items-center gap-1 hidden md:flex ">
-              <Heart size={20} className="text-brand-blue cursor-pointer" />
-            </div>
-
-            {/* Mobil: Hamburger Menu */}
-            <Menu size={24} className="md:hidden text-primary-dark cursor-pointer" />
+          {/* MOBİL MENÜ LİNKLERİ */}
+          <div className={`${isMenuOpen ? 'flex' : 'hidden'} md:hidden flex-col items-center gap-8 py-20 text-3xl text-text-gray font-normal`}>
+            <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+            <Link to="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>
+            <Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
+            <Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+            <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+            <Link to="/pages" onClick={() => setIsMenuOpen(false)}>Pages</Link>
           </div>
         </div>
       </nav>

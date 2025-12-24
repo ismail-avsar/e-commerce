@@ -1,16 +1,33 @@
-# React + Vite
+Bandage E-Commerce Project
+Bu proje, modern bir e-ticaret platformunun ön yüz (front-end) geliştirmesini kapsayıp, Vite + React kullanılarak geliştirilmiş olup, tamamen Mobile-First (Önce Mobil) yaklaşımıyla tasarlanmıştır.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Canlı Demo
+Projenin canlı versiyonuna buradan ulaşabilirsiniz: [(https://e-commerce-two-fawn-25.vercel.app/)]
 
-Currently, two official plugins are available:
+Kullanılan Teknolojiler
+Framework: React (Vite)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Styling: Tailwind CSS (Pure Tailwind, No Custom CSS)
 
-## React Compiler
+State Management: Redux & Redux Thunk
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Routing: React Router v5
 
-## Expanding the ESLint configuration
+Icons: Lucide-React
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+HTTP Client: Axios
+
+Notifications: React-Toastify
+
+Layout: Sadece Flexbox (Grid kullanılmamıştır)
+
+Proje Özellikleri (T01 & T02)
+Mobile-First Approach: Tüm arayüz önce mobil cihazlar için tasarlanmış, ardından masaüstü ekranlara uyarlanmıştır.
+
+Layout Pattern: Next.js dökümantasyonundaki yapıya uygun olarak Header, PageContent ve Footer şeklinde modüler bir yapı kurulmuştur.
+
+Single Header Policy: Tüm sayfalar için tek bir dinamik Header ve tek bir Menü bileşeni kullanılmıştır.
+
+Flex-Only Design: Tasarımın tamamında Tailwind'in Flexbox sınıfları kullanılmış, grid yapısından kaçınılmıştır.
+
+Pixel-Perfect: Figma tasarımlarına (renk paleti, tipografi, boşluklar) sadık kalınmıştır.
