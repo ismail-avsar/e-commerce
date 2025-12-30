@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -18,7 +19,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Ana Footer - 5 Sütun */}
+            {/* Ana Footer */}
             <div className="bg-white py-12">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row md:justify-between gap-8">
@@ -26,10 +27,10 @@ const Footer = () => {
                         <div className="flex flex-col gap-5">
                             <h5 className="text-base font-bold text-primary-dark">Company Info</h5>
                             <div className="flex flex-col gap-2.5">
-                                <a href="#" className="text-sm font-bold text-text-gray">About Us</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">Carrier</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">We are hiring</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">Blog</a>
+                                <Link to="/about" className="text-sm font-bold text-text-gray hover:text-brand-blue">About Us</Link>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">Carrier</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">We are hiring</a>
+                                <Link to="/blog" className="text-sm font-bold text-text-gray hover:text-brand-blue">Blog</Link>
                             </div>
                         </div>
 
@@ -37,10 +38,10 @@ const Footer = () => {
                         <div className="flex flex-col gap-5">
                             <h5 className="text-base font-bold text-primary-dark">Legal</h5>
                             <div className="flex flex-col gap-2.5">
-                                <a href="#" className="text-sm font-bold text-text-gray">About Us</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">Carrier</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">We are hiring</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">Blog</a>
+                                <Link to="/about" className="text-sm font-bold text-text-gray hover:text-brand-blue">About Us</Link>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">Carrier</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">We are hiring</a>
+                                <Link to="/blog" className="text-sm font-bold text-text-gray hover:text-brand-blue">Blog</Link>
                             </div>
                         </div>
 
@@ -48,10 +49,10 @@ const Footer = () => {
                         <div className="flex flex-col gap-5">
                             <h5 className="text-base font-bold text-primary-dark">Features</h5>
                             <div className="flex flex-col gap-2.5">
-                                <a href="#" className="text-sm font-bold text-text-gray">Business Marketing</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">User Analytic</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">Live Chat</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">Unlimited Support</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">Business Marketing</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">User Analytic</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">Live Chat</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">Unlimited Support</a>
                             </div>
                         </div>
 
@@ -59,10 +60,10 @@ const Footer = () => {
                         <div className="flex flex-col gap-5">
                             <h5 className="text-base font-bold text-primary-dark">Resources</h5>
                             <div className="flex flex-col gap-2.5">
-                                <a href="#" className="text-sm font-bold text-text-gray">IOS & Android</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">Watch a Demo</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">Customers</a>
-                                <a href="#" className="text-sm font-bold text-text-gray">API</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">IOS & Android</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">Watch a Demo</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">Customers</a>
+                                <a href="#" className="text-sm font-bold text-text-gray hover:text-brand-blue">API</a>
                             </div>
                         </div>
 

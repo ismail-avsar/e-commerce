@@ -4,8 +4,6 @@ import ProductCard from '../components/ProductCard';
 const ShopPage = () => {
 
     const categories = [1, 2, 3, 4, 5];
-
-    // Ürün listesi (Mock data)
     const products = Array.from({ length: 12 }, (_, i) => i + 1);
 
     return (
@@ -86,6 +84,7 @@ const ShopPage = () => {
                                 className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
                             >
                                 <ProductCard
+                                    productId={p}
                                     image={`/assets/products/product-${(p % 8) + 1}.jpg`}
                                     title="Graphic Design"
                                     category="English Department"

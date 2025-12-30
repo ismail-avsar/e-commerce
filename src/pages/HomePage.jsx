@@ -3,7 +3,7 @@ import HomeSlider from "../components/HomeSlider";
 
 
 const HomePage = () => {
-    const products = [1, 2, 3, 4, 5, 6, 7, 8]; /* Dinamik Import */
+    const products = [1, 2, 3, 4, 5, 6, 7, 8];
 
     return (
         <div className="w-full">
@@ -59,13 +59,10 @@ const HomePage = () => {
                         {products.map((p) => (
                             <div
                                 key={p}
-                                className="
-            w-full
-            md:w-[calc(50%-15px)]
-            lg:w-[calc(25%-22.5px)]
-          "
+                                className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
                             >
                                 <ProductCard
+                                    productId={p}
                                     image={`/assets/products/product-${p}.jpg`}
                                     title="Graphic Design"
                                     category="English Department"
@@ -140,7 +137,7 @@ const HomePage = () => {
                         </p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-[30px]">
-                        {[1, 2, 3].map((num) => (  // Dinamik Import
+                        {[1, 2, 3].map((num) => (
                             <div key={num} className="w-full md:w-[328px] bg-white shadow-md flex flex-col">
                                 <div className="relative h-[300px]">
                                     <img src={`/assets/blog/blog-${num}.jpg`} alt={`Blog ${num}`} className="w-full h-full object-cover" />
