@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <header className="w-full flex flex-col">
-      {/* TOP BAR - Sadece Desktop */}
+      {/* Top Bar - Sadece Desktop */}
       <div className="hidden md:flex bg-primary-dark text-white text-sm py-3">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
@@ -28,7 +28,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* MAIN NAVBAR */}
+      {/* Main Navbar */}
       <nav className="bg-white py-6">
         <div className="container mx-auto px-6 md:px-4">
           <div className="flex justify-between items-center">
@@ -70,7 +70,7 @@ const Header = () => {
             </div>
           </div>
 
-          {/* MOBİL MENÜ LİNKLERİ */}
+          {/* Mobil menü linkleri */}
           <div className={`${isMenuOpen ? 'flex' : 'hidden'} md:hidden flex-col items-center gap-8 py-20 text-3xl text-text-gray font-normal`}>
             <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
             <Link to="/shop" onClick={() => setIsMenuOpen(false)}>Shop</Link>

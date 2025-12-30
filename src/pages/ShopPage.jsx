@@ -4,13 +4,11 @@ import ProductCard from '../components/ProductCard';
 const ShopPage = () => {
 
     const categories = [1, 2, 3, 4, 5];
-
-    // Ürün listesi (Mock data)
     const products = Array.from({ length: 12 }, (_, i) => i + 1);
 
     return (
         <div className="w-full bg-white">
-            {/* 1. BREADCRUMB & TITLE SECTION */}
+            {/* 1. Breadcrumb & Title Section */}
             <section className="bg-[#FAFAFA] py-6 px-6">
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
                     <h2 className="text-2xl font-bold text-[#252B42] tracking-tight">Shop</h2>
@@ -22,7 +20,7 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 2. CATEGORY CARDS */}
+            {/* 2. Katagori Cards */}
             <section className="bg-[#FAFAFA] pb-12 px-6">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap gap-4">
@@ -45,7 +43,7 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 3. FILTER BAR */}
+            {/* 3. Filter Bar */}
             <section className="py-6 px-6 bg-white">
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                     <p className="text-sm font-bold text-[#737373]">Showing all 12 results</p>
@@ -76,7 +74,7 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 4. PRODUCT GRID */}
+            {/* 4. Product Grid */}
             <section className="py-12 px-6 bg-white">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[48px]">
@@ -86,6 +84,7 @@ const ShopPage = () => {
                                 className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
                             >
                                 <ProductCard
+                                    productId={p}
                                     image={`/assets/products/product-${(p % 8) + 1}.jpg`}
                                     title="Graphic Design"
                                     category="English Department"
@@ -98,7 +97,30 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 6. BRAND LOGOS */}
+            {/* 5. Sayfalar*/}
+            <section className="py-8 px-6 bg-white">
+                <div className="container mx-auto">
+                    <div className="flex justify-center items-center gap-2">
+                        <button className="px-5 py-2.5 border border-[#BDBDBD] text-[#BDBDBD] font-bold rounded hover:bg-gray-50 transition-colors">
+                            First
+                        </button>
+                        <button className="px-5 py-2.5 border border-[#23A6F0] text-[#23A6F0] font-bold rounded hover:bg-[#23A6F0] hover:text-white transition-colors">
+                            1
+                        </button>
+                        <button className="px-5 py-2.5 bg-[#23A6F0] text-white font-bold rounded">
+                            2
+                        </button>
+                        <button className="px-5 py-2.5 border border-[#23A6F0] text-[#23A6F0] font-bold rounded hover:bg-[#23A6F0] hover:text-white transition-colors">
+                            3
+                        </button>
+                        <button className="px-5 py-2.5 border border-[#23A6F0] text-[#23A6F0] font-bold rounded hover:bg-[#23A6F0] hover:text-white transition-colors">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. Brand Logo */}
             <section className="bg-[#FAFAFA] py-12 px-6">
                 <div className="container mx-auto">
                     <div className="flex flex-col md:flex-row flex-wrap justify-between items-center gap-8 md:gap-12 px-8">

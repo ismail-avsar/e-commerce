@@ -3,16 +3,16 @@ import HomeSlider from "../components/HomeSlider";
 
 
 const HomePage = () => {
-    const products = [1, 2, 3, 4, 5, 6, 7, 8]; /* Dinamik Import */
+    const products = [1, 2, 3, 4, 5, 6, 7, 8];
 
     return (
         <div className="w-full">
-            {/* 1. HERO SECTION */}
+            {/* 1. Hero Section */}
             <section className="relative overflow-hidden">
                 <HomeSlider />
             </section>
 
-            {/* 2. EDITOR'S PICK */}
+            {/* 2. Editor's Pick*/}
             <section className="bg-light-gray py-20 px-6">
                 <div className="container mx-auto">
                     <div className="flex flex-col items-center text-center mb-12">
@@ -42,7 +42,7 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* 3. BESTSELLER PRODUCTS */}
+            {/* 3. Bestseller Products */}
             <section className="py-20 px-6">
                 <div className="container mx-auto">
                     <div className="flex flex-col items-center text-center mb-12">
@@ -59,13 +59,10 @@ const HomePage = () => {
                         {products.map((p) => (
                             <div
                                 key={p}
-                                className="
-            w-full
-            md:w-[calc(50%-15px)]
-            lg:w-[calc(25%-22.5px)]
-          "
+                                className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
                             >
                                 <ProductCard
+                                    productId={p}
                                     image={`/assets/products/product-${p}.jpg`}
                                     title="Graphic Design"
                                     category="English Department"
@@ -79,7 +76,7 @@ const HomePage = () => {
             </section>
 
 
-            {/* 4. VITA CLASSIC SLIDER */}
+            {/* 4. Vita Classic Slider */}
             <section className="bg-brand-green pt-16 md:pt-28 overflow-hidden">
                 <div className="container mx-auto px-6 md:px-4 flex flex-col md:flex-row items-center gap-8 md:gap-20">
                     <div className="text-center md:text-left text-white flex flex-col gap-7 md:w-1/2">
@@ -105,7 +102,7 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* 5. NEURAL UNIVERSE */}
+            {/* 5. Neural Universe */}
             <section className="bg-white py-16 md:py-28">
                 <div className="container mx-auto px-6 md:px-4 flex flex-col-reverse md:flex-row items-center gap-8">
                     <div className="md:w-1/2">
@@ -128,8 +125,8 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-
-            {/* 6. FEATURED POSTS (Blog) */}
+            EATURED POSTS
+            {/* 6. Featured Post */}
             <section className="bg-white py-20 px-6">
                 <div className="container mx-auto">
                     <div className="text-center mb-20 flex flex-col gap-4">
@@ -140,7 +137,7 @@ const HomePage = () => {
                         </p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-[30px]">
-                        {[1, 2, 3].map((num) => (  // Dinamik Import
+                        {[1, 2, 3].map((num) => (
                             <div key={num} className="w-full md:w-[328px] bg-white shadow-md flex flex-col">
                                 <div className="relative h-[300px]">
                                     <img src={`/assets/blog/blog-${num}.jpg`} alt={`Blog ${num}`} className="w-full h-full object-cover" />

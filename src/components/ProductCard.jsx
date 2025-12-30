@@ -1,12 +1,14 @@
-const ProductCard = ({ image, title, category, originalPrice, salePrice }) => {
+import { Link } from 'react-router-dom';
+
+const ProductCard = ({ productId, image, title, category, originalPrice, salePrice }) => {
     return (
-        <div className="flex flex-col bg-white">
+        <Link to={`/product/${productId || 1}`} className="flex flex-col bg-white group">
             {/* Ürün Görseli */}
             <div className="w-full h-[427px] overflow-hidden">
                 <img
                     src={image}
                     alt={title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
             </div>
 
@@ -40,7 +42,7 @@ const ProductCard = ({ image, title, category, originalPrice, salePrice }) => {
                     <div className="w-4 h-4 rounded-full bg-primary-dark"></div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
