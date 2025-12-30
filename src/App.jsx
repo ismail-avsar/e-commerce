@@ -5,7 +5,6 @@ import Footer from './layout/Footer';
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
-import ContactPage from './pages/ContactPage';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -25,9 +24,6 @@ function App() {
             </Route>
             <Route path="/product/:productId">
               <ProductDetailPage />
-            </Route>
-            <Route path="/contact">
-              <ContactPage />
             </Route>
           </Switch>
         </PageContent>
