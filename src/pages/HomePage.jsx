@@ -125,7 +125,6 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-            EATURED POSTS
             {/* 6. Featured Post */}
             <section className="bg-white py-20 px-6">
                 <div className="container mx-auto">
