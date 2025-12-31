@@ -36,3 +36,17 @@ Filtreleme Barı: Görünüm değiştirme (grid/list) ve sıralama seçeneklerin
 Ürün Grid Yapısı: Masaüstünde 4'lü, mobilde dikey dizilen ürün listeleme alanı oluşturuldu.
 
 Sayfalama & Markalar: Sayfa altına Pagination (sayfalama) butonları ve marka iş birliği logoları eklendi.
+
+T04: Ürün Detay Sayfası ve Yönlendirme
+Bileşen Geliştirme: Figma tasarımlarına uygun Product Detail sayfası, sadece Tailwind CSS ve Flex Layout kullanılarak kodlandı.
+
+Responsive Yapı: Tasarım Mobile First yaklaşımıyla hazırlandı; masaüstü ve mobil görünümleri optimize edildi.
+
+Navigasyon: Ürün kartlarına Link bileşenleri eklenerek Mağaza sayfasından detay sayfasına dinamik geçiş sağlandı.
+
+T05: İletişim (Contact) Sayfası ve Rota Aktivasyonu
+Sayfa Tasarımı: Ofis bilgilerini ve görsel içerikleri barındıran İletişim sayfası, T02'de oluşturulan global Header/Footer yapısına entegre edildi.
+
+Görsel Optimizasyon: Arka plan görselleri object-top ve özel gradient filtreler ile metin okunabilirliğini artıracak şekilde düzenlendi.
+
+Yönlendirme: /contact rotası aktif edilerek uygulamanın ana navigasyon menüsü üzerinden erişilebilir hale getirildi.
