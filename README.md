@@ -50,3 +50,17 @@ Sayfa Tasarımı: Ofis bilgilerini ve görsel içerikleri barındıran İletişi
 Görsel Optimizasyon: Arka plan görselleri object-top ve özel gradient filtreler ile metin okunabilirliğini artıracak şekilde düzenlendi.
 
 Yönlendirme: /contact rotası aktif edilerek uygulamanın ana navigasyon menüsü üzerinden erişilebilir hale getirildi.
+
+T06: Ekip (Team) Sayfası ve Bileşen Ayrımı
+Sayfa Yapısı: "Meet Our Team" bölümü, hem ana sayfada hem de Hakkımızda (About Us) sayfasında kullanılabilecek modüler bir yapıya kavuşturuldu.
+
+Görsel Düzenleme: Figma tasarımına uygun olarak ekip üyesi görselleri kare formatta ve üstten hizalı (object-top) olacak şekilde ayarlandı.
+
+Layout ve Stil: Flex Layout yapısı kullanılarak mobil ve masaüstü için responsive yerleşim sağlandı; typography ve renkler global temaya uygun hale getirildi.
+
+T07: Hakkımızda (About Us) Sayfası ve Entegrasyon
+Sayfa Geliştirme: Hero, İstatistikler, Video, Şirket Logoları ve "Work With Us" bölümlerini içeren kapsamlı About sayfası kodlandı.
+
+Görüntüleme Optimizasyonu: "Work With Us" bölümündeki görselin kesilmemesi için height-auto ve container yapıları kullanılarak responsive iyileştirmeler yapıldı.
+
+Bileşen Entegrasyonu: T06'da hazırlanan Team bileşeni, About sayfasına başarıyla entegre edilerek kod tekrarı önlendi.

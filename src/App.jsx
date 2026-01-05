@@ -6,8 +6,9 @@ import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import ContactPage from './pages/ContactPage';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import TeamPage from './pages/TeamPage';
+import AboutPage from './pages/AboutPage';
+
 
 
 function App() {
@@ -29,6 +30,12 @@ function App() {
             <Route path="/contact">
               <ContactPage />
             </Route>
+            <Route path="/team">
+              <TeamPage />
+            </Route>
+            <Route path="/about">
+              <AboutPage />
+            </Route>
           </Switch>
         </PageContent>
         <Footer />
@@ -38,3 +45,4 @@ function App() {
 }
 
 export default App;
+

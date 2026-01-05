@@ -1,10 +1,11 @@
 const PageContent = ({ children }) => {
     return (
-        <main className="min-h-screen">
+        <main className="w-full">
             {children}
         </main>
     );
 };
 
 export default PageContent;
+
 

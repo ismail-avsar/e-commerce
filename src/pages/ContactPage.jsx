@@ -63,7 +63,7 @@ const ContactPage = () => {
 
                 {/* Sağ Taraf: Ofis Bilgileri */}
                 <div className="flex flex-col gap-12 lg:w-1/2">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                    <div className="flex flex-wrap gap-12">
                         {offices.map((office) => (
                             <div
                                 key={office.city}
