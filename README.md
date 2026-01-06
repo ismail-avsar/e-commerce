@@ -64,3 +64,11 @@ Sayfa Geliştirme: Hero, İstatistikler, Video, Şirket Logoları ve "Work With 
 Görüntüleme Optimizasyonu: "Work With Us" bölümündeki görselin kesilmemesi için height-auto ve container yapıları kullanılarak responsive iyileştirmeler yapıldı.
 
 Bileşen Entegrasyonu: T06'da hazırlanan Team bileşeni, About sayfasına başarıyla entegre edilerek kod tekrarı önlendi.
+
+T08: Kullanıcı Kayıt (Sign Up) Sayfası ve API Entegrasyonu Kullanıcıların sisteme kayıt olabilmesi için gerekli API bağlantıları yapıldı ve detaylı validasyon kurallarına sahip dinamik bir form sayfası geliştirildi.
+
+Form Altyapısı ve Validasyon: React Hook Form ve Axios entegrasyonu ile /signup sayfasında çalışan; İsim, E-posta, Şifre ve Rol seçimi alanlarını içeren güvenli bir form yapısı oluşturuldu.
+
+Rol Bazlı Dinamik Alanlar: Kullanıcının seçtiği role (Müşteri, Mağaza) göre formun içeriği dinamik hale getirildi. Mağaza rolü seçildiğinde; Mağaza Adı, Vergi No (desen kontrolü) ve IBAN gibi ek alanların koşullu olarak görüntülenmesi ve doğrulanması sağlandı.
+
+Kullanıcı Deneyimi: Form gönderimi sırasında buton üzerinde yükleniyor (spinner) animasyonu, başarılı kayıt sonrası önceki sayfaya yönlendirme ve hata durumlarında anlık geri bildirim mekanizmaları eklendi.
