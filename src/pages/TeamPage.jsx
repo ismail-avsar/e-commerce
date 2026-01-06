@@ -44,11 +44,11 @@ function TeamPage() {
                             key={member.id}
                             className="flex flex-col items-center gap-6 pb-6"
                         >
-                            <div className="w-full md:w-[316px] h-[231px] overflow-hidden">
+                            <div className="w-full md:w-[316px] h-[360px] md:h-[231px] overflow-hidden">
                                 <img
                                     src={member.image}
                                     alt={member.name}
-                                    className="w-full h-full object-cover object-top"
+                                    className="w-full h-full object-cover object-center md:object-top"
                                 />
                             </div>
 

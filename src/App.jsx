@@ -8,6 +8,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import ContactPage from './pages/ContactPage';
 import TeamPage from './pages/TeamPage';
 import AboutPage from './pages/AboutPage';
+import SignUpPage from './pages/SignUpPage';
 
 
 
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route path="/about">
               <AboutPage />
+            </Route>
+            <Route path="/signup">
+              <SignUpPage />
             </Route>
           </Switch>
         </PageContent>

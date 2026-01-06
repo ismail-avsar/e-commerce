@@ -48,10 +48,10 @@ const Header = () => {
 
             {/* Sağ İkon Grubu */}
             <div className="flex items-center gap-5 md:gap-6">
-              <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
+              <Link to="/signup" className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
                 <User size={24} className="md:w-4 md:h-4" />
                 <span className="hidden md:inline text-sm font-bold">Login / Register</span>
-              </div>
+              </Link>
               <div className="cursor-pointer text-primary-dark md:text-brand-blue">
                 <Search size={24} className="md:w-5 md:h-5" />
               </div>
