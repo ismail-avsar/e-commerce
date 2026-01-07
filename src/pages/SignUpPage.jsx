@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import api from '../api/api';
+import { setUser, fetchRoles } from '../store/actions/clientActions';
+
 
 const SignUpPage = () => {
-    const [roles, setRoles] = useState([]);
+    const roles = useSelector(state => state.client.roles);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -22,24 +26,20 @@ const SignUpPage = () => {
     const selectedRole = watch('role_id');
     const password = watch('password');
 
-    // Sayfa yüklendiğinde rolleri getir
+    // Sayfa yüklendiğinde rolleri store'dan getir (Thunk)
     useEffect(() => {
-        const fetchRoles = async () => {
-            try {
-                const response = await api.get('/roles');
-                setRoles(response.data);
+        dispatch(fetchRoles());
+    }, [dispatch]);
 
-                // Customer rolünü bul ve default seç
-                const customerRole = response.data.find(r => r.code === 'customer');
-                if (customerRole) {
-                    setValue('role_id', customerRole.id); // setValue hook'dan geliyor
-                }
-            } catch (error) {
-                toast.error('Failed to fetch roles');
+    // Roller yüklendiğinde default olarak Customer seç
+    useEffect(() => {
+        if (roles && roles.length > 0) {
+            const customerRole = roles.find(r => r.code === 'customer');
+            if (customerRole) {
+                setValue('role_id', customerRole.id);
             }
-        };
-        fetchRoles();
-    }, [])
+        }
+    }, [roles, setValue]);
 
     // Seçilen rolün "store" olup olmadığını kontrol et
     const isStore = roles.find(role => role.id === selectedRole)?.code === 'store';
@@ -67,6 +67,8 @@ const SignUpPage = () => {
             }
 
             await api.post('/signup', payload);
+
+            dispatch(setUser(payload));
 
             toast.success('You need to click link in email to activate your account!');
 
@@ -150,8 +152,8 @@ const SignUpPage = () => {
                                         message: 'Password must be at least 8 characters'
                                     },
                                     pattern: {
-                                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
-                                        message: 'Password must include uppercase, lowercase, number and special character'
+                                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+                                        message: 'Password must include uppercase, lowercase, number and a special character'
                                     }
                                 })}
                                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-blue"

@@ -72,3 +72,23 @@ Form Altyapısı ve Validasyon: React Hook Form ve Axios entegrasyonu ile /signu
 Rol Bazlı Dinamik Alanlar: Kullanıcının seçtiği role (Müşteri, Mağaza) göre formun içeriği dinamik hale getirildi. Mağaza rolü seçildiğinde; Mağaza Adı, Vergi No (desen kontrolü) ve IBAN gibi ek alanların koşullu olarak görüntülenmesi ve doğrulanması sağlandı.
 
 Kullanıcı Deneyimi: Form gönderimi sırasında buton üzerinde yükleniyor (spinner) animasyonu, başarılı kayıt sonrası önceki sayfaya yönlendirme ve hata durumlarında anlık geri bildirim mekanizmaları eklendi.
+
+T09: Redux Kurulumu ve Store Yapılandırması
+Global durum yönetimi için Redux kütüphanesi projeye dahil edildi; asenkron işlemler ve loglama özellikleri ile desteklenen merkezi bir veri yönetim yapısı oluşturuldu.
+
+Store ve Middleware Entegrasyonu: Uygulamanın tüm state'ini yönetecek store yapısı kurularak; API istekleri için redux-thunk ve geliştirme sürecini kolaylaştırmak için redux-logger middleware'leri eklendi.
+
+Modüler Reducer Mimarisi: İstemci (Client), Ürün (Product) ve Alışveriş Sepeti (ShoppingCart) verilerini yönetmek üzere ayrıştırılmış reducer'lar oluşturuldu ve ana reducer altında birleştirildi.
+
+Action ve Thunk Yapısı: State değişikliklerini tetikleyecek action creator fonksiyonları tanımlandı ve rollerin API'den çekilmesi gibi asenkron işlemler için thunk aksiyonları yazılarak sisteme dahil edildi.
+
+T10: Giriş Formu ve Kimlik Doğrulama
+Kullanıcıların sisteme güvenli bir şekilde giriş yapabilmesi için gerekli arayüz ve altyapı geliştirmeleri tamamlandı.
+
+Giriş Sayfası ve Validasyon: react-hook-form kullanılarak e-posta ve şifre kontrolü yapan, hataları anlık gösteren kullanıcı dostu bir giriş formu (LoginPage) oluşturuldu.
+
+Redux ile Oturum Yönetimi: /login servisine istek atan thunk aksiyonu yazıldı; başarılı girişte kullanıcı bilgileri global state'e, token bilgisi ise "Beni Hatırla" seçeneğine bağlı olarak localStorage'a kaydedildi.
+
+Gravatar Entegrasyonu: Kullanıcı profil resimleri için e-posta adresi MD5 ile hashlenerek Gravatar servisinden dinamik olarak çekildi.
+
+Header Güncellemesi: Kullanıcı giriş yaptığında giriş/kayıt linkleri yerine kullanıcı adı ve profil resminin görüntülendiği kişiselleştirilmiş bir header yapısına geçildi.

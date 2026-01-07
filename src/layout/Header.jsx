@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import md5 from 'md5';
+import { useSelector } from 'react-redux';
 import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, User, Search, ShoppingCart, Heart, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = useSelector(state => state.client.user);
+  const cart = useSelector(state => state.shoppingCart.cart);
 
   return (
     <header className="w-full flex flex-col">
@@ -48,15 +52,32 @@ const Header = () => {
 
             {/* Sağ İkon Grubu */}
             <div className="flex items-center gap-5 md:gap-6">
-              <Link to="/signup" className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
-                <User size={24} className="md:w-4 md:h-4" />
-                <span className="hidden md:inline text-sm font-bold">Login / Register</span>
-              </Link>
+              {user.name ? (
+                <div className="flex items-center gap-2 cursor-pointer text-primary-dark md:text-brand-blue">
+                  <img
+                    src={`https://www.gravatar.com/avatar/${md5(user.email)}?d=mp`}
+                    alt={user.name}
+                    className="w-8 h-8 rounded-full object-cover border border-gray-200"
+                  />
+                  <span className="hidden md:inline text-sm font-bold">{user.name}</span>
+                </div>
+              ) : (
+                <Link to="/signup" className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
+                  <User size={24} className="md:w-4 md:h-4" />
+                  <span className="hidden md:inline text-sm font-bold">Login / Register</span>
+                </Link>
+              )}
+
               <div className="cursor-pointer text-primary-dark md:text-brand-blue">
                 <Search size={24} className="md:w-5 md:h-5" />
               </div>
-              <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
+              <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue relative">
                 <ShoppingCart size={24} className="md:w-5 md:h-5" />
+                {cart.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-brand-blue text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cart.length}
+                  </span>
+                )}
               </div>
               <div className="hidden md:flex items-center gap-1 cursor-pointer text-brand-blue">
                 <Heart size={20} />
