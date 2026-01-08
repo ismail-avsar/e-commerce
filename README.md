@@ -91,4 +91,11 @@ Redux ile Oturum Yönetimi: /login servisine istek atan thunk aksiyonu yazıldı
 
 Gravatar Entegrasyonu: Kullanıcı profil resimleri için e-posta adresi MD5 ile hashlenerek Gravatar servisinden dinamik olarak çekildi.
 
-Header Güncellemesi: Kullanıcı giriş yaptığında giriş/kayıt linkleri yerine kullanıcı adı ve profil resminin görüntülendiği kişiselleştirilmiş bir header yapısına geçildi.
+
+T11: Otomatik Giriş (Auto Login)
+Kullanıcı deneyimini iyileştirmek ve oturum sürekliliğini sağlamak için token tabanlı otomatik giriş mekanizması geliştirildi.
+
+Token Doğrulama: Uygulama her açıldığında (App mount), localStorage'da kayıtlı bir token varsa API'nin /verify endpoint'ine istek atılarak doğruluğu kontrol edildi.
+Güvenli Oturum Yönetimi: Token geçerliyse kullanıcı bilgileri Redux store'a aktarıldı ve oturum otomatik olarak başlatıldı; geçersizse token temizlenerek güvenlik sağlandı.
+Beni Hatırla Entegrasyonu: Giriş sırasında "Beni Hatırla" seçeneği işaretlenirse token kalıcı olarak localStorage'a, aksi takdirde sadece oturum süresince kullanılmak üzere belleğe alındı.
+Axios Interceptor: Tüm isteklerde Authorization header'ının otomatik eklenmesi ve 401 hatalarında oturumun sonlandırılması için merkezi bir yapı kuruldu.

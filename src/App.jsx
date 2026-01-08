@@ -13,7 +13,19 @@ import LoginPage from './pages/LoginPage';
 
 
 
+
+
+import { useDispatch } from 'react-redux';
+import { verifyToken } from './store/actions/clientActions';
+import { useEffect } from 'react';
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(verifyToken());
+  }, [dispatch]);
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col">

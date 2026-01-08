@@ -40,13 +40,12 @@ export const setCreditCards = (creditCards) => ({
 import api from '../../api/api';
 
 // Rolleri almak için Thunk fonksiyonu (lazy load)
-// NOT: Bir API uç noktası olduğu varsayılıyor. Gereksinimlere göre sadece ihtiyaç duyulduğunda tetiklenmelidir!
 export const fetchRoles = () => (dispatch, getState) => {
     const { client } = getState();
 
     // Sadece roller boşsa veya yüklenmemişse istek at
     if (!client.roles || client.roles.length === 0) {
-        dispatch({ type: 'FETCHING_ROLES' }); // İsteğe bağlı: gerekirse loading durumu eklenebilir
+        dispatch({ type: 'FETCHING_ROLES' });
 
         api.get('/roles')
             .then(res => {
@@ -60,33 +59,66 @@ export const fetchRoles = () => (dispatch, getState) => {
 
 import { toast } from 'react-toastify';
 
+// Token doğrulama ve otomatik giriş için Thunk
+export const verifyToken = () => (dispatch) => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        // Token varsa header'a ekle
+        api.defaults.headers.common['Authorization'] = token;
+
+        // Verify isteği at
+        api.get('/verify')
+            .then(res => {
+                const { token: newToken, ...user } = res.data;
+
+                // Token yenilendiyse güncelle, yoksa eskisini kullan
+                const activeToken = newToken || token;
+
+                // localStorage'ı güncelle
+                localStorage.setItem('token', activeToken);
+
+                // Axios header'ı güncelle
+                api.defaults.headers.common['Authorization'] = activeToken;
+
+                // User bilgisini reducer'a gönder
+                dispatch(setUser(user));
+
+                console.log('Auto login success');
+            })
+            .catch(err => {
+                console.error('Auto login failed:', err);
+                // Token geçersizse temizle
+                localStorage.removeItem('token');
+                delete api.defaults.headers.common['Authorization'];
+            });
+    }
+};
+
 export const loginUser = (credentials, history) => (dispatch) => {
-    // Return the promise to allow chaining if needed, though we handle redirect here or in component
     return api.post('/login', { email: credentials.email, password: credentials.password })
         .then(res => {
-            const { token, ...user } = res.data; // Varsayım: API token ve user bilgilerini dönüyor
+            const { token, ...user } = res.data;
 
-            // Eğer "Beni Hatırla" seçili ise token'ı localStorage'a kaydet
             if (credentials.rememberMe) {
                 localStorage.setItem('token', token);
             }
 
+            // Axios header'a token ekle
+            api.defaults.headers.common['Authorization'] = token;
+
             dispatch(setUser(user));
             toast.success('Welcome back!');
 
-            // Önceki sayfaya yönlendirme
             if (history) {
-                // location.state ile önceki sayfa bilgisi geliyorsa oraya, yoksa '/'
-                // Not: History prop'u component'ten gönderilmeli
                 history.goBack();
             }
             return res.data;
         })
         .catch(err => {
             console.error('Login error:', err);
-            // API'den gelen hata mesajını göster
             const errorMessage = err.response?.data?.message || 'Login failed. Please check your credentials.';
             toast.error(errorMessage);
-            throw err; // Component içinde catch bloğuna düşmesi için
+            throw err;
         });
 };
