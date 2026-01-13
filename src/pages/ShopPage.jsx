@@ -5,17 +5,41 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/actions/productActions';
 
 
+
+import { useParams } from 'react-router-dom';
+import { setCategory, setFilter, setSort } from '../store/actions/productActions';
+
 const ShopPage = () => {
     const dispatch = useDispatch();
-    const { productList, total, fetchState } = useSelector((state) => state.product);
+    const { categoryId } = useParams();
+    const { productList, total, fetchState, filter, sort } = useSelector((state) => state.product);
     const categoryList = useSelector((state) => state.global.categories); // İleride gerekirse kategori kartları mantığı için
 
     // Üst kısım için test kategorileri (şimdilik sadece görsel)
     const topCategories = [1, 2, 3, 4, 5];
 
     useEffect(() => {
+        if (categoryId) {
+            dispatch(setCategory(Number(categoryId)));
+        }
+    }, [dispatch, categoryId]);
+
+    const { category } = useSelector((state) => state.product);
+
+    useEffect(() => {
         dispatch(fetchProducts());
-    }, [dispatch]);
+    }, [dispatch, category, filter, sort]);
+
+
+    const handleFilterChange = (e) => {
+        dispatch(setFilter(e.target.value));
+    };
+
+    const handleSortChange = (e) => {
+        dispatch(setSort(e.target.value));
+    };
+
+    const handleFilterButtonClick = () => { };
 
     return (
         <div className="w-full bg-white">
@@ -57,7 +81,7 @@ const ShopPage = () => {
             {/* 3. Filtreleme Çubuğu */}
             <section className="py-6 px-6 bg-white">
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                    <p className="text-sm font-bold text-[#737373]">Showing all {productList?.length || 0} results</p>
+                    <p className="text-sm font-bold text-[#737373]">Showing all {total || 0} results</p>
 
                     <div className="flex items-center gap-4">
                         <span className="text-sm font-bold text-[#737373]">Views:</span>
@@ -71,14 +95,36 @@ const ShopPage = () => {
 
                     <div className="flex items-center gap-4">
                         <div className="relative">
-                            <select className="bg-[#F9F9F9] border border-[#DDDDDD] px-4 py-3 pr-8 text-sm text-[#737373] rounded outline-none appearance-none cursor-pointer">
-                                <option>Popularity</option>
-                                <option>Newest</option>
-                                <option>Price: Low to High</option>
+                            {/* SORT SELECT */}
+                            <select
+                                className="bg-[#F9F9F9] border border-[#DDDDDD] px-4 py-3 pr-8 text-sm text-[#737373] rounded outline-none appearance-none cursor-pointer"
+                                onChange={handleSortChange}
+                                value={sort}
+                            >
+                                <option value="">Sort By</option>
+                                <option value="price:asc">Price: Low to High</option>
+                                <option value="price:desc">Price: High to Low</option>
+                                <option value="rating:asc">Rating: Low to High</option>
+                                <option value="rating:desc">Rating: High to Low</option>
                             </select>
                             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-[#737373]" size={14} />
                         </div>
-                        <button className="bg-[#23A6F0] text-white px-5 py-3 text-sm font-bold rounded hover:bg-blue-600 transition-colors">
+
+                        {/* FILTER INPUT */}
+                        <div className="relative">
+                            <input
+                                type="text"
+                                placeholder="Filter products..."
+                                className="bg-[#F9F9F9] border border-[#DDDDDD] px-4 py-3 text-sm text-[#737373] rounded outline-none"
+                                value={filter}
+                                onChange={handleFilterChange}
+                            />
+                        </div>
+
+                        <button
+                            className="bg-[#23A6F0] text-white px-5 py-3 text-sm font-bold rounded hover:bg-blue-600 transition-colors"
+                            onClick={handleFilterButtonClick}
+                        >
                             Filter
                         </button>
                     </div>
@@ -106,7 +152,7 @@ const ShopPage = () => {
                                         image={p.images && p.images.length > 0 ? p.images[0].url : ""}
                                         title={p.name}
                                         category={categoryList.find(c => c.id === p.category_id)?.title || "General"}
-                                        originalPrice={p.price} // API returns single price, simulating original? Or use same.
+                                        originalPrice={p.price}
                                         salePrice={p.price}
                                         rating={p.rating}
                                         stock={p.stock}

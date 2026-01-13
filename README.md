@@ -122,3 +122,9 @@ Redux Eylemi ve Entegrasyon: /products API uç noktasına istek atan fetchProduc
 Mağaza (Shop) Sayfası Entegrasyonu: ShopPage bileşeni Redux'a bağlandı. Sayfa yüklendiğinde (mount) ürünlerin otomatik olarak çekilmesi sağlandı.
 
 Loading Spinner ve UI: Veriler çekilirken kullanıcının beklediğini anlaması için bir yükleme animasyonu (spinner) eklendi. Çekilen ürünler, görsel, başlık, fiyat ve kategori bilgileriyle birlikte dinamik olarak ürün kartlarına (ProductCard) yansıtıldı.
+
+T14: Ürün Sorgu Parametreleri (Fetch Products Query Parameters) Ürün listeleme sayfasına filtreleme, sıralama ve kategori bazlı sorgulama özellikleri entegre edildi.
+
+Redux ve Parametre Yönetimi: productReducer; kategori, filtre ve sıralama durumlarını yönetecek şekilde güncellendi.
+Shop Sayfası ve URL Entegrasyonu: categoryId URL'den dinlenerek state yönetimi sağlandı.
+Filtreleme ve Sıralama UI: Arama ve sıralama bileşenleri eklenerek API sorgularına bağlandı.
