@@ -1,14 +1,25 @@
 import { Grid2X2, List, ChevronDown } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../store/actions/productActions';
+
 
 const ShopPage = () => {
+    const dispatch = useDispatch();
+    const { productList, total, fetchState } = useSelector((state) => state.product);
+    const categoryList = useSelector((state) => state.global.categories); // İleride gerekirse kategori kartları mantığı için
 
-    const categories = [1, 2, 3, 4, 5];
-    const products = Array.from({ length: 12 }, (_, i) => i + 1);
+    // Üst kısım için test kategorileri (şimdilik sadece görsel)
+    const topCategories = [1, 2, 3, 4, 5];
+
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, [dispatch]);
 
     return (
         <div className="w-full bg-white">
-            {/* 1. Breadcrumb & Title Section */}
+            {/* 1. Gezinti ve Başlık Bölümü */}
             <section className="bg-[#FAFAFA] py-6 px-6">
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
                     <h2 className="text-2xl font-bold text-[#252B42] tracking-tight">Shop</h2>
@@ -20,11 +31,11 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 2. Katagori Cards */}
+            {/* 2. Kategori Kartları */}
             <section className="bg-[#FAFAFA] pb-12 px-6">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap gap-4">
-                        {categories.map((cat) => (
+                        {topCategories.map((cat) => (
                             <div key={cat} className="w-full md:w-[19%]">
                                 <div className="relative h-[223px] group cursor-pointer overflow-hidden">
                                     <img
@@ -43,10 +54,10 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 3. Filter Bar */}
+            {/* 3. Filtreleme Çubuğu */}
             <section className="py-6 px-6 bg-white">
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                    <p className="text-sm font-bold text-[#737373]">Showing all 12 results</p>
+                    <p className="text-sm font-bold text-[#737373]">Showing all {productList?.length || 0} results</p>
 
                     <div className="flex items-center gap-4">
                         <span className="text-sm font-bold text-[#737373]">Views:</span>
@@ -74,26 +85,36 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 4. Product Grid */}
+            {/* 4. Ürün Listesi */}
             <section className="py-12 px-6 bg-white">
                 <div className="container mx-auto">
-                    <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[48px]">
-                        {products.map((p) => (
-                            <div
-                                key={p}
-                                className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
-                            >
-                                <ProductCard
-                                    productId={p}
-                                    image={`/assets/products/product-${(p % 8) + 1}.jpg`}
-                                    title="Graphic Design"
-                                    category="English Department"
-                                    originalPrice="16.48"
-                                    salePrice="6.48"
-                                />
-                            </div>
-                        ))}
-                    </div>
+                    {fetchState === 'FETCHING' && (
+                        <div className="flex justify-center items-center py-20">
+                            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-brand-blue"></div>
+                        </div>
+                    )}
+
+                    {fetchState === 'FETCHED' && (
+                        <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[48px]">
+                            {productList?.map((p) => (
+                                <div
+                                    key={p.id}
+                                    className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
+                                >
+                                    <ProductCard
+                                        productId={p.id}
+                                        image={p.images && p.images.length > 0 ? p.images[0].url : ""}
+                                        title={p.name}
+                                        category={categoryList.find(c => c.id === p.category_id)?.title || "General"}
+                                        originalPrice={p.price} // API returns single price, simulating original? Or use same.
+                                        salePrice={p.price}
+                                        rating={p.rating}
+                                        stock={p.stock}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -120,7 +141,7 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            {/* 6. Brand Logo */}
+            {/* 6. Marka Logoları */}
             <section className="bg-[#FAFAFA] py-12 px-6">
                 <div className="container mx-auto">
                     <div className="flex flex-col md:flex-row flex-wrap justify-between items-center gap-8 md:gap-12 px-8">

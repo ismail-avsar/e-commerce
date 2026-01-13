@@ -1,4 +1,6 @@
-// Action Types
+import api from '../../api/api';
+
+// Aksiyon Tipleri
 export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_PRODUCT_LIST = 'SET_PRODUCT_LIST';
 export const SET_TOTAL = 'SET_TOTAL';
@@ -7,7 +9,7 @@ export const SET_LIMIT = 'SET_LIMIT';
 export const SET_OFFSET = 'SET_OFFSET';
 export const SET_FILTER = 'SET_FILTER';
 
-// Action Creators
+// Aksiyon Oluşturucular
 export const setCategories = (categories) => ({
     type: SET_CATEGORIES,
     payload: categories,
@@ -42,3 +44,19 @@ export const setFilter = (filter) => ({
     type: SET_FILTER,
     payload: filter,
 });
+
+// Thunk Aksiyonu
+export const fetchProducts = () => async (dispatch, getState) => {
+    dispatch(setFetchState('FETCHING'));
+    try {
+        const { limit, offset, filter, category } = getState().product;
+        const response = await api.get('/products');
+
+        dispatch(setProductList(response.data.products));
+        dispatch(setTotal(response.data.total));
+        dispatch(setFetchState('FETCHED'));
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        dispatch(setFetchState('FAILED'));
+    }
+};

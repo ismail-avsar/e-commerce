@@ -113,3 +113,12 @@ Header Dropdown Menü: Çekilen kategoriler, Header bileşeninde Kadın ve Erkek
 En İyi Kategoriler (Top Categories): Ana sayfada, kullanıcı puanına (rating) göre en yüksek 5 kategori, dinamik görseller ve özel bir grid yapısıyla "Top Categories" bölümünde listelendi.
 
 Dinamik Rota Yapısı: Kategori linkleri, SEO dostu ve dinamik filtrelemeye uygun olarak /shop/:gender/:categoryName/:categoryId yapısında kurgulandı.
+
+T13: Ürünleri Getir (Fetch Products)
+Mağaza sayfasında listelenecek ürünlerin API üzerinden çekilmesi ve Redux ile yönetilmesi sağlandı.
+
+Redux Eylemi ve Entegrasyon: /products API uç noktasına istek atan fetchProducts thunk eylemi yazıldı. API'den dönen ürün listesi, toplam ürün sayısı ve yükleme durumu (FETCHING, FETCHED, FAILED) productReducer içerisinde saklandı.
+
+Mağaza (Shop) Sayfası Entegrasyonu: ShopPage bileşeni Redux'a bağlandı. Sayfa yüklendiğinde (mount) ürünlerin otomatik olarak çekilmesi sağlandı.
+
+Loading Spinner ve UI: Veriler çekilirken kullanıcının beklediğini anlaması için bir yükleme animasyonu (spinner) eklendi. Çekilen ürünler, görsel, başlık, fiyat ve kategori bilgileriyle birlikte dinamik olarak ürün kartlarına (ProductCard) yansıtıldı.
