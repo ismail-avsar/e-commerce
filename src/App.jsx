@@ -17,6 +17,7 @@ import LoginPage from './pages/LoginPage';
 
 import { useDispatch } from 'react-redux';
 import { verifyToken } from './store/actions/clientActions';
+import { fetchCategories } from './store/actions/globalActions';
 import { useEffect } from 'react';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
   useEffect(() => {
     dispatch(verifyToken());
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   return (
@@ -35,7 +37,10 @@ function App() {
             <Route exact path="/">
               <HomePage />
             </Route>
-            <Route path="/shop">
+            <Route exact path="/shop">
+              <ShopPage />
+            </Route>
+            <Route path="/shop/:gender/:categoryName/:categoryId">
               <ShopPage />
             </Route>
             <Route path="/product/:productId">

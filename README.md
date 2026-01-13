@@ -96,6 +96,20 @@ T11: Otomatik Giriş (Auto Login)
 Kullanıcı deneyimini iyileştirmek ve oturum sürekliliğini sağlamak için token tabanlı otomatik giriş mekanizması geliştirildi.
 
 Token Doğrulama: Uygulama her açıldığında (App mount), localStorage'da kayıtlı bir token varsa API'nin /verify endpoint'ine istek atılarak doğruluğu kontrol edildi.
+
 Güvenli Oturum Yönetimi: Token geçerliyse kullanıcı bilgileri Redux store'a aktarıldı ve oturum otomatik olarak başlatıldı; geçersizse token temizlenerek güvenlik sağlandı.
+
 Beni Hatırla Entegrasyonu: Giriş sırasında "Beni Hatırla" seçeneği işaretlenirse token kalıcı olarak localStorage'a, aksi takdirde sadece oturum süresince kullanılmak üzere belleğe alındı.
+
 Axios Interceptor: Tüm isteklerde Authorization header'ının otomatik eklenmesi ve 401 hatalarında oturumun sonlandırılması için merkezi bir yapı kuruldu.
+
+T12: Kategorilerin Çekilmesi (Fetch Categories)
+Kategorilerin sunucudan çekilerek global state'te saklanması ve kullanıcı arayüzünde dinamik olarak listelenmesi sağlandı.
+
+Global Reducer ve Thunk: Genel verileri yönetmek için globalReducer oluşturuldu ve /categories endpoint'inden veri çeken fetchCategories aksiyonu sisteme dahil edildi.
+
+Header Dropdown Menü: Çekilen kategoriler, Header bileşeninde Kadın ve Erkek olarak iki ayrı sütunda listelenen, hover etkileşimli bir dropdown menüye dönüştürüldü.
+
+En İyi Kategoriler (Top Categories): Ana sayfada, kullanıcı puanına (rating) göre en yüksek 5 kategori, dinamik görseller ve özel bir grid yapısıyla "Top Categories" bölümünde listelendi.
+
+Dinamik Rota Yapısı: Kategori linkleri, SEO dostu ve dinamik filtrelemeye uygun olarak /shop/:gender/:categoryName/:categoryId yapısında kurgulandı.

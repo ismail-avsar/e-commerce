@@ -3,20 +3,26 @@
 @theme {
   /* Top Bar (Dark Navy) */
   --color-dark-navy: #252B42;
-  
+
   /* Brand Colors */
   --color-brand-blue: #23A6F0;
   --color-brand-green: #2DC071;
-  
+
   /* Primary Colors */
   --color-primary-dark: #252B42;
   --color-text-gray: #737373;
-  
+
   /* Neutral Colors */
   --color-white: #ffffff;
   --color-light-gray: #FAFAFA;
   --color-muted: #BDBDBD;
-  
+
   /* Other */
   --color-danger: #E74040;
+}
+
+@layer base {
+  body {
+    @apply font-sans tracking-tight text-text-gray;
+  }
 }

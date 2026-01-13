@@ -1,9 +1,11 @@
 import ProductCard from '../components/ProductCard';
 import HomeSlider from "../components/HomeSlider";
+import { useSelector } from "react-redux";
 
 
 const HomePage = () => {
     const products = [1, 2, 3, 4, 5, 6, 7, 8];
+    const categories = useSelector(state => state.global.categories);
 
     return (
         <div className="w-full">
@@ -12,32 +14,35 @@ const HomePage = () => {
                 <HomeSlider />
             </section>
 
-            {/* 2. Editor's Pick*/}
+            {/* 2. Top Categories */}
             <section className="bg-light-gray py-20 px-6">
                 <div className="container mx-auto">
                     <div className="flex flex-col items-center text-center mb-12">
-                        <h2 className="text-2xl font-bold text-primary-dark tracking-tight">EDITOR'S PICK</h2>
-                        <p className="text-sm text-text-gray mt-2">Problems trying to resolve the conflict between</p>
+                        <h2 className="text-2xl font-bold text-primary-dark tracking-tight">TOP CATEGORIES</h2>
+                        <p className="text-sm text-text-gray mt-2">Explore our highest rated categories</p>
                     </div>
-                    <div className="flex flex-col md:flex-row gap-[30px] justify-center">
-                        <div className="relative w-full md:w-[510px] h-[500px]">
-                            <img src="/assets/categories/men.jpg" className="w-full h-full object-cover" alt="Men" />
-                            <button className="absolute bottom-6 left-8 bg-white px-12 py-3 font-bold text-primary-dark">MEN</button>
-                        </div>
-                        <div className="relative w-full md:w-[240px] h-[500px]">
-                            <img src="/assets/categories/women.jpg" className="w-full h-full object-cover" alt="Women" />
-                            <button className="absolute bottom-6 left-5 bg-white px-10 py-3 font-bold text-primary-dark">WOMEN</button>
-                        </div>
-                        <div className="flex flex-col gap-[30px] w-full md:w-[240px]">
-                            <div className="relative h-[242px]">
-                                <img src="/assets/categories/accessories.jpg" className="w-full h-full object-cover" alt="Acc" />
-                                <button className="absolute bottom-6 left-5 bg-white px-6 py-3 font-bold text-primary-dark text-sm">ACCESSORIES</button>
-                            </div>
-                            <div className="relative h-[242px]">
-                                <img src="/assets/categories/kids.jpg" className="w-full h-full object-cover" alt="Kids" />
-                                <button className="absolute bottom-6 left-5 bg-white px-10 py-3 font-bold text-primary-dark text-sm">KIDS</button>
-                            </div>
-                        </div>
+                    <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+                        {categories
+                            .sort((a, b) => b.rating - a.rating)
+                            .slice(0, 5)
+                            .map((category) => (
+                                <div key={category.id} className="relative w-full sm:w-[calc(50%-1rem)] md:w-[calc(20%-1.6rem)] aspect-[3/4] group overflow-hidden shadow-md">
+                                    <img
+                                        src={category.img}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        alt={category.title}
+                                    />
+                                    <div className="absolute inset-0 bg-black/25 group-hover:bg-black/50 transition-colors duration-300"></div>
+                                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-full text-center">
+                                        <button className="bg-white px-6 py-3 font-bold text-primary-dark min-w-[120px] shadow-sm">
+                                            {category.title.toUpperCase()}
+                                        </button>
+                                        <div className="text-white mt-2 font-medium drop-shadow-md">
+                                            Rating: {category.rating}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                     </div>
                 </div>
             </section>

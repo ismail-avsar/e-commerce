@@ -25,8 +25,8 @@ const ProductCard = ({ productId, image, title, category, originalPrice, salePri
                 </p>
 
                 {/* Fiyatlar */}
-                <div className="flex items-center gap-1.5 py-1">
-                    <span className="text-base font-bold text-muted line-through">
+                <div className="flex items-center gap-2 py-1">
+                    <span className="text-sm font-bold text-muted line-through">
                         ${originalPrice}
                     </span>
                     <span className="text-base font-bold text-brand-green">

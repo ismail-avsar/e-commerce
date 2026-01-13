@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import md5 from 'md5';
 import { useSelector } from 'react-redux';
-import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, User, Search, ShoppingCart, Heart, Menu, X } from 'lucide-react';
+import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, User, Search, ShoppingCart, Heart, Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useSelector(state => state.client.user);
   const cart = useSelector(state => state.shoppingCart.cart);
+  const categories = useSelector(state => state.global.categories);
 
   return (
     <header className="w-full flex flex-col">
@@ -43,7 +44,37 @@ const Header = () => {
             {/* Desktop Menü */}
             <ul className="hidden md:flex items-center gap-4 text-sm text-text-gray font-bold tracking-tight">
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/shop">Shop</Link></li>
+              <li className="relative group">
+                <Link to="/shop" className="flex items-center gap-1">Shop <ChevronDown size={14} /></Link>
+                <div className="absolute top-full left-0 bg-white shadow-lg border border-gray-100 rounded-md py-4 px-6 min-w-[300px] z-[9999] opacity-0 invisible translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-2 gap-8">
+                  {/* Kadın Kategorileri */}
+                  <div className="flex flex-col gap-2">
+                    <h4 className="font-bold text-lg border-b pb-2 mb-2 text-primary-dark">Kadın</h4>
+                    {categories.filter(c => c.gender === 'k').map(category => (
+                      <Link
+                        key={category.id}
+                        to={`/shop/kadin/${category.code.slice(2)}/${category.id}`}
+                        className="text-text-gray hover:text-brand-blue transition-colors"
+                      >
+                        {category.title}
+                      </Link>
+                    ))}
+                  </div>
+                  {/* Erkek Kategorileri */}
+                  <div className="flex flex-col gap-2">
+                    <h4 className="font-bold text-lg border-b pb-2 mb-2 text-primary-dark">Erkek</h4>
+                    {categories.filter(c => c.gender === 'e').map(category => (
+                      <Link
+                        key={category.id}
+                        to={`/shop/erkek/${category.code.slice(2)}/${category.id}`}
+                        className="text-text-gray hover:text-brand-blue transition-colors"
+                      >
+                        {category.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/blog">Blog</Link></li>
               <li><Link to="/contact">Contact</Link></li>
@@ -64,7 +95,7 @@ const Header = () => {
               ) : (
                 <Link to="/signup" className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
                   <User size={24} className="md:w-4 md:h-4" />
-                  <span className="hidden md:inline text-sm font-bold">Login / Register</span>
+                  <span className="hidden md:inline text-sm font-bold text-brand-blue">Login / Register</span>
                 </Link>
               )}
 

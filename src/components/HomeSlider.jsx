@@ -18,6 +18,7 @@ const HomeSlider = () => {
                     src="/assets/header/header.jpg"
                     alt="Slide 1"
                     className="absolute inset-0 w-full h-full object-cover"
+                    style={{ objectPosition: 'right top' }}
                 />
 
                 <div className="relative z-10 container mx-auto px-6 md:px-4 h-full flex items-center">
