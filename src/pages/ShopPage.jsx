@@ -7,12 +7,12 @@ import { fetchProducts } from '../store/actions/productActions';
 
 
 import { useParams } from 'react-router-dom';
-import { setCategory, setFilter, setSort } from '../store/actions/productActions';
+import { setCategory, setFilter, setSort, setOffset } from '../store/actions/productActions';
 
 const ShopPage = () => {
     const dispatch = useDispatch();
     const { categoryId } = useParams();
-    const { productList, total, fetchState, filter, sort } = useSelector((state) => state.product);
+    const { productList, total, fetchState, filter, sort, limit, offset } = useSelector((state) => state.product);
     const categoryList = useSelector((state) => state.global.categories); // İleride gerekirse kategori kartları mantığı için
 
     // Üst kısım için test kategorileri (şimdilik sadece görsel)
@@ -21,6 +21,7 @@ const ShopPage = () => {
     useEffect(() => {
         if (categoryId) {
             dispatch(setCategory(Number(categoryId)));
+            dispatch(setOffset(0));
         }
     }, [dispatch, categoryId]);
 
@@ -28,18 +29,51 @@ const ShopPage = () => {
 
     useEffect(() => {
         dispatch(fetchProducts());
-    }, [dispatch, category, filter, sort]);
+    }, [dispatch, category, filter, sort, limit, offset]);
 
 
     const handleFilterChange = (e) => {
         dispatch(setFilter(e.target.value));
+        dispatch(setOffset(0));
     };
 
     const handleSortChange = (e) => {
         dispatch(setSort(e.target.value));
+        dispatch(setOffset(0));
+    };
+
+    const handlePageChange = (page) => {
+        const newOffset = (page - 1) * limit;
+        dispatch(setOffset(newOffset));
+        window.scrollTo(0, 0);
     };
 
     const handleFilterButtonClick = () => { };
+
+    // Pagination hesaplamaları
+    const totalPages = Math.ceil(total / limit);
+    const currentPage = Math.floor(offset / limit) + 1;
+
+    // Sayfa numaralarını oluştur
+    const getPageNumbers = () => {
+        const pages = [];
+        if (totalPages <= 5) {
+            for (let i = 1; i <= totalPages; i++) {
+                pages.push(i);
+            }
+        } else {
+            // Basit bir gösterim: İlk sayfa, son sayfa ve mevcut sayfa çevresi
+            if (currentPage <= 3) {
+                pages.push(1, 2, 3, 4, '...', totalPages);
+            } else if (currentPage >= totalPages - 2) {
+                pages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+            } else {
+                pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+            }
+        }
+        return pages;
+    };
+
 
     return (
         <div className="w-full bg-white">
@@ -165,27 +199,51 @@ const ShopPage = () => {
             </section>
 
             {/* 5. Sayfalar*/}
-            <section className="py-8 px-6 bg-white">
-                <div className="container mx-auto">
-                    <div className="flex justify-center items-center gap-2">
-                        <button className="px-5 py-2.5 border border-[#BDBDBD] text-[#BDBDBD] font-bold rounded hover:bg-gray-50 transition-colors">
-                            First
-                        </button>
-                        <button className="px-5 py-2.5 border border-[#23A6F0] text-[#23A6F0] font-bold rounded hover:bg-[#23A6F0] hover:text-white transition-colors">
-                            1
-                        </button>
-                        <button className="px-5 py-2.5 bg-[#23A6F0] text-white font-bold rounded">
-                            2
-                        </button>
-                        <button className="px-5 py-2.5 border border-[#23A6F0] text-[#23A6F0] font-bold rounded hover:bg-[#23A6F0] hover:text-white transition-colors">
-                            3
-                        </button>
-                        <button className="px-5 py-2.5 border border-[#23A6F0] text-[#23A6F0] font-bold rounded hover:bg-[#23A6F0] hover:text-white transition-colors">
-                            Next
-                        </button>
+            {total > limit && (
+                <section className="py-8 px-6 bg-white">
+                    <div className="container mx-auto">
+                        <div className="flex justify-center items-center gap-2">
+                            <button
+                                onClick={() => handlePageChange(1)}
+                                disabled={currentPage === 1}
+                                className={`px-5 py-2.5 border font-bold rounded transition-colors ${currentPage === 1
+                                    ? 'border-[#E0E0E0] text-[#E0E0E0] cursor-not-allowed'
+                                    : 'border-[#BDBDBD] text-[#BDBDBD] hover:bg-gray-50 cursor-pointer'
+                                    }`}
+                            >
+                                First
+                            </button>
+
+                            {getPageNumbers().map((page, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => typeof page === 'number' && handlePageChange(page)}
+                                    disabled={page === '...'}
+                                    className={`px-5 py-2.5 font-bold rounded border ${page === currentPage
+                                        ? 'bg-[#23A6F0] text-white border-[#23A6F0]'
+                                        : page === '...'
+                                            ? 'border-transparent text-[#737373] cursor-default'
+                                            : 'border-[#23A6F0] text-[#23A6F0] hover:bg-[#23A6F0] hover:text-white transition-colors'
+                                        }`}
+                                >
+                                    {page}
+                                </button>
+                            ))}
+
+                            <button
+                                onClick={() => handlePageChange(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                                className={`px-5 py-2.5 border font-bold rounded transition-colors ${currentPage === totalPages
+                                    ? 'border-[#E0E0E0] text-[#E0E0E0] cursor-not-allowed'
+                                    : 'border-[#23A6F0] text-[#23A6F0] hover:bg-[#23A6F0] hover:text-white cursor-pointer'
+                                    }`}
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             {/* 6. Marka Logoları */}
             <section className="bg-[#FAFAFA] py-12 px-6">
