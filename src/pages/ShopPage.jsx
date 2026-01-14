@@ -176,23 +176,50 @@ const ShopPage = () => {
 
                     {fetchState === 'FETCHED' && (
                         <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[48px]">
-                            {productList?.map((p) => (
-                                <div
-                                    key={p.id}
-                                    className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
-                                >
-                                    <ProductCard
-                                        productId={p.id}
-                                        image={p.images && p.images.length > 0 ? p.images[0].url : ""}
-                                        title={p.name}
-                                        category={categoryList.find(c => c.id === p.category_id)?.title || "General"}
-                                        originalPrice={p.price}
-                                        salePrice={p.price}
-                                        rating={p.rating}
-                                        stock={p.stock}
-                                    />
-                                </div>
-                            ))}
+                            {productList?.map((p) => {
+                                const category = categoryList.find(c => c.id === p.category_id);
+                                const gender = category?.code?.startsWith('k:') ? 'kadin' : 'erkek';
+                                const categoryTitle = category?.title || 'genel';
+
+                                const slugify = (text) => {
+                                    if (!text) return '';
+                                    return text.toString().toLowerCase()
+                                        .replace(/ğ/g, 'g')
+                                        .replace(/ü/g, 'u')
+                                        .replace(/ş/g, 's')
+                                        .replace(/ı/g, 'i')
+                                        .replace(/ö/g, 'o')
+                                        .replace(/ç/g, 'c')
+                                        .replace(/\s+/g, '-')
+                                        .replace(/[^\w\-]+/g, '')
+                                        .replace(/\-\-+/g, '-')
+                                        .replace(/^-+/, '')
+                                        .replace(/-+$/, '');
+                                };
+
+                                const productNameSlug = slugify(p.name);
+                                const categorySlug = slugify(categoryTitle);
+                                const detailUrl = `/shop/${gender}/${categorySlug}/${p.category_id}/${productNameSlug}/${p.id}`;
+
+                                return (
+                                    <div
+                                        key={p.id}
+                                        className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
+                                    >
+                                        <ProductCard
+                                            productId={p.id}
+                                            image={p.images && p.images.length > 0 ? p.images[0].url : ""}
+                                            title={p.name}
+                                            category={category?.title || "General"}
+                                            originalPrice={p.price}
+                                            salePrice={p.price}
+                                            rating={p.rating}
+                                            stock={p.stock}
+                                            detailUrl={detailUrl}
+                                        />
+                                    </div>
+                                )
+                            })}
                         </div>
                     )}
                 </div>

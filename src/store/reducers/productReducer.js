@@ -8,6 +8,7 @@ import {
     SET_FILTER,
     SET_SORT,
     SET_CATEGORY,
+    SET_PRODUCT,
 } from '../actions/productActions';
 
 
@@ -21,6 +22,7 @@ const initialState = {
     category: null,
     sort: '',
     fetchState: 'NOT_FETCHED',
+    product: {},
 };
 
 const productReducer = (state = initialState, action) => {
@@ -43,6 +45,8 @@ const productReducer = (state = initialState, action) => {
             return { ...state, category: action.payload };
         case SET_SORT:
             return { ...state, sort: action.payload };
+        case 'SET_PRODUCT': // Using string literal if import is missing, but better to import it. I will assume I need to update imports too.
+            return { ...state, product: action.payload };
         default:
             return state;
     }

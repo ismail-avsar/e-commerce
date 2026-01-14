@@ -40,10 +40,13 @@ function App() {
             <Route exact path="/shop">
               <ShopPage />
             </Route>
-            <Route path="/shop/:gender/:categoryName/:categoryId">
+            <Route exact path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId">
+              <ProductDetailPage />
+            </Route>
+            <Route exact path="/shop/:gender/:categoryName/:categoryId">
               <ShopPage />
             </Route>
-            <Route path="/product/:productId">
+            <Route exact path="/product/:productId">
               <ProductDetailPage />
             </Route>
             <Route path="/contact">

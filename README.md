@@ -128,3 +128,23 @@ T14: Ürün Sorgu Parametreleri (Fetch Products Query Parameters) Ürün listele
 Redux ve Parametre Yönetimi: productReducer; kategori, filtre ve sıralama durumlarını yönetecek şekilde güncellendi.
 Shop Sayfası ve URL Entegrasyonu: categoryId URL'den dinlenerek state yönetimi sağlandı.
 Filtreleme ve Sıralama UI: Arama ve sıralama bileşenleri eklenerek API sorgularına bağlandı.
+
+T15: Ürün Sayfalama (Products Pagination)
+Ürün listelemelerinde performans ve kullanıcı deneyimi için sayfalama (pagination) altyapısı kuruldu.
+
+Redux ile Sayfalama Yönetimi: `productReducer` içerisine `limit`, `offset` ve `total` alanları eklendi. Sayfa değişimlerinde `offset` değeri güncellenerek API'den ilgili veri diliminin çekilmesi sağlandı.
+
+UI Entegrasyonu: `ShopPage` bileşenine sayfalama kontrolleri (önceki, sonraki, sayfa numaraları) eklendi. Toplam ürün sayısı ve limit bilgisine göre toplam sayfa sayısı dinamik olarak hesaplandı.
+
+Sorgu Parametreleri: Sayfa değişimleri API isteğine `limit` ve `offset` query parametreleri olarak yansıtıldı.
+
+T16: Ürün Detay Sayfası ve Yönlendirme (Product Detail Page & Routing)
+Kullanıcıların seçilen ürünün detaylarını görüntüleyebilmesi için özel bir sayfa ve yönlendirme yapısı geliştirildi.
+
+SEO Dostu URL Yapısı: Ürün detaylarına erişim için `/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId` formatında dinamik ve açıklayıcı bir rota oluşturuldu.
+
+Ürün Detaylarını Getir (Fetch Product): Seçilen ürünün `productId` bilgisi kullanılarak API'den tekil ürün verisini çeken `fetchProduct` thunk aksiyonu yazıldı ve Redux sistemine dahil edildi.
+
+Dinamik UI: `ProductDetailPage` bileşeni, API'den gelen gerçek verilerle (görseller, fiyat, açıklama, stok durumu vb.) beslendi. Yükleme sırasında kullanıcıya loading spinner gösterilmesi sağlandı.
+
+Akıllı Yönlendirme: `ShopPage` üzerindeki ürün kartlarına tıklandığında, kategori ve ürün isminden türetilen slug'lar kullanılarak doğru URL'e yönlendirme yapılması sağlandı.

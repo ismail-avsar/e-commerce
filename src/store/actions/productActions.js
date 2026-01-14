@@ -82,3 +82,22 @@ export const fetchProducts = () => async (dispatch, getState) => {
         dispatch(setFetchState('FAILED'));
     }
 };
+
+export const SET_PRODUCT = 'SET_PRODUCT';
+
+export const setProduct = (product) => ({
+    type: SET_PRODUCT,
+    payload: product,
+});
+
+export const fetchProduct = (productId) => async (dispatch) => {
+    dispatch(setFetchState('FETCHING'));
+    try {
+        const response = await api.get(`/products/${productId}`);
+        dispatch(setProduct(response.data));
+        dispatch(setFetchState('FETCHED'));
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        dispatch(setFetchState('FAILED'));
+    }
+};

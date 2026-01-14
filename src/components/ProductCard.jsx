@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ productId, image, title, category, originalPrice, salePrice }) => {
+const ProductCard = ({ productId, image, title, category, originalPrice, salePrice, detailUrl }) => {
     return (
-        <Link to={`/product/${productId || 1}`} className="flex flex-col bg-white group">
+        <Link to={detailUrl || `/product/${productId || 1}`} className="flex flex-col bg-white group">
             {/* Ürün Görseli */}
             <div className="w-full h-[427px] overflow-hidden">
                 <img
