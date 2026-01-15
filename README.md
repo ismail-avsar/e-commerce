@@ -138,6 +138,7 @@ UI Entegrasyonu: `ShopPage` bileşenine sayfalama kontrolleri (önceki, sonraki,
 
 Sorgu Parametreleri: Sayfa değişimleri API isteğine `limit` ve `offset` query parametreleri olarak yansıtıldı.
 
+
 T16: Ürün Detay Sayfası ve Yönlendirme (Product Detail Page & Routing)
 Kullanıcıların seçilen ürünün detaylarını görüntüleyebilmesi için özel bir sayfa ve yönlendirme yapısı geliştirildi.
 
@@ -148,3 +149,14 @@ SEO Dostu URL Yapısı: Ürün detaylarına erişim için `/shop/:gender/:catego
 Dinamik UI: `ProductDetailPage` bileşeni, API'den gelen gerçek verilerle (görseller, fiyat, açıklama, stok durumu vb.) beslendi. Yükleme sırasında kullanıcıya loading spinner gösterilmesi sağlandı.
 
 Akıllı Yönlendirme: `ShopPage` üzerindeki ürün kartlarına tıklandığında, kategori ve ürün isminden türetilen slug'lar kullanılarak doğru URL'e yönlendirme yapılması sağlandı.
+
+T17: Alışveriş Sepetine Ürün Ekleme (Add Product to Shopping Cart)
+Kullanıcıların ürünleri alışveriş sepetine ekleyebilmesi ve sepet içeriğini yönetebilmesi için kapsamlı bir sepet sistemi geliştirildi.
+
+Redux Sepet Yönetimi: `shoppingCartReducer` içerisine `ADD_TO_CART`, `REMOVE_FROM_CART`, `UPDATE_PRODUCT_COUNT` ve `TOGGLE_PRODUCT_CHECK` aksiyonları eklendi. Aynı ürün tekrar eklendiğinde yeni item oluşturulmak yerine mevcut item'ın `count` değeri artırılarak sepet yapısı optimize edildi.
+
+Sepet Dropdown Bileşeni: Header'da sepet ikonuna hover/click yapıldığında açılan `CartDropdown` bileşeni oluşturuldu. Dropdown içerisinde ürün görseli, adı, fiyatı, miktar kontrolleri (+/-), ürün kaldırma ve toplam tutar hesaplama özellikleri eklendi.
+
+Sepet Badge: Header'daki sepet ikonuna, sepetteki toplam ürün sayısını gösteren dinamik bir badge eklendi. Badge, sepete ürün eklendikçe veya çıkarıldıkça otomatik olarak güncelleniyor.
+
+Ürün Detay Sayfası Entegrasyonu: `ProductDetailPage` bileşenine sepete ekleme fonksiyonu entegre edildi. Kullanıcılar ürün detay sayfasındaki sepet ikonuna tıklayarak ürünü sepete ekleyebiliyor.

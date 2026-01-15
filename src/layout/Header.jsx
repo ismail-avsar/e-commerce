@@ -3,12 +3,17 @@ import md5 from 'md5';
 import { useSelector } from 'react-redux';
 import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, User, Search, ShoppingCart, Heart, Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CartDropdown from '../components/CartDropdown';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const user = useSelector(state => state.client.user);
   const cart = useSelector(state => state.shoppingCart.cart);
   const categories = useSelector(state => state.global.categories);
+
+  // Toplam ürün sayısını hesapla
+  const totalItems = cart.reduce((total, item) => total + item.count, 0);
 
   return (
     <header className="w-full flex flex-col">
@@ -102,13 +107,17 @@ const Header = () => {
               <div className="cursor-pointer text-primary-dark md:text-brand-blue">
                 <Search size={24} className="md:w-5 md:h-5" />
               </div>
-              <div className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue relative">
+              <div
+                className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue relative"
+                onClick={() => setIsCartOpen(!isCartOpen)}
+              >
                 <ShoppingCart size={24} className="md:w-5 md:h-5" />
-                {cart.length > 0 && (
+                {totalItems > 0 && (
                   <span className="absolute -top-2 -right-2 bg-brand-blue text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    {cart.length}
+                    {totalItems}
                   </span>
                 )}
+                <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
               </div>
               <div className="hidden md:flex items-center gap-1 cursor-pointer text-brand-blue">
                 <Heart size={20} />

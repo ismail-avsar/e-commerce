@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ChevronRight, Heart, ShoppingCart, Eye, Star } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { fetchProduct } from '../store/actions/productActions';
+import { addToCart } from '../store/actions/shoppingCartActions';
 
 const ProductDetailPage = () => {
     const { productId } = useParams();
@@ -16,6 +17,10 @@ const ProductDetailPage = () => {
         dispatch(fetchProduct(productId));
         window.scrollTo(0, 0);
     }, [dispatch, productId]);
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(product));
+    };
 
 
     const bestsellers = Array.from({ length: 8 }, (_, i) => i + 1);
@@ -143,7 +148,10 @@ const ProductDetailPage = () => {
                                 <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
                                     <Heart size={20} className="text-primary-dark" />
                                 </button>
-                                <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                                <button
+                                    onClick={handleAddToCart}
+                                    className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                                >
                                     <ShoppingCart size={20} className="text-primary-dark" />
                                 </button>
                                 <button className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
