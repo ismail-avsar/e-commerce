@@ -3,13 +3,10 @@
         {
             "source": "/api/:path*",
             "destination": "https://workintech-fe-ecommerce.onrender.com/:path*"
-        }
-    ],
-    "routes": [
+        },
         {
-            "src": "/[^.]+",
-            "dest": "/",
-            "status": 200
+            "source": "/((?!api).*)",
+            "destination": "/index.html"
         }
     ]
 }
