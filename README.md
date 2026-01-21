@@ -169,3 +169,23 @@ Sepet Sayfası ve Rota: `/cart` rotası oluşturularak `ShoppingCartPage` bileş
 Redux Entegrasyonu ve Fonksiyonlar: `shoppingCart` reducer'ı ile tam entegrasyon sağlandı. Kullanıcılar ürün adetlerini artırıp azaltabiliyor, ürünleri sepetten silebiliyor ve checkbox ile seçim yapabiliyor.
 
 Sipariş Özeti: Seçili ürünlerin toplam tutarı, kargo ücreti ve "150 TL üzeri kargo bedava" kuralına göre dinamik olarak hesaplanan bir özet bölümü (Order Summary) oluşturuldu.
+
+T19: Sipariş Özeti Kutusu (Order Summary Box)
+Sipariş özeti kutusunun tasarımı ve işlevselliği, kullanıcı deneyimini artıracak şekilde güncellendi.
+
+Sepeti Onayla Butonları: Özeti kutusunun hem üstüne hem de altına, kullanıcıyı kolayca yönlendirecek "Sepeti Onayla" butonları eklendi.
+
+İndirim Kodu Alanı: Kullanıcıların promusyon kodlarını girebilmesi için "+ İNDİRİM KODU GİR" butonu tasarıma dahil edildi.
+
+Kargo ve Fiyat Gösterimi: Kargo bedelinin 150 TL üzeri alışverişlerde ücretsiz olduğu görsel olarak vurgulandı ve "Satıcı Karşılar" ibaresiyle desteklendi.
+
+T20: Sipariş Oluşturma Sayfası - Adım 1: Adres (Create Order Page - Step 1: Address)
+Sipariş oluşturma sürecinin ilk adımı olan adres yönetimi ve seçimi ekranları geliştirildi.
+
+Create Order Sayfası: /order rotası oluşturuldu ve kullanıcı giriş kontrolü (Protected Route) eklendi.
+
+Redux Adres Yönetimi: Kullanıcının kayıtlı adreslerini getirme, yeni adres ekleme, güncelleme ve silme işlemleri için Redux Thunk aksiyonları (fetchAddressList, addAddress, updateAddress, deleteAddress) geliştirildi.
+
+Adres Formu ve Validasyon: react-hook-form kullanılarak il, ilçe, mahalle gibi detayları içeren, validasyon kurallarına sahip dinamik bir adres formu oluşturuldu.
+
+Adres Listeleme ve Seçim: Kayıtlı adreslerin listelenmesi ve sipariş için teslimat adresinin seçilebilmesi sağlandı.

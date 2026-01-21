@@ -122,3 +122,60 @@ export const loginUser = (credentials, history) => (dispatch) => {
             throw err;
         });
 };
+export const fetchAddressList = () => (dispatch) => {
+    return api.get('/user/address')
+        .then(res => {
+            dispatch(setAddressList(res.data));
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Adres listesi alınamadı:', err);
+            // toast.error('Adresler yüklenirken bir sorun oluştu.');
+        });
+};
+
+export const addAddress = (address) => (dispatch) => {
+    return api.post('/user/address', address)
+        .then(res => {
+            // Başarılı olursa listeyi yeniden çekelim veya response'u listeye ekleyelim
+            // Genellikle backend yeni listeyi veya eklenen item'i döner.
+            // Burada basitlik adına listeyi yenileme yoluna gidebiliriz veya optimistik update yapabiliriz.
+            // Dokümantasyonda ne döndüğü net değil ama genellikle listeyi güncellemek en temizi.
+            dispatch(fetchAddressList());
+            toast.success('Adres başarıyla eklendi.');
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Adres eklenirken hata:', err);
+            toast.error('Adres eklenemedi.');
+            throw err;
+        });
+};
+
+export const updateAddress = (address) => (dispatch) => {
+    return api.put('/user/address', address)
+        .then(res => {
+            dispatch(fetchAddressList());
+            toast.success('Adres başarıyla güncellendi.');
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Adres güncellenirken hata:', err);
+            toast.error('Adres güncellenemedi.');
+            throw err;
+        });
+};
+
+export const deleteAddress = (addressId) => (dispatch) => {
+    return api.delete(`/user/address/${addressId}`)
+        .then(res => {
+            dispatch(fetchAddressList());
+            toast.success('Adres başarıyla silindi.');
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Adres silinirken hata:', err);
+            toast.error('Adres silinemedi.');
+            throw err;
+        });
+};

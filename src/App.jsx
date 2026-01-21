@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import ShoppingCartPage from './pages/ShoppingCartPage';
+import CreateOrderPage from './pages/CreateOrderPage';
 
 
 
@@ -67,6 +68,9 @@ function App() {
             </Route>
             <Route path="/cart">
               <ShoppingCartPage />
+            </Route>
+            <Route path="/order">
+              <CreateOrderPage />
             </Route>
           </Switch>
         </PageContent>
