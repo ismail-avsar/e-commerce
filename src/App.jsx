@@ -10,6 +10,7 @@ import TeamPage from './pages/TeamPage';
 import AboutPage from './pages/AboutPage';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
+import ShoppingCartPage from './pages/ShoppingCartPage';
 
 
 
@@ -63,6 +64,9 @@ function App() {
             </Route>
             <Route path="/signup">
               <SignUpPage />
+            </Route>
+            <Route path="/cart">
+              <ShoppingCartPage />
             </Route>
           </Switch>
         </PageContent>

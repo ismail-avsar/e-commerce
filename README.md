@@ -160,3 +160,12 @@ Sepet Dropdown Bileşeni: Header'da sepet ikonuna hover/click yapıldığında a
 Sepet Badge: Header'daki sepet ikonuna, sepetteki toplam ürün sayısını gösteren dinamik bir badge eklendi. Badge, sepete ürün eklendikçe veya çıkarıldıkça otomatik olarak güncelleniyor.
 
 Ürün Detay Sayfası Entegrasyonu: `ProductDetailPage` bileşenine sepete ekleme fonksiyonu entegre edildi. Kullanıcılar ürün detay sayfasındaki sepet ikonuna tıklayarak ürünü sepete ekleyebiliyor.
+
+T18: Alışveriş Sepeti Sayfası (Shopping Cart Page)
+Kullanıcıların sepetlerindeki ürünleri detaylı görüntüleyebilecekleri, adet güncelleyip seçim yapabilecekleri sepet sayfası geliştirildi.
+
+Sepet Sayfası ve Rota: `/cart` rotası oluşturularak `ShoppingCartPage` bileşeni eklendi. Kullanıcılar header üzerindeki sepet ikonundan veya dropdown menüsünden bu sayfaya erişebiliyor.
+
+Redux Entegrasyonu ve Fonksiyonlar: `shoppingCart` reducer'ı ile tam entegrasyon sağlandı. Kullanıcılar ürün adetlerini artırıp azaltabiliyor, ürünleri sepetten silebiliyor ve checkbox ile seçim yapabiliyor.
+
+Sipariş Özeti: Seçili ürünlerin toplam tutarı, kargo ücreti ve "150 TL üzeri kargo bedava" kuralına göre dinamik olarak hesaplanan bir özet bölümü (Order Summary) oluşturuldu.

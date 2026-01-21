@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <header className="w-full flex flex-col">
-      {/* Top Bar - Sadece Desktop */}
+      {/* Üst Bar - Sadece Masaüstü */}
       <div className="hidden md:flex bg-primary-dark text-white text-sm py-3">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
@@ -38,7 +38,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* Ana Navigasyon */}
       <nav className="bg-white py-6">
         <div className="container mx-auto px-6 md:px-4">
           <div className="flex justify-between items-center">
@@ -46,7 +46,7 @@ const Header = () => {
             {/* Logo */}
             <h3 className="text-2xl font-bold text-primary-dark shrink-0">Bandage</h3>
 
-            {/* Desktop Menü */}
+            {/* Masaüstü Menü */}
             <ul className="hidden md:flex items-center gap-4 text-sm text-text-gray font-bold tracking-tight">
               <li><Link to="/">Home</Link></li>
               <li className="relative group">

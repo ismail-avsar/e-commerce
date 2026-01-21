@@ -45,7 +45,7 @@ const productReducer = (state = initialState, action) => {
             return { ...state, category: action.payload };
         case SET_SORT:
             return { ...state, sort: action.payload };
-        case 'SET_PRODUCT': // Using string literal if import is missing, but better to import it. I will assume I need to update imports too.
+        case 'SET_PRODUCT':
             return { ...state, product: action.payload };
         default:
             return state;

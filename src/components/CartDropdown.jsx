@@ -32,7 +32,7 @@ const CartDropdown = ({ isOpen, onClose }) => {
 
     return (
         <div className="absolute right-0 top-full mt-2 w-80 bg-white shadow-xl rounded-lg z-50 border border-gray-200">
-            {/* Header */}
+            {/* Header*/}
             <div className="flex items-center justify-between p-4 border-b">
                 <h3 className="font-semibold text-lg">Sepetim ({totalItems} Ürün)</h3>
                 <button
