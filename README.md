@@ -211,3 +211,14 @@ Sepet Yönetimi ve Sıfırlama: Sipariş başarıyla oluşturulduktan sonra, kul
 Ödeme ve Onay Arayüzü: `CreateOrderPage` üzerindeki "Ödeme Yap" butonu işlevsel hale getirildi. Butona tıklandığında öncelikle adres ve kart seçimi validasyonları yapılıyor, ardından sipariş işlemi başlatılıyor.
 
 Kullanıcı Geri Bildirimi: İşlem sonucuna göre kullanıcıya React Toastify ile başarı veya hata mesajları gösteriliyor. Başarılı sipariş sonrası kullanıcı otomatik olarak ana sayfaya yönlendiriliyor.
+
+T23: Sipariş Geçmişi ve Detayların Görüntülenmesi (Previous Orders Page)
+Kullanıcıların geçmiş siparişlerini inceleyebilmesi için gerekli frontend ve backend entegrasyonları tamamlandı.
+
+Sipariş Geçmişi Sayfası (PreviousOrdersPage): Kullanıcının tüm siparişlerini listeleyen, /orders rotasında çalışan korumalı bir sayfa geliştirildi. Tablo yapısı kullanılarak sipariş tarihi, tutarı ve ürün sayısı özetlendi.
+
+Detaylı Görünüm (Collapsible Panel): Her sipariş satırı için açılır/kapanır bir detay alanı eklendi. Kullanıcılar bu alandan sipariş içeriğindeki ürünlerin görsellerini, fiyatlarını ve miktarlarını görüntüleyebilir.
+
+Redux Entegrasyonu: Sipariş verilerinin yönetimi için orderReducer oluşturuldu ve fetchOrders (GET /order) thunk aksiyonu sisteme dahil edildi.
+
+Header Kullanıcı Menüsü: Header bileşenindeki kullanıcı alanı, kullanıcı deneyimini artıracak şekilde Dropdown menüye dönüştürüldü. "Siparişlerim" ve "Çıkış Yap" seçenekleri bu menüye taşındı.

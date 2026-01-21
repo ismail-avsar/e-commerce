@@ -12,6 +12,7 @@ import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import CreateOrderPage from './pages/CreateOrderPage';
+import PreviousOrdersPage from './pages/PreviousOrdersPage';
 
 
 
@@ -71,6 +72,9 @@ function App() {
             </Route>
             <Route path="/order">
               <CreateOrderPage />
+            </Route>
+            <Route path="/orders">
+              <PreviousOrdersPage />
             </Route>
           </Switch>
         </PageContent>

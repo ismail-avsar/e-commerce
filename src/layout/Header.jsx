@@ -89,13 +89,31 @@ const Header = () => {
             {/* Sağ İkon Grubu */}
             <div className="flex items-center gap-5 md:gap-6">
               {user.name ? (
-                <div className="flex items-center gap-2 cursor-pointer text-primary-dark md:text-brand-blue">
-                  <img
-                    src={`https://www.gravatar.com/avatar/${md5(user.email)}?d=mp`}
-                    alt={user.name}
-                    className="w-8 h-8 rounded-full object-cover border border-gray-200"
-                  />
-                  <span className="hidden md:inline text-sm font-bold">{user.name}</span>
+                <div className="relative group flex items-center gap-2 cursor-pointer text-primary-dark md:text-brand-blue">
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={`https://www.gravatar.com/avatar/${md5(user.email)}?d=mp`}
+                      alt={user.name}
+                      className="w-8 h-8 rounded-full object-cover border border-gray-200"
+                    />
+                    <span className="hidden md:inline text-sm font-bold">{user.name}</span>
+                    <ChevronDown size={14} className="hidden md:block" />
+                  </div>
+                  {/* User Dropdown */}
+                  <div className="absolute top-full right-0 bg-white shadow-md border border-gray-100 rounded-md py-2 min-w-[150px] z-[9999] opacity-0 invisible translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <Link to="/orders" className="block px-4 py-2 text-sm text-text-gray hover:bg-gray-50 hover:text-brand-blue">
+                      Siparişlerim
+                    </Link>
+                    <button
+                      onClick={() => {
+                        localStorage.removeItem('token');
+                        window.location.reload();
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-danger hover:bg-gray-50"
+                    >
+                      Çıkış Yap
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <Link to="/signup" className="flex items-center gap-1 cursor-pointer text-primary-dark md:text-brand-blue">
