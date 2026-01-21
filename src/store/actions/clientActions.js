@@ -179,3 +179,57 @@ export const deleteAddress = (addressId) => (dispatch) => {
             throw err;
         });
 };
+
+// Kredi Kartı İşlemleri
+export const fetchCreditCards = () => (dispatch) => {
+    return api.get('/user/card')
+        .then(res => {
+            dispatch(setCreditCards(res.data));
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Kartlar yüklenemedi:', err);
+        });
+};
+
+export const addCreditCard = (card) => (dispatch) => {
+    return api.post('/user/card', card)
+        .then(res => {
+            dispatch(fetchCreditCards());
+            toast.success('Kart başarıyla eklendi.');
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Kart eklenirken hata:', err);
+            toast.error('Kart eklenemedi.');
+            throw err;
+        });
+};
+
+export const updateCreditCard = (card) => (dispatch) => {
+    return api.put('/user/card', card)
+        .then(res => {
+            dispatch(fetchCreditCards());
+            toast.success('Kart başarıyla güncellendi.');
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Kart güncellenirken hata:', err);
+            toast.error('Kart güncellenemedi.');
+            throw err;
+        });
+};
+
+export const deleteCreditCard = (cardId) => (dispatch) => {
+    return api.delete(`/user/card/${cardId}`)
+        .then(res => {
+            dispatch(fetchCreditCards());
+            toast.success('Kart başarıyla silindi.');
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Kart silinirken hata:', err);
+            toast.error('Kart silinemedi.');
+            throw err;
+        });
+};

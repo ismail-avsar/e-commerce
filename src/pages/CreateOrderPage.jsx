@@ -2,10 +2,13 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import OrderAddress from '../components/OrderAddress';
+import OrderPayment from '../components/OrderPayment';
+import { useState } from 'react';
 
 const CreateOrderPage = () => {
     const history = useHistory();
     const { user } = useSelector((state) => state.client);
+    const [activeTab, setActiveTab] = useState('address'); // address (adres), payment (ödeme)
 
     const token = localStorage.getItem('token');
 
@@ -23,10 +26,24 @@ const CreateOrderPage = () => {
 
             <div className="flex flex-col lg:flex-row gap-8">
                 <div className="w-full lg:w-2/3">
-                    {/* Adımlar Navigasyonu eklenebilir (Opsiyonel) */}
+                    {/* Sekmeler / Adımlar */}
+                    <div className="flex gap-4 mb-6 border-b pb-4">
+                        <button
+                            className={`text-xl font-bold pb-2 ${activeTab === 'address' ? 'text-primary border-b-4 border-primary' : 'text-gray-400'}`}
+                            onClick={() => setActiveTab('address')}
+                        >
+                            Adres Bilgileri
+                        </button>
+                        <button
+                            className={`text-xl font-bold pb-2 ${activeTab === 'payment' ? 'text-primary border-b-4 border-primary' : 'text-gray-400'}`}
+                            onClick={() => setActiveTab('payment')}
+                        >
+                            Ödeme Seçenekleri
+                        </button>
+                    </div>
 
-                    {/* Adım 1: Adres */}
-                    <OrderAddress />
+                    {activeTab === 'address' && <OrderAddress />}
+                    {activeTab === 'payment' && <OrderPayment />}
                 </div>
 
                 <div className="w-full lg:w-1/3">
@@ -50,8 +67,14 @@ const CreateOrderPage = () => {
                             <span>Toplam</span>
                             <span>0 TL</span>
                         </div>
-                        <button className="w-full bg-primary text-white py-3 rounded-md mt-6 font-bold hover:bg-primary-dark transition-colors">
-                            Kaydet ve Devam Et
+                        <button
+                            onClick={() => {
+                                if (activeTab === 'address') setActiveTab('payment');
+                                else console.log('Siparişi Tamamla');
+                            }}
+                            className="w-full bg-primary text-white py-3 rounded-md mt-6 font-bold hover:bg-primary-dark transition-colors"
+                        >
+                            {activeTab === 'address' ? 'Kaydet ve Devam Et' : 'Ödemeyi Yap'}
                         </button>
                     </div>
                 </div>

@@ -189,3 +189,14 @@ Redux Adres Yönetimi: Kullanıcının kayıtlı adreslerini getirme, yeni adres
 Adres Formu ve Validasyon: react-hook-form kullanılarak il, ilçe, mahalle gibi detayları içeren, validasyon kurallarına sahip dinamik bir adres formu oluşturuldu.
 
 Adres Listeleme ve Seçim: Kayıtlı adreslerin listelenmesi ve sipariş için teslimat adresinin seçilebilmesi sağlandı.
+
+T21: Sipariş Oluşturma Sayfası - Adım 2: Kredi Kartı (Create Order Page - Step 2: Credit Card)
+Sipariş sürecinin ikinci adımı olan ödeme yöntemleri ve kredi kartı yönetimi ekranları geliştirildi.
+
+Kart Yönetimi (CRUD) ve Redux: Kullanıcının kayıtlı kredi kartlarını listeleme (GET), yeni kart ekleme (POST), güncelleme (PUT) ve silme (DELETE) işlemleri için Redux Thunk aksiyonları yazılarak `clientActions` dosyasına eklendi. API isteklerinde güvenlik gereği CVV gönderilmeyerek sadece gerekli kart bilgileri işlendi.
+
+Ödeme Arayüzü: `OrderPayment` bileşeni oluşturularak kayıtlı kartların listelenmesi, yeni kart ekleme formunun (`CardForm`) açılıp kapanması ve silme onayı gibi etkileşimler sağlandı.
+
+Form Validasyonu ve Taksit Seçenekleri: Kart ekleme formu, Luhn algoritması, tarih kontrolü ve regex desenleri ile validasyona tabi tutuldu. Seçilen karta göre (mock) taksit seçeneklerinin gösterildiği bir yapı eklendi.
+
+Adım Yönetimi: `CreateOrderPage` üzerinde adres ve ödeme adımları arasında geçiş yapısı (Tab navigation) kurularak sipariş akışı bütünleştirildi.
