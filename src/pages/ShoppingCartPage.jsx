@@ -123,38 +123,51 @@ const ShoppingCartPage = () => {
 
                     {/* Sipariş Özeti (Sağ Taraf) */}
                     <div className="w-full lg:w-80 h-fit">
-                        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 sticky top-4">
-                            <h3 className="text-lg font-semibold mb-4 text-gray-800">Sipariş Özeti</h3>
-
-                            <div className="flex justify-between items-center mb-2 text-sm">
-                                <span className="text-gray-600">Ürünün Toplamı</span>
-                                <span className="font-semibold text-gray-800">{totalAmount.toFixed(2)} TL</span>
-                            </div>
-
-                            <div className="flex justify-between items-center mb-2 text-sm">
-                                <span className="text-gray-600">Kargo Toplam</span>
-                                <span className="font-semibold text-gray-800">29.99 TL</span>
-                            </div>
-
-                            {totalAmount > 150 && (
-                                <div className="flex justify-between items-center mb-4 text-sm text-green-600">
-                                    <span>150 TL Üzeri Kargo Bedava</span>
-                                    <span className="font-semibold text-red-500 line-through">29.99 TL</span>
-                                </div>
-                            )}
-
-                            <div className="border-t border-gray-200 my-4"></div>
-
-                            <div className="flex justify-between items-center mb-6">
-                                <span className="text-base font-semibold text-gray-800">Toplam</span>
-                                <span className="text-xl font-bold text-primary">
-                                    {(totalAmount > 150 ? totalAmount : totalAmount + 29.99).toFixed(2)} TL
-                                </span>
-                            </div>
-
-                            <button className="w-full bg-primary text-white py-3 rounded font-semibold hover:bg-opacity-90 transition-colors">
-                                Sepeti Onayla <i className="fa-solid fa-chevron-right ml-2"></i>
+                        <div className="flex flex-col gap-4">
+                            {/* Üst Kısım Sepeti Onayla Butonu */}
+                            <button className="w-full bg-primary text-white py-3 rounded font-semibold hover:bg-opacity-90 transition-colors text-base">
+                                Sepeti Onayla <i className="fa-solid fa-chevron-right ml-2 text-xs"></i>
                             </button>
+
+                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                                <h3 className="text-lg font-semibold mb-4 text-gray-800">Sipariş Özeti</h3>
+
+                                <div className="flex justify-between items-center mb-3 text-sm">
+                                    <span className="text-gray-600">Ürünün Toplamı</span>
+                                    <span className="font-semibold text-gray-800">{totalAmount.toFixed(2)} TL</span>
+                                </div>
+
+                                <div className="flex justify-between items-center mb-3 text-sm">
+                                    <span className="text-gray-600">Kargo Toplam</span>
+                                    <span className="font-semibold text-gray-800">29.99 TL</span>
+                                </div>
+
+                                {totalAmount > 150 && (
+                                    <div className="flex justify-between items-center mb-4 text-sm">
+                                        <span className="text-gray-600 w-1/2">150 TL ve Üzeri Kargo Bedava (Satıcı Karşılar)</span>
+                                        <span className="font-semibold text-primary">-29.99 TL</span>
+                                    </div>
+                                )}
+
+                                <div className="border-t border-gray-200 my-4"></div>
+
+                                <div className="flex justify-between items-center mb-6">
+                                    <span className="text-base font-semibold text-gray-800">Toplam</span>
+                                    <span className="text-xl font-bold text-primary">
+                                        {(totalAmount > 150 ? totalAmount : totalAmount + 29.99).toFixed(2)} TL
+                                    </span>
+                                </div>
+
+                                {/* İndirim Kodu Gir Butonu */}
+                                <button className="w-full bg-white border border-gray-200 text-primary font-semibold py-3 rounded flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-sm mb-4">
+                                    <i className="fa-solid fa-plus text-xs"></i> İNDİRİM KODU GİR
+                                </button>
+
+                                {/* Alt Kısım Sepeti Onayla Butonu */}
+                                <button className="w-full bg-primary text-white py-3 rounded font-semibold hover:bg-opacity-90 transition-colors text-base">
+                                    Sepeti Onayla <i className="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
