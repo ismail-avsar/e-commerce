@@ -6,6 +6,7 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const UPDATE_PRODUCT_COUNT = 'UPDATE_PRODUCT_COUNT';
 export const TOGGLE_PRODUCT_CHECK = 'TOGGLE_PRODUCT_CHECK';
+export const RESET_CART = 'RESET_CART';
 
 // Action Creators
 export const setCart = (cart) => ({
@@ -42,3 +43,23 @@ export const toggleProductCheck = (productId) => ({
     type: TOGGLE_PRODUCT_CHECK,
     payload: productId,
 });
+
+export const resetCart = () => ({
+    type: RESET_CART,
+});
+
+import api from '../../api/api';
+import { toast } from 'react-toastify';
+
+export const createOrder = (orderData) => (dispatch) => {
+    return api.post('/order', orderData)
+        .then(res => {
+            dispatch(resetCart());
+            return res.data;
+        })
+        .catch(err => {
+            console.error('Sipariş oluşturulurken hata:', err);
+            toast.error('Sipariş oluşturulamadı: ' + (err.response?.data?.message || err.message));
+            throw err;
+        });
+};

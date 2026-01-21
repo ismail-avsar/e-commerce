@@ -4,11 +4,11 @@ import { fetchCreditCards, addCreditCard, updateCreditCard, deleteCreditCard } f
 import CardForm from './CardForm';
 import { Plus } from 'lucide-react';
 
-const OrderPayment = () => {
+const OrderPayment = ({ selectedCardId, setSelectedCardId }) => {
     const dispatch = useDispatch();
     const { creditCards } = useSelector((state) => state.client);
     const [showAddForm, setShowAddForm] = useState(false);
-    const [selectedCardId, setSelectedCardId] = useState(null);
+    // const [selectedCardId, setSelectedCardId] = useState(null); // Parent'tan geliyor
     const [editingCard, setEditingCard] = useState(null);
 
     useEffect(() => {

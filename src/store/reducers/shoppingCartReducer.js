@@ -6,6 +6,7 @@ import {
     REMOVE_FROM_CART,
     UPDATE_PRODUCT_COUNT,
     TOGGLE_PRODUCT_CHECK,
+    RESET_CART,
 } from '../actions/shoppingCartActions';
 
 const initialState = {
@@ -70,6 +71,9 @@ const shoppingCartReducer = (state = initialState, action) => {
 
         case SET_ADDRESS:
             return { ...state, address: action.payload };
+
+        case RESET_CART:
+            return { ...state, cart: [] };
 
         default:
             return state;

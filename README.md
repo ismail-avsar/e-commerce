@@ -200,3 +200,14 @@ Kart Yönetimi (CRUD) ve Redux: Kullanıcının kayıtlı kredi kartlarını lis
 Form Validasyonu ve Taksit Seçenekleri: Kart ekleme formu, Luhn algoritması, tarih kontrolü ve regex desenleri ile validasyona tabi tutuldu. Seçilen karta göre (mock) taksit seçeneklerinin gösterildiği bir yapı eklendi.
 
 Adım Yönetimi: `CreateOrderPage` üzerinde adres ve ödeme adımları arasında geçiş yapısı (Tab navigation) kurularak sipariş akışı bütünleştirildi.
+
+T22: Sipariş Tamamlama (Complete Order)
+Kullanıcının sepetindeki ürünleri, seçtiği adres ve ödeme yöntemiyle birleştirerek siparişe dönüştürdüğü süreç tamamlandı.
+
+Sipariş Oluşturma (Create Order): `/order` uç noktasına (POST) istek atan `createOrder` thunk aksiyonu geliştirildi. İstek gövdesi; seçilen adres ID'si, kart bilgileri (güvenlik gereği sadece gerekli alanlar), ürün detayları ve hesaplanan toplam tutarı içerecek şekilde yapılandırıldı.
+
+Sepet Yönetimi ve Sıfırlama: Sipariş başarıyla oluşturulduktan sonra, kullanıcının sepetinin hem arayüzden hem de global state'ten temizlenmesi için `RESET_CART` aksiyonu reducer'a eklendi ve entegre edildi.
+
+Ödeme ve Onay Arayüzü: `CreateOrderPage` üzerindeki "Ödeme Yap" butonu işlevsel hale getirildi. Butona tıklandığında öncelikle adres ve kart seçimi validasyonları yapılıyor, ardından sipariş işlemi başlatılıyor.
+
+Kullanıcı Geri Bildirimi: İşlem sonucuna göre kullanıcıya React Toastify ile başarı veya hata mesajları gösteriliyor. Başarılı sipariş sonrası kullanıcı otomatik olarak ana sayfaya yönlendiriliyor.

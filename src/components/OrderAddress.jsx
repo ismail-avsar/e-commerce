@@ -4,11 +4,11 @@ import { fetchAddressList } from '../store/actions/clientActions';
 import AddressForm from './AddressForm';
 import { Plus } from 'lucide-react';
 
-const OrderAddress = () => {
+const OrderAddress = ({ selectedAddressId, setSelectedAddressId }) => {
     const dispatch = useDispatch();
     const { addressList } = useSelector((state) => state.client);
     const [showAddForm, setShowAddForm] = useState(false);
-    const [selectedAddressId, setSelectedAddressId] = useState(null);
+    // const [selectedAddressId, setSelectedAddressId] = useState(null); // Parent'tan geliyor
     const [editingAddress, setEditingAddress] = useState(null);
 
     useEffect(() => {

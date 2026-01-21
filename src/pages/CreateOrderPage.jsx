@@ -1,14 +1,19 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import OrderAddress from '../components/OrderAddress';
 import OrderPayment from '../components/OrderPayment';
-import { useState } from 'react';
+import { createOrder } from '../store/actions/shoppingCartActions';
+import { toast } from 'react-toastify';
 
 const CreateOrderPage = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
-    const { user } = useSelector((state) => state.client);
+    const { user, addressList, creditCards } = useSelector((state) => state.client);
+    const { cart } = useSelector((state) => state.shoppingCart);
     const [activeTab, setActiveTab] = useState('address'); // address (adres), payment (ödeme)
+    const [selectedAddressId, setSelectedAddressId] = useState(null);
+    const [selectedCardId, setSelectedCardId] = useState(null);
 
     const token = localStorage.getItem('token');
 
@@ -42,8 +47,18 @@ const CreateOrderPage = () => {
                         </button>
                     </div>
 
-                    {activeTab === 'address' && <OrderAddress />}
-                    {activeTab === 'payment' && <OrderPayment />}
+                    {activeTab === 'address' && (
+                        <OrderAddress
+                            selectedAddressId={selectedAddressId}
+                            setSelectedAddressId={setSelectedAddressId}
+                        />
+                    )}
+                    {activeTab === 'payment' && (
+                        <OrderPayment
+                            selectedCardId={selectedCardId}
+                            setSelectedCardId={setSelectedCardId}
+                        />
+                    )}
                 </div>
 
                 <div className="w-full lg:w-1/3">
@@ -69,8 +84,54 @@ const CreateOrderPage = () => {
                         </div>
                         <button
                             onClick={() => {
-                                if (activeTab === 'address') setActiveTab('payment');
-                                else console.log('Siparişi Tamamla');
+                                if (activeTab === 'address') {
+                                    if (!selectedAddressId) {
+                                        toast.warning("Lütfen bir adres seçiniz.");
+                                        return;
+                                    }
+                                    setActiveTab('payment');
+                                }
+                                else {
+                                    // Complete Order Logic
+                                    if (!selectedCardId) {
+                                        toast.warning("Lütfen bir kart seçiniz.");
+                                        return;
+                                    }
+
+                                    const selectedAddress = addressList.find(a => a.id === selectedAddressId);
+                                    const selectedCard = creditCards.find(c => c.id === selectedCardId);
+                                    const cartProducts = cart.map(item => ({
+                                        product_id: item.product.id,
+                                        count: item.count,
+                                        detail: item.product.name // API detail istiyor, name gönderiyorum
+                                    }));
+
+                                    // Toplam fiyat hesaplama
+                                    const totalPrice = cart.reduce((total, item) => total + (item.product.price * item.count), 0);
+
+                                    const orderPayload = {
+                                        address_id: selectedAddressId,
+                                        order_date: new Date().toISOString(),
+                                        card_no: selectedCard.card_no, // API string olarak alıyor olabilir ama örnekte int
+                                        card_name: selectedCard.name_on_card,
+                                        card_expire_month: selectedCard.expire_month,
+                                        card_expire_year: selectedCard.expire_year,
+                                        card_ccv: 321, // Mock CVV, UI'da store etmediğimiz için
+                                        price: totalPrice,
+                                        products: cartProducts
+                                    };
+
+                                    dispatch(createOrder(orderPayload))
+                                        .then(() => {
+                                            toast.success("Siparişiniz başarıyla alındı! Özeti sayfasında yönlendiriliyorsunuz...");
+                                            setTimeout(() => {
+                                                history.push('/'); // Şimdilik ana sayfaya
+                                            }, 2000);
+                                        })
+                                        .catch(err => {
+                                            console.error("Order failed", err);
+                                        });
+                                }
                             }}
                             className="w-full bg-primary text-white py-3 rounded-md mt-6 font-bold hover:bg-primary-dark transition-colors"
                         >
