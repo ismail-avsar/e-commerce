@@ -1,224 +1,551 @@
-Bandage E-Commerce Project
-Bu proje, bir e-ticaret platformunun kullanıcı arayüzünü (UI) modern web teknolojileriyle geliştirmeyi amaçlayan bir web geliştirme sürecidir.
+# 🛍️ Bandage E-Ticaret Platformu
 
-Proje Geliştirme Süreci
-T01: Proje Kurulumu ve Altyapı
-Projenin temel iskeleti oluşturulmuş ve geliştirme ortamı hazırlanmıştır.
+<div align="center">
 
-Vite kullanılarak React projesi başlatıldı.
+[![Canlı Demo](https://img.shields.io/badge/demo-canlı-success?style=for-the-badge)](https://e-commerce-two-fawn-25.vercel.app/)
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Redux](https://img.shields.io/badge/Redux-Toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://redux-toolkit.js.org/)
 
-Tailwind CSS entegrasyonu yapılarak tasarım altyapısı kuruldu.
+**React, Redux ve Tailwind CSS ile geliştirilmiş modern, responsive e-ticaret platformu**
 
-Proje klasör yapısı (Components, Layouts, Pages, Assets) düzenlendi.
+[🚀 Canlı Demo](https://e-commerce-two-fawn-25.vercel.app/) • [📋 Özellikler](#-özellikler) • [🛠️ Teknoloji Stack](#️-teknoloji-stack) • [📖 Dokümantasyon](#-proje-geliştirme-yolculuğu)
 
-GitHub depo (repository) kurulumu yapılarak versiyon kontrolü sağlandı.
+</div>
 
-Proje canlıya alındı. [https://e-commerce-two-fawn-25.vercel.app/]
+---
 
-T02: Ana Sayfa ve Layout Geliştirme
-Kullanıcının ilk karşılaştığı bileşenler ve ana sayfa yapısı Figma tasarımlarına sadık kalınarak kodlandı.
+## 📋 İçindekiler
 
-Header & Footer: Tüm sayfalarda sabit kalacak şekilde global layout olarak tasarlandı.
+- [Genel Bakış](#-genel-bakış)
+- [Özellikler](#-özellikler)
+- [Teknoloji Stack](#️-teknoloji-stack)
+- [Başlangıç](#-başlangıç)
+- [Proje Geliştirme Yolculuğu](#-proje-geliştirme-yolculuğu)
+- [API Entegrasyonu](#-api-entegrasyonu)
+- [Katkıda Bulunma](#-katkıda-bulunma)
 
-Responsive Tasarım: Masaüstü ve mobil uyumlu navigasyon menüsü (hamburger menu) eklendi.
+---
 
-Slider & Ürün Kartları: Ana sayfadaki görsel slider yapısı ve tekrar eden ürün kartları için temel bileşenler oluşturuldu.
+## 🎯 Genel Bakış
 
-T03: Mağaza (Shop) Sayfası ve Yönlendirme
-Ürünlerin listelendiği mağaza sayfası ve sayfalar arası geçiş dinamikleri eklendi.
+Bandage, modern UI/UX tasarımıyla kusursuz bir alışveriş deneyimi sunan tam özellikli bir e-ticaret platformudur. Proje, React geliştirmede en iyi uygulamaları, Redux ile durum yönetimini ve Tailwind CSS ile responsive tasarımı göstermektedir.
 
-React Router: react-router-dom v5 kullanılarak / (Home) ve /shop rotaları aktif edildi.
+### ✨ Öne Çıkan Özellikler
 
-Kategori Kartları: Üst kısımda 5 adet kategori görseli içeren dinamik yapı kuruldu.
+- 🎨 **Piksel mükemmel Figma uygulaması** ile mobile-first yaklaşım
+- 🔐 **JWT ile güvenli kimlik doğrulama** ve otomatik giriş
+- 🛒 **Gerçek zamanlı güncellemeli** tam alışveriş sepeti
+- 💳 **Adres ve ödeme yönetimli** komple ödeme akışı
+- 📱 **Tüm cihazlar için** tamamen responsive tasarım
+- ⚡ **Lazy loading ve code splitting** ile optimize edilmiş performans
 
-Filtreleme Barı: Görünüm değiştirme (grid/list) ve sıralama seçeneklerini içeren bar tasarlandı.
+---
 
-Ürün Grid Yapısı: Masaüstünde 4'lü, mobilde dikey dizilen ürün listeleme alanı oluşturuldu.
+## 🌟 Özellikler
 
-Sayfalama & Markalar: Sayfa altına Pagination (sayfalama) butonları ve marka iş birliği logoları eklendi.
+### 🛍️ Alışveriş Deneyimi
+- **Ürün Kataloğu** - Gelişmiş filtreleme, sıralama ve sayfalama ile ürünlere göz atın
+- **Ürün Detayları** - Görsel galerileriyle kapsamlı ürün bilgileri
+- **Alışveriş Sepeti** - Gerçek zamanlı fiyat hesaplamaları ile ürün ekleme, güncelleme, çıkarma
+- **İstek Listesi** - Favori ürünleri daha sonra için kaydedin
 
-T04: Ürün Detay Sayfası ve Yönlendirme
-Bileşen Geliştirme: Figma tasarımlarına uygun Product Detail sayfası, sadece Tailwind CSS ve Flex Layout kullanılarak kodlandı.
+### 👤 Kullanıcı Yönetimi
+- **Kimlik Doğrulama** - JWT token'ları ile güvenli giriş/kayıt
+- **Otomatik Giriş** - "Beni Hatırla" işleviyle kalıcı oturumlar
+- **Profil Yönetimi** - Kullanıcı avatarları için Gravatar entegrasyonu
+- **Rol Tabanlı Erişim** - Dinamik formlarla Müşteri ve Mağaza sahibi rolleri
 
-Responsive Yapı: Tasarım Mobile First yaklaşımıyla hazırlandı; masaüstü ve mobil görünümleri optimize edildi.
+### 📦 Sipariş Yönetimi
+- **Çok Adımlı Ödeme** - Adres seçimi, ödeme yöntemi, sipariş inceleme
+- **Adres Defteri** - Teslimat adresleri için CRUD işlemleri
+- **Ödeme Yöntemleri** - Birden fazla kredi kartını güvenle yönetin
+- **Sipariş Geçmişi** - Detaylı dökümlerle geçmiş siparişleri görüntüleyin
 
-Navigasyon: Ürün kartlarına Link bileşenleri eklenerek Mağaza sayfasından detay sayfasına dinamik geçiş sağlandı.
+### 🎨 UI/UX Özellikleri
+- **Responsive Tasarım** - Tailwind CSS ile mobile-first yaklaşım
+- **Dinamik Navigasyon** - Hover efektleriyle kategori tabanlı mega menü
+- **Yükleme Durumları** - Daha iyi UX için skeleton ekranlar ve spinner'lar
+- **Toast Bildirimleri** - Kullanıcı eylemleri için gerçek zamanlı geri bildirim
+- **SEO Dostu URL'ler** - Temiz, açıklayıcı yönlendirme yapısı
 
-T05: İletişim (Contact) Sayfası ve Rota Aktivasyonu
-Sayfa Tasarımı: Ofis bilgilerini ve görsel içerikleri barındıran İletişim sayfası, T02'de oluşturulan global Header/Footer yapısına entegre edildi.
+---
 
-Görsel Optimizasyon: Arka plan görselleri object-top ve özel gradient filtreler ile metin okunabilirliğini artıracak şekilde düzenlendi.
+## 🛠️ Teknoloji Stack
 
-Yönlendirme: /contact rotası aktif edilerek uygulamanın ana navigasyon menüsü üzerinden erişilebilir hale getirildi.
+### Frontend
+- **React 18** - Hook'larla modern UI kütüphanesi
+- **Vite** - Yeni nesil frontend araçları
+- **React Router v5** - Bildirimsel yönlendirme
+- **Redux Toolkit** - Redux Thunk ile durum yönetimi
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Hook Form** - Performanslı form validasyonu
+- **Axios** - Interceptor'lı HTTP istemcisi
 
-T06: Ekip (Team) Sayfası ve Bileşen Ayrımı
-Sayfa Yapısı: "Meet Our Team" bölümü, hem ana sayfada hem de Hakkımızda (About Us) sayfasında kullanılabilecek modüler bir yapıya kavuşturuldu.
+### Geliştirme Araçları
+- **Redux Logger** - Hata ayıklama için geliştirme middleware'i
+- **React Toastify** - Toast bildirimleri
+- **MD5** - Gravatar hash oluşturma
+- **ESLint** - Kod linting
+- **Git** - Versiyon kontrolü
 
-Görsel Düzenleme: Figma tasarımına uygun olarak ekip üyesi görselleri kare formatta ve üstten hizalı (object-top) olacak şekilde ayarlandı.
+### Deployment
+- **Vercel** - Sürekli deployment ve hosting
 
-Layout ve Stil: Flex Layout yapısı kullanılarak mobil ve masaüstü için responsive yerleşim sağlandı; typography ve renkler global temaya uygun hale getirildi.
+---
 
-T07: Hakkımızda (About Us) Sayfası ve Entegrasyon
-Sayfa Geliştirme: Hero, İstatistikler, Video, Şirket Logoları ve "Work With Us" bölümlerini içeren kapsamlı About sayfası kodlandı.
+## 🚀 Başlangıç
 
-Görüntüleme Optimizasyonu: "Work With Us" bölümündeki görselin kesilmemesi için height-auto ve container yapıları kullanılarak responsive iyileştirmeler yapıldı.
+### Gereksinimler
+- Node.js 16.x veya üzeri
+- npm veya yarn
 
-Bileşen Entegrasyonu: T06'da hazırlanan Team bileşeni, About sayfasına başarıyla entegre edilerek kod tekrarı önlendi.
+### Kurulum
 
-T08: Kullanıcı Kayıt (Sign Up) Sayfası ve API Entegrasyonu Kullanıcıların sisteme kayıt olabilmesi için gerekli API bağlantıları yapıldı ve detaylı validasyon kurallarına sahip dinamik bir form sayfası geliştirildi.
+```bash
+# Repository'yi klonlayın
+git clone https://github.com/ismail-avsar/e-commerce.git
 
-Form Altyapısı ve Validasyon: React Hook Form ve Axios entegrasyonu ile /signup sayfasında çalışan; İsim, E-posta, Şifre ve Rol seçimi alanlarını içeren güvenli bir form yapısı oluşturuldu.
+# Proje dizinine gidin
+cd e-commerce
 
-Rol Bazlı Dinamik Alanlar: Kullanıcının seçtiği role (Müşteri, Mağaza) göre formun içeriği dinamik hale getirildi. Mağaza rolü seçildiğinde; Mağaza Adı, Vergi No (desen kontrolü) ve IBAN gibi ek alanların koşullu olarak görüntülenmesi ve doğrulanması sağlandı.
+# Bağımlılıkları yükleyin
+npm install
 
-Kullanıcı Deneyimi: Form gönderimi sırasında buton üzerinde yükleniyor (spinner) animasyonu, başarılı kayıt sonrası önceki sayfaya yönlendirme ve hata durumlarında anlık geri bildirim mekanizmaları eklendi.
+# Geliştirme sunucusunu başlatın
+npm run dev
+```
 
-T09: Redux Kurulumu ve Store Yapılandırması
-Global durum yönetimi için Redux kütüphanesi projeye dahil edildi; asenkron işlemler ve loglama özellikleri ile desteklenen merkezi bir veri yönetim yapısı oluşturuldu.
+### Kullanılabilir Komutlar
 
-Store ve Middleware Entegrasyonu: Uygulamanın tüm state'ini yönetecek store yapısı kurularak; API istekleri için redux-thunk ve geliştirme sürecini kolaylaştırmak için redux-logger middleware'leri eklendi.
+```bash
+npm run dev          # Geliştirme sunucusunu başlat
+npm run build        # Production için build al
+npm run preview      # Production build'i önizle
+npm run lint         # ESLint çalıştır
+```
 
-Modüler Reducer Mimarisi: İstemci (Client), Ürün (Product) ve Alışveriş Sepeti (ShoppingCart) verilerini yönetmek üzere ayrıştırılmış reducer'lar oluşturuldu ve ana reducer altında birleştirildi.
+### Ortam Değişkenleri
 
-Action ve Thunk Yapısı: State değişikliklerini tetikleyecek action creator fonksiyonları tanımlandı ve rollerin API'den çekilmesi gibi asenkron işlemler için thunk aksiyonları yazılarak sisteme dahil edildi.
+Kök dizinde bir `.env` dosyası oluşturun:
 
-T10: Giriş Formu ve Kimlik Doğrulama
-Kullanıcıların sisteme güvenli bir şekilde giriş yapabilmesi için gerekli arayüz ve altyapı geliştirmeleri tamamlandı.
+```env
+VITE_API_BASE_URL=api_base_url_adresiniz
+```
 
-Giriş Sayfası ve Validasyon: react-hook-form kullanılarak e-posta ve şifre kontrolü yapan, hataları anlık gösteren kullanıcı dostu bir giriş formu (LoginPage) oluşturuldu.
+---
 
-Redux ile Oturum Yönetimi: /login servisine istek atan thunk aksiyonu yazıldı; başarılı girişte kullanıcı bilgileri global state'e, token bilgisi ise "Beni Hatırla" seçeneğine bağlı olarak localStorage'a kaydedildi.
+## 📖 Proje Geliştirme Yolculuğu
 
-Gravatar Entegrasyonu: Kullanıcı profil resimleri için e-posta adresi MD5 ile hashlenerek Gravatar servisinden dinamik olarak çekildi.
+Bu proje, agile metodolojisini takip ederek aşamalı olarak geliştirilmiştir. Aşağıda her geliştirme aşamasının detaylı dökümü bulunmaktadır:
 
+### 🏗️ Faz 1: Temel & Kurulum
 
-T11: Otomatik Giriş (Auto Login)
-Kullanıcı deneyimini iyileştirmek ve oturum sürekliliğini sağlamak için token tabanlı otomatik giriş mekanizması geliştirildi.
+<details>
+<summary><b>T01: Proje Kurulumu ve Altyapı</b></summary>
 
-Token Doğrulama: Uygulama her açıldığında (App mount), localStorage'da kayıtlı bir token varsa API'nin /verify endpoint'ine istek atılarak doğruluğu kontrol edildi.
+**Hedef:** Proje temelini ve geliştirme ortamını oluşturmak
 
-Güvenli Oturum Yönetimi: Token geçerliyse kullanıcı bilgileri Redux store'a aktarıldı ve oturum otomatik olarak başlatıldı; geçersizse token temizlenerek güvenlik sağlandı.
+**Başarılar:**
+- ✅ Vite ile React projesi başlatıldı
+- ✅ Stil için Tailwind CSS entegre edildi
+- ✅ Proje yapısı düzenlendi (Components, Layouts, Pages, Assets)
+- ✅ Versiyon kontrolü için GitHub repository kuruldu
+- ✅ Vercel'e deploy edildi: [Canlı Demo](https://e-commerce-two-fawn-25.vercel.app/)
 
-Beni Hatırla Entegrasyonu: Giriş sırasında "Beni Hatırla" seçeneği işaretlenirse token kalıcı olarak localStorage'a, aksi takdirde sadece oturum süresince kullanılmak üzere belleğe alındı.
+</details>
 
-Axios Interceptor: Tüm isteklerde Authorization header'ının otomatik eklenmesi ve 401 hatalarında oturumun sonlandırılması için merkezi bir yapı kuruldu.
+<details>
+<summary><b>T02: Ana Sayfa ve Layout Geliştirme</b></summary>
 
-T12: Kategorilerin Çekilmesi (Fetch Categories)
-Kategorilerin sunucudan çekilerek global state'te saklanması ve kullanıcı arayüzünde dinamik olarak listelenmesi sağlandı.
+**Hedef:** Temel layout bileşenlerini ve ana sayfa yapısını oluşturmak
 
-Global Reducer ve Thunk: Genel verileri yönetmek için globalReducer oluşturuldu ve /categories endpoint'inden veri çeken fetchCategories aksiyonu sisteme dahil edildi.
+**Başarılar:**
+- ✅ Global Header & Footer bileşenleri oluşturuldu
+- ✅ Hamburger menülü responsive navigasyon uygulandı
+- ✅ Görsel slider ve ürün kartı bileşenleri oluşturuldu
+- ✅ Figma tasarım uyumluluğu sağlandı
 
-Header Dropdown Menü: Çekilen kategoriler, Header bileşeninde Kadın ve Erkek olarak iki ayrı sütunda listelenen, hover etkileşimli bir dropdown menüye dönüştürüldü.
+</details>
 
-En İyi Kategoriler (Top Categories): Ana sayfada, kullanıcı puanına (rating) göre en yüksek 5 kategori, dinamik görseller ve özel bir grid yapısıyla "Top Categories" bölümünde listelendi.
+<details>
+<summary><b>T03: Mağaza Sayfası ve Yönlendirme</b></summary>
 
-Dinamik Rota Yapısı: Kategori linkleri, SEO dostu ve dinamik filtrelemeye uygun olarak /shop/:gender/:categoryName/:categoryId yapısında kurgulandı.
+**Hedef:** Yönlendirmeli ürün listeleme sayfası geliştirmek
 
-T13: Ürünleri Getir (Fetch Products)
-Mağaza sayfasında listelenecek ürünlerin API üzerinden çekilmesi ve Redux ile yönetilmesi sağlandı.
+**Başarılar:**
+- ✅ React Router v5 ile `/` ve `/shop` rotaları yapılandırıldı
+- ✅ Dinamik kategori kartları oluşturuldu (5 kategori)
+- ✅ Grid/liste görünümü değiştirme özellikli filtre barı oluşturuldu
+- ✅ Ürün grid'i uygulandı (masaüstünde 4 sütun, mobilde dikey)
+- ✅ Sayfalama ve marka ortaklığı bölümü eklendi
 
-Redux Eylemi ve Entegrasyon: /products API uç noktasına istek atan fetchProducts thunk eylemi yazıldı. API'den dönen ürün listesi, toplam ürün sayısı ve yükleme durumu (FETCHING, FETCHED, FAILED) productReducer içerisinde saklandı.
+</details>
 
-Mağaza (Shop) Sayfası Entegrasyonu: ShopPage bileşeni Redux'a bağlandı. Sayfa yüklendiğinde (mount) ürünlerin otomatik olarak çekilmesi sağlandı.
+### 🎨 Faz 2: Temel Sayfalar
 
-Loading Spinner ve UI: Veriler çekilirken kullanıcının beklediğini anlaması için bir yükleme animasyonu (spinner) eklendi. Çekilen ürünler, görsel, başlık, fiyat ve kategori bilgileriyle birlikte dinamik olarak ürün kartlarına (ProductCard) yansıtıldı.
+<details>
+<summary><b>T04: Ürün Detay Sayfası</b></summary>
 
-T14: Ürün Sorgu Parametreleri (Fetch Products Query Parameters) Ürün listeleme sayfasına filtreleme, sıralama ve kategori bazlı sorgulama özellikleri entegre edildi.
+**Hedef:** Kapsamlı ürün detay görünümü oluşturmak
 
-Redux ve Parametre Yönetimi: productReducer; kategori, filtre ve sıralama durumlarını yönetecek şekilde güncellendi.
-Shop Sayfası ve URL Entegrasyonu: categoryId URL'den dinlenerek state yönetimi sağlandı.
-Filtreleme ve Sıralama UI: Arama ve sıralama bileşenleri eklenerek API sorgularına bağlandı.
+**Başarılar:**
+- ✅ Figma tasarımına uygun ürün detay sayfası oluşturuldu
+- ✅ Mobile-first responsive layout uygulandı
+- ✅ Ürün kartlarından dinamik yönlendirme eklendi
+- ✅ Ürün görsel galerisi entegre edildi
 
-T15: Ürün Sayfalama (Products Pagination)
-Ürün listelemelerinde performans ve kullanıcı deneyimi için sayfalama (pagination) altyapısı kuruldu.
+</details>
 
-Redux ile Sayfalama Yönetimi: `productReducer` içerisine `limit`, `offset` ve `total` alanları eklendi. Sayfa değişimlerinde `offset` değeri güncellenerek API'den ilgili veri diliminin çekilmesi sağlandı.
+<details>
+<summary><b>T05: İletişim Sayfası</b></summary>
 
-UI Entegrasyonu: `ShopPage` bileşenine sayfalama kontrolleri (önceki, sonraki, sayfa numaraları) eklendi. Toplam ürün sayısı ve limit bilgisine göre toplam sayfa sayısı dinamik olarak hesaplandı.
+**Hedef:** Ofis bilgileriyle iletişim sayfası geliştirmek
 
-Sorgu Parametreleri: Sayfa değişimleri API isteğine `limit` ve `offset` query parametreleri olarak yansıtıldı.
+**Başarılar:**
+- ✅ Global Header/Footer layout'una entegre edildi
+- ✅ Arka plan görselleri `object-top` ve gradient filtrelerle optimize edildi
+- ✅ Ana navigasyonda `/contact` rotası aktifleştirildi
 
+</details>
 
-T16: Ürün Detay Sayfası ve Yönlendirme (Product Detail Page & Routing)
-Kullanıcıların seçilen ürünün detaylarını görüntüleyebilmesi için özel bir sayfa ve yönlendirme yapısı geliştirildi.
+<details>
+<summary><b>T06: Ekip Sayfası</b></summary>
 
-SEO Dostu URL Yapısı: Ürün detaylarına erişim için `/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId` formatında dinamik ve açıklayıcı bir rota oluşturuldu.
+**Hedef:** Yeniden kullanılabilir ekip üyesi bileşeni oluşturmak
 
-Ürün Detaylarını Getir (Fetch Product): Seçilen ürünün `productId` bilgisi kullanılarak API'den tekil ürün verisini çeken `fetchProduct` thunk aksiyonu yazıldı ve Redux sistemine dahil edildi.
+**Başarılar:**
+- ✅ Modüler "Ekibimizle Tanışın" bileşeni oluşturuldu
+- ✅ Ekip üyesi görselleri yapılandırıldı (kare format, `object-top`)
+- ✅ Responsive flex layout uygulandı
+- ✅ Tipografi ve renk tutarlılığı sağlandı
 
-Dinamik UI: `ProductDetailPage` bileşeni, API'den gelen gerçek verilerle (görseller, fiyat, açıklama, stok durumu vb.) beslendi. Yükleme sırasında kullanıcıya loading spinner gösterilmesi sağlandı.
+</details>
 
-Akıllı Yönlendirme: `ShopPage` üzerindeki ürün kartlarına tıklandığında, kategori ve ürün isminden türetilen slug'lar kullanılarak doğru URL'e yönlendirme yapılması sağlandı.
+<details>
+<summary><b>T07: Hakkımızda Sayfası</b></summary>
 
-T17: Alışveriş Sepetine Ürün Ekleme (Add Product to Shopping Cart)
-Kullanıcıların ürünleri alışveriş sepetine ekleyebilmesi ve sepet içeriğini yönetebilmesi için kapsamlı bir sepet sistemi geliştirildi.
+**Hedef:** Birden fazla bölümlü kapsamlı hakkımızda sayfası
 
-Redux Sepet Yönetimi: `shoppingCartReducer` içerisine `ADD_TO_CART`, `REMOVE_FROM_CART`, `UPDATE_PRODUCT_COUNT` ve `TOGGLE_PRODUCT_CHECK` aksiyonları eklendi. Aynı ürün tekrar eklendiğinde yeni item oluşturulmak yerine mevcut item'ın `count` değeri artırılarak sepet yapısı optimize edildi.
+**Başarılar:**
+- ✅ Hero, İstatistikler, Video, Şirket Logoları bölümleri oluşturuldu
+- ✅ Responsive görsellerle "Bizimle Çalışın" bölümü entegre edildi
+- ✅ Kod tekrarını önlemek için Team bileşeni yeniden kullanıldı
+- ✅ `height-auto` ve container'larla görsel gösterimi optimize edildi
 
-Sepet Dropdown Bileşeni: Header'da sepet ikonuna hover/click yapıldığında açılan `CartDropdown` bileşeni oluşturuldu. Dropdown içerisinde ürün görseli, adı, fiyatı, miktar kontrolleri (+/-), ürün kaldırma ve toplam tutar hesaplama özellikleri eklendi.
+</details>
 
-Sepet Badge: Header'daki sepet ikonuna, sepetteki toplam ürün sayısını gösteren dinamik bir badge eklendi. Badge, sepete ürün eklendikçe veya çıkarıldıkça otomatik olarak güncelleniyor.
+### 🔐 Faz 3: Kimlik Doğrulama & Kullanıcı Yönetimi
 
-Ürün Detay Sayfası Entegrasyonu: `ProductDetailPage` bileşenine sepete ekleme fonksiyonu entegre edildi. Kullanıcılar ürün detay sayfasındaki sepet ikonuna tıklayarak ürünü sepete ekleyebiliyor.
+<details>
+<summary><b>T08: Kullanıcı Kaydı (Sign Up)</b></summary>
 
-T18: Alışveriş Sepeti Sayfası (Shopping Cart Page)
-Kullanıcıların sepetlerindeki ürünleri detaylı görüntüleyebilecekleri, adet güncelleyip seçim yapabilecekleri sepet sayfası geliştirildi.
+**Hedef:** API entegrasyonlu kullanıcı kaydı uygulamak
 
-Sepet Sayfası ve Rota: `/cart` rotası oluşturularak `ShoppingCartPage` bileşeni eklendi. Kullanıcılar header üzerindeki sepet ikonundan veya dropdown menüsünden bu sayfaya erişebiliyor.
+**Başarılar:**
+- ✅ React Hook Form ile kayıt formu oluşturuldu
+- ✅ API iletişimi için Axios entegre edildi
+- ✅ Kapsamlı validasyon uygulandı (İsim, E-posta, Şifre, Rol)
+- ✅ Rol tabanlı dinamik alanlar eklendi (Mağaza rolü için Mağaza Adı, Vergi No, IBAN)
+- ✅ Yükleme spinner'ı ve başarı/hata geri bildirimi oluşturuldu
+- ✅ Başarılı kayıt sonrası otomatik yönlendirme eklendi
 
-Redux Entegrasyonu ve Fonksiyonlar: `shoppingCart` reducer'ı ile tam entegrasyon sağlandı. Kullanıcılar ürün adetlerini artırıp azaltabiliyor, ürünleri sepetten silebiliyor ve checkbox ile seçim yapabiliyor.
+</details>
 
-Sipariş Özeti: Seçili ürünlerin toplam tutarı, kargo ücreti ve "150 TL üzeri kargo bedava" kuralına göre dinamik olarak hesaplanan bir özet bölümü (Order Summary) oluşturuldu.
+<details>
+<summary><b>T09: Redux Kurulumu</b></summary>
 
-T19: Sipariş Özeti Kutusu (Order Summary Box)
-Sipariş özeti kutusunun tasarımı ve işlevselliği, kullanıcı deneyimini artıracak şekilde güncellendi.
+**Hedef:** Global durum yönetimini yapılandırmak
 
-Sepeti Onayla Butonları: Özeti kutusunun hem üstüne hem de altına, kullanıcıyı kolayca yönlendirecek "Sepeti Onayla" butonları eklendi.
+**Başarılar:**
+- ✅ Redux Thunk ve Logger middleware'leriyle Redux store kuruldu
+- ✅ Modüler reducer'lar oluşturuldu (Client, Product, ShoppingCart)
+- ✅ Tüm durum değişiklikleri için action creator'lar tanımlandı
+- ✅ Asenkron işlemler için thunk action'ları uygulandı (örn. rolleri getir)
 
-İndirim Kodu Alanı: Kullanıcıların promusyon kodlarını girebilmesi için "+ İNDİRİM KODU GİR" butonu tasarıma dahil edildi.
+</details>
 
-Kargo ve Fiyat Gösterimi: Kargo bedelinin 150 TL üzeri alışverişlerde ücretsiz olduğu görsel olarak vurgulandı ve "Satıcı Karşılar" ibaresiyle desteklendi.
+<details>
+<summary><b>T10: Giriş Formu ve Kimlik Doğrulama</b></summary>
 
-T20: Sipariş Oluşturma Sayfası - Adım 1: Adres (Create Order Page - Step 1: Address)
-Sipariş oluşturma sürecinin ilk adımı olan adres yönetimi ve seçimi ekranları geliştirildi.
+**Hedef:** Oturum yönetimli güvenli kullanıcı girişi
 
-Create Order Sayfası: /order rotası oluşturuldu ve kullanıcı giriş kontrolü (Protected Route) eklendi.
+**Başarılar:**
+- ✅ E-posta/şifre validasyonlu giriş formu oluşturuldu
+- ✅ `/login` API endpoint'i için Redux thunk oluşturuldu
+- ✅ localStorage ile "Beni Hatırla" işlevi uygulandı
+- ✅ Kullanıcı profil resimleri için Gravatar entegre edildi (MD5 hash)
+- ✅ Header'da kullanıcı bilgisi gösterimi eklendi
 
-Redux Adres Yönetimi: Kullanıcının kayıtlı adreslerini getirme, yeni adres ekleme, güncelleme ve silme işlemleri için Redux Thunk aksiyonları (fetchAddressList, addAddress, updateAddress, deleteAddress) geliştirildi.
+</details>
 
-Adres Formu ve Validasyon: react-hook-form kullanılarak il, ilçe, mahalle gibi detayları içeren, validasyon kurallarına sahip dinamik bir adres formu oluşturuldu.
+<details>
+<summary><b>T11: Otomatik Giriş</b></summary>
 
-Adres Listeleme ve Seçim: Kayıtlı adreslerin listelenmesi ve sipariş için teslimat adresinin seçilebilmesi sağlandı.
+**Hedef:** Token doğrulamalı kalıcı kullanıcı oturumları
 
-T21: Sipariş Oluşturma Sayfası - Adım 2: Kredi Kartı (Create Order Page - Step 2: Credit Card)
-Sipariş sürecinin ikinci adımı olan ödeme yöntemleri ve kredi kartı yönetimi ekranları geliştirildi.
+**Başarılar:**
+- ✅ Uygulama başlangıcında token doğrulama uygulandı
+- ✅ localStorage'daki geçerli token'larla otomatik giriş
+- ✅ Geçersiz token'lar için güvenli token temizleme
+- ✅ Authorization header'ları için Axios interceptor yapılandırıldı
+- ✅ Otomatik çıkışla 401 hata yönetimi eklendi
 
-Kart Yönetimi (CRUD) ve Redux: Kullanıcının kayıtlı kredi kartlarını listeleme (GET), yeni kart ekleme (POST), güncelleme (PUT) ve silme (DELETE) işlemleri için Redux Thunk aksiyonları yazılarak `clientActions` dosyasına eklendi. API isteklerinde güvenlik gereği CVV gönderilmeyerek sadece gerekli kart bilgileri işlendi.
+</details>
 
-Ödeme Arayüzü: `OrderPayment` bileşeni oluşturularak kayıtlı kartların listelenmesi, yeni kart ekleme formunun (`CardForm`) açılıp kapanması ve silme onayı gibi etkileşimler sağlandı.
+### 🛒 Faz 4: Ürün Kataloğu & Alışveriş
 
-Form Validasyonu ve Taksit Seçenekleri: Kart ekleme formu, Luhn algoritması, tarih kontrolü ve regex desenleri ile validasyona tabi tutuldu. Seçilen karta göre (mock) taksit seçeneklerinin gösterildiği bir yapı eklendi.
+<details>
+<summary><b>T12: Kategorileri Getir</b></summary>
 
-Adım Yönetimi: `CreateOrderPage` üzerinde adres ve ödeme adımları arasında geçiş yapısı (Tab navigation) kurularak sipariş akışı bütünleştirildi.
+**Hedef:** Dinamik kategori yönetimi
 
-T22: Sipariş Tamamlama (Complete Order)
-Kullanıcının sepetindeki ürünleri, seçtiği adres ve ödeme yöntemiyle birleştirerek siparişe dönüştürdüğü süreç tamamlandı.
+**Başarılar:**
+- ✅ Uygulama geneli veriler için `globalReducer` oluşturuldu
+- ✅ `fetchCategories` thunk action'ı uygulandı
+- ✅ Header'da kategori listelemeleriyle dropdown menü oluşturuldu
+- ✅ "En İyi Kategoriler" bölümü oluşturuldu (rating'e göre ilk 5)
+- ✅ SEO dostu rotalar yapılandırıldı: `/shop/:gender/:categoryName/:categoryId`
 
-Sipariş Oluşturma (Create Order): `/order` uç noktasına (POST) istek atan `createOrder` thunk aksiyonu geliştirildi. İstek gövdesi; seçilen adres ID'si, kart bilgileri (güvenlik gereği sadece gerekli alanlar), ürün detayları ve hesaplanan toplam tutarı içerecek şekilde yapılandırıldı.
+</details>
 
-Sepet Yönetimi ve Sıfırlama: Sipariş başarıyla oluşturulduktan sonra, kullanıcının sepetinin hem arayüzden hem de global state'ten temizlenmesi için `RESET_CART` aksiyonu reducer'a eklendi ve entegre edildi.
+<details>
+<summary><b>T13: Ürünleri Getir</b></summary>
 
-Ödeme ve Onay Arayüzü: `CreateOrderPage` üzerindeki "Ödeme Yap" butonu işlevsel hale getirildi. Butona tıklandığında öncelikle adres ve kart seçimi validasyonları yapılıyor, ardından sipariş işlemi başlatılıyor.
+**Hedef:** API entegrasyonlu ürün listeleme
 
-Kullanıcı Geri Bildirimi: İşlem sonucuna göre kullanıcıya React Toastify ile başarı veya hata mesajları gösteriliyor. Başarılı sipariş sonrası kullanıcı otomatik olarak ana sayfaya yönlendiriliyor.
+**Başarılar:**
+- ✅ `fetchProducts` thunk action'ı oluşturuldu
+- ✅ Yükleme durumları yönetildi (FETCHING, FETCHED, FAILED)
+- ✅ Redux, ShopPage bileşeniyle entegre edildi
+- ✅ Veri çekme sırasında yükleme spinner'ı eklendi
+- ✅ Gerçek verilerle dinamik ürün kartları render edildi
 
-T23: Sipariş Geçmişi ve Detayların Görüntülenmesi (Previous Orders Page)
-Kullanıcıların geçmiş siparişlerini inceleyebilmesi için gerekli frontend ve backend entegrasyonları tamamlandı.
+</details>
 
-Sipariş Geçmişi Sayfası (PreviousOrdersPage): Kullanıcının tüm siparişlerini listeleyen, /orders rotasında çalışan korumalı bir sayfa geliştirildi. Tablo yapısı kullanılarak sipariş tarihi, tutarı ve ürün sayısı özetlendi.
+<details>
+<summary><b>T14: Ürün Sorgu Parametreleri</b></summary>
 
-Detaylı Görünüm (Collapsible Panel): Her sipariş satırı için açılır/kapanır bir detay alanı eklendi. Kullanıcılar bu alandan sipariş içeriğindeki ürünlerin görsellerini, fiyatlarını ve miktarlarını görüntüleyebilir.
+**Hedef:** Gelişmiş filtreleme ve sıralama
 
-Redux Entegrasyonu: Sipariş verilerinin yönetimi için orderReducer oluşturuldu ve fetchOrders (GET /order) thunk aksiyonu sisteme dahil edildi.
+**Başarılar:**
+- ✅ Kategori, filtre ve sıralama durumları için `productReducer` güncellendi
+- ✅ URL tabanlı `categoryId` yönetimi uygulandı
+- ✅ Arama ve sıralama UI bileşenleri oluşturuldu
+- ✅ Filtreler API sorgularına bağlandı
 
-Header Kullanıcı Menüsü: Header bileşenindeki kullanıcı alanı, kullanıcı deneyimini artıracak şekilde Dropdown menüye dönüştürüldü. "Siparişlerim" ve "Çıkış Yap" seçenekleri bu menüye taşındı.
+</details>
+
+<details>
+<summary><b>T15: Ürün Sayfalama</b></summary>
+
+**Hedef:** Sayfalama ile verimli ürün gezinme
+
+**Başarılar:**
+- ✅ `productReducer`'a `limit`, `offset` ve `total` eklendi
+- ✅ Sayfalama kontrolleri oluşturuldu (önceki, sonraki, sayfa numaraları)
+- ✅ Toplam sayfa sayısı dinamik olarak hesaplandı
+- ✅ Sayfalama API istekleriyle senkronize edildi
+
+</details>
+
+<details>
+<summary><b>T16: Ürün Detay Sayfası & Yönlendirme</b></summary>
+
+**Hedef:** SEO optimizasyonlu tekil ürün görünümü
+
+**Başarılar:**
+- ✅ SEO dostu URL yapısı oluşturuldu: `/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId`
+- ✅ Tekil ürün verisi için `fetchProduct` thunk'ı uygulandı
+- ✅ Gerçek verilerle dinamik ProductDetailPage oluşturuldu
+- ✅ Veri çekme sırasında yükleme spinner'ı eklendi
+- ✅ Ürün kartlarından akıllı yönlendirme yapılandırıldı
+
+</details>
+
+### 🛒 Faz 5: Alışveriş Sepeti & Ödeme
+
+<details>
+<summary><b>T17: Alışveriş Sepetine Ürün Ekleme</b></summary>
+
+**Hedef:** Komple alışveriş sepeti işlevselliği
+
+**Başarılar:**
+- ✅ Sepet action'ları oluşturuldu: `ADD_TO_CART`, `REMOVE_FROM_CART`, `UPDATE_PRODUCT_COUNT`, `TOGGLE_PRODUCT_CHECK`
+- ✅ Sepet mantığı optimize edildi (tekrarlanan ürünler için sayıyı artır)
+- ✅ Hover/click etkileşimli `CartDropdown` bileşeni oluşturuldu
+- ✅ Dinamik ürün sayısıyla sepet badge'i eklendi
+- ✅ ProductDetailPage'e "Sepete Ekle" entegre edildi
+
+</details>
+
+<details>
+<summary><b>T18: Alışveriş Sepeti Sayfası</b></summary>
+
+**Hedef:** Özel sepet yönetim sayfası
+
+**Başarılar:**
+- ✅ `ShoppingCartPage` bileşeniyle `/cart` rotası oluşturuldu
+- ✅ Sepet işlemleri için tam Redux entegrasyonu
+- ✅ Miktar kontrolleri ve kaldırma işlevi oluşturuldu
+- ✅ Checkbox'larla ürün seçimi uygulandı
+- ✅ Dinamik hesaplamalarla Sipariş Özeti oluşturuldu
+- ✅ "150 TL üzeri ücretsiz kargo" mantığı eklendi
+
+</details>
+
+<details>
+<summary><b>T19: Sipariş Özeti Kutusu</b></summary>
+
+**Hedef:** Geliştirilmiş sipariş özeti UI
+
+**Başarılar:**
+- ✅ "Sepeti Onayla" butonları eklendi (üst ve alt)
+- ✅ İndirim kodu giriş alanı uygulandı
+- ✅ Ücretsiz kargo eşiği vurgulandı
+- ✅ "Satıcı Karşılar" kargo göstergesi eklendi
+
+</details>
+
+### 💳 Faz 6: Sipariş İşleme
+
+<details>
+<summary><b>T20: Sipariş Oluşturma Sayfası - Adım 1: Adres</b></summary>
+
+**Hedef:** Ödeme için adres yönetimi
+
+**Başarılar:**
+- ✅ Korumalı yönlendirmeyle `/order` rotası oluşturuldu
+- ✅ Redux thunk'ları uygulandı: `fetchAddressList`, `addAddress`, `updateAddress`, `deleteAddress`
+- ✅ React Hook Form validasyonlu adres formu oluşturuldu
+- ✅ Adres listeleme ve seçim UI'ı eklendi
+- ✅ İl, ilçe, mahalle alanları yapılandırıldı
+
+</details>
+
+<details>
+<summary><b>T21: Sipariş Oluşturma Sayfası - Adım 2: Kredi Kartı</b></summary>
+
+**Hedef:** Ödeme yöntemi yönetimi
+
+**Başarılar:**
+- ✅ Kart CRUD işlemleri oluşturuldu (GET, POST, PUT, DELETE)
+- ✅ Kart listelemeyle `OrderPayment` bileşeni oluşturuldu
+- ✅ Validasyonlu `CardForm` uygulandı (Luhn algoritması, tarih kontrolleri, regex)
+- ✅ Taksit seçenekleri eklendi (mock veri)
+- ✅ Adres ve ödeme adımları arası tab navigasyonu oluşturuldu
+- ✅ API çağrıları güvence altına alındı (CVV iletimi yok)
+
+</details>
+
+<details>
+<summary><b>T22: Siparişi Tamamla</b></summary>
+
+**Hedef:** Sipariş gönderimini sonlandırmak
+
+**Başarılar:**
+- ✅ `createOrder` thunk'ı uygulandı (POST `/order`)
+- ✅ İstek gövdesi yapılandırıldı (adres, kart, ürünler, toplam)
+- ✅ Sipariş sonrası temizlik için `RESET_CART` action'ı eklendi
+- ✅ Validasyonlu "Ödeme Yap" butonu aktifleştirildi
+- ✅ Başarı/hata mesajları için React Toastify entegre edildi
+- ✅ Başarılı sipariş sonrası ana sayfaya otomatik yönlendirme eklendi
+
+</details>
+
+<details>
+<summary><b>T23: Önceki Siparişler Sayfası</b></summary>
+
+**Hedef:** Sipariş geçmişi ve detayları
+
+**Başarılar:**
+- ✅ `PreviousOrdersPage` ile `/orders` rotası oluşturuldu
+- ✅ Sipariş listeleme tablosu oluşturuldu (tarih, tutar, ürün sayısı)
+- ✅ Açılır/kapanır detay panelleri uygulandı
+- ✅ `orderReducer` ve `fetchOrders` thunk'ı oluşturuldu
+- ✅ Kullanıcı dropdown menüsüyle header geliştirildi (Siparişler, Çıkış)
+
+</details>
+
+---
+
+## 🔌 API Entegrasyonu
+
+### Base URL
+```javascript
+const API_BASE_URL = process.env.VITE_API_BASE_URL;
+```
+
+### Ana Endpoint'ler
+
+| Method | Endpoint | Açıklama |
+|--------|----------|----------|
+| `POST` | `/signup` | Kullanıcı kaydı |
+| `POST` | `/login` | Kullanıcı kimlik doğrulama |
+| `GET` | `/verify` | Token doğrulama |
+| `GET` | `/categories` | Tüm kategorileri getir |
+| `GET` | `/products` | Filtrelerle ürünleri getir |
+| `GET` | `/products/:id` | Tekil ürün getir |
+| `GET` | `/user/address` | Kullanıcı adreslerini getir |
+| `POST` | `/user/address` | Yeni adres ekle |
+| `PUT` | `/user/address` | Adresi güncelle |
+| `DELETE` | `/user/address/:id` | Adresi sil |
+| `GET` | `/user/card` | Ödeme yöntemlerini getir |
+| `POST` | `/user/card` | Ödeme yöntemi ekle |
+| `PUT` | `/user/card` | Ödeme yöntemini güncelle |
+| `DELETE` | `/user/card/:id` | Ödeme yöntemini sil |
+| `POST` | `/order` | Sipariş oluştur |
+| `GET` | `/order` | Sipariş geçmişini getir |
+
+### Kimlik Doğrulama
+Tüm korumalı endpoint'ler Authorization header'ında JWT token gerektirir:
+```javascript
+headers: {
+  Authorization: `Bearer ${token}`
+}
+```
+
+---
+
+## 🤝 Katkıda Bulunma
+
+Katkılarınızı bekliyoruz! Lütfen şu adımları takip edin:
+
+1. Repository'yi fork edin
+2. Feature branch'i oluşturun (`git checkout -b feature/HarikaBirOzellik`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Harika bir özellik ekle'`)
+4. Branch'inizi push edin (`git push origin feature/HarikaBirOzellik`)
+5. Pull Request açın
+
+---
+
+## 📄 Lisans
+
+Bu proje bir öğrenme yolculuğunun parçasıdır ve eğitim amaçlı kullanıma açıktır.
+
+---
+
+## 👨‍💻 Yazar
+
+**İsmail Avşar**
+
+- GitHub: [@ismail-avsar](https://github.com/ismail-avsar)
+
+---
+
+## 🙏 Teşekkürler
+
+- Figma topluluğundan tasarım ilhamı
+- Çeşitli açık kaynak projelerden ikonlar ve varlıklar
+- React ve Redux topluluklarına özel teşekkürler
+
+---
+
+<div align="center">
+
+**⭐ Faydalı bulduysanız bu repository'ye yıldız verin!**
+
+❤️ ile İsmail Avşar tarafından yapıldı
+
+</div>
