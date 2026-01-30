@@ -20,6 +20,28 @@ const CardForm = ({ initialData, onSubmit, onCancel }) => {
         }
     }, [initialData, setValue]);
 
+    // Luhn Algoritması Kontrolü
+    const validateCardNumber = (value) => {
+        if (!value) return "Kart numarası gereklidir";
+        const sanitized = value.replace(/\D/g, "");
+        if (sanitized.length !== 16) return "16 haneli olmalıdır";
+
+        let sum = 0;
+        let shouldDouble = false;
+        for (let i = sanitized.length - 1; i >= 0; i--) {
+            let digit = parseInt(sanitized.charAt(i));
+
+            if (shouldDouble) {
+                if ((digit *= 2) > 9) digit -= 9;
+            }
+
+            sum += digit;
+            shouldDouble = !shouldDouble;
+        }
+
+        return (sum % 10) === 0 || "Geçersiz kart numarası (Luhn hatası)";
+    };
+
     const submitHandler = (data) => {
         // API sadece bu alanları bekliyor, CVV gönderilmemeli
         const formattedData = {
@@ -49,9 +71,7 @@ const CardForm = ({ initialData, onSubmit, onCancel }) => {
                 <label className="block text-gray-700 text-sm font-bold mb-2">Kart Numarası</label>
                 <input
                     {...register("card_no", {
-                        required: "Kart numarası gereklidir",
-                        minLength: { value: 16, message: "16 haneli olmalıdır" },
-                        maxLength: { value: 16, message: "16 haneli olmalıdır" },
+                        validate: validateCardNumber,
                         pattern: { value: /^[0-9]+$/, message: "Sadece rakam giriniz" }
                     })}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

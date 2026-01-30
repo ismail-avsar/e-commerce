@@ -1,8 +1,16 @@
 import axios from 'axios';
+import { setupMockApi } from './mockApi';
 
 const api = axios.create({
-    baseURL: '/api'
+    baseURL: 'https://workintech-fe-ecommerce.onrender.com'
 });
+
+// --- MOCK API TOGGLE ---
+const USE_MOCK_API = true; // Test için TRUE yapıldı
+
+if (USE_MOCK_API) {
+    setupMockApi(api);
+}
 
 // Request interceptor
 api.interceptors.request.use(
@@ -25,6 +33,7 @@ api.interceptors.response.use(
     (error) => {
         if (error.response?.status === 401) {
             // Unauthorized - token geçersiz
+            // Mock API kullanıyorsak bazen token yok sayabiliriz ama genel akış aynı
             localStorage.removeItem('token');
         }
         return Promise.reject(error);

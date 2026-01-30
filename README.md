@@ -79,9 +79,11 @@ Bandage, modern UI/UX tasarımıyla kusursuz bir alışveriş deneyimi sunan tam
 - **Vite** - Yeni nesil frontend araçları
 - **React Router v5** - Bildirimsel yönlendirme
 - **Redux Toolkit** - Redux Thunk ile durum yönetimi
-- **Tailwind CSS** - Utility-first CSS framework
+- **Tailwind CSS** - v4.x ile modern CSS framework
 - **React Hook Form** - Performanslı form validasyonu
 - **Axios** - Interceptor'lı HTTP istemcisi
+- **Lucide React** - Modern ikon seti
+- **React Slick** - Slider ve carousel bileşenleri
 
 ### Geliştirme Araçları
 - **Redux Logger** - Hata ayıklama için geliştirme middleware'i

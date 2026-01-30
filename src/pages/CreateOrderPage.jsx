@@ -25,6 +25,14 @@ const CreateOrderPage = () => {
 
     if (!token) return null;
 
+    // Sepet Toplamı Hesaplama
+    const totalAmount = cart.reduce((total, item) => {
+        return total + item.product.price * item.count;
+    }, 0);
+
+    const shippingCost = totalAmount > 150 ? 0 : 29.99;
+    const grandTotal = totalAmount + shippingCost;
+
     return (
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-8 text-center text-primary-dark">Sipariş Oluştur</h1>
@@ -62,25 +70,32 @@ const CreateOrderPage = () => {
                 </div>
 
                 <div className="w-full lg:w-1/3">
-                    {/* Sipariş Özeti Bileşeni Gelecek */}
+                    {/* Sipariş Özeti Bileşeni */}
                     <div className="bg-white p-6 rounded-lg shadow-md sticky top-4">
                         <h2 className="text-xl font-bold mb-4">Sipariş Özeti</h2>
                         <div className="flex justify-between mb-2">
                             <span>Ürünler Toplamı</span>
-                            <span>0 TL</span>
+                            <span>{totalAmount.toFixed(2)} TL</span>
                         </div>
                         <div className="flex justify-between mb-2">
                             <span>Kargo Toplam</span>
                             <span>29.99 TL</span>
                         </div>
-                        <div className="flex justify-between mb-4 text-primary font-bold">
-                            <span>150 TL ve Üzeri Kargo Bedava</span>
-                            <span>-29.99 TL</span>
-                        </div>
+                        {totalAmount > 150 ? (
+                            <div className="flex justify-between mb-4 text-primary font-bold">
+                                <span>150 TL ve Üzeri Kargo Bedava</span>
+                                <span>-29.99 TL</span>
+                            </div>
+                        ) : (
+                            <div className="flex justify-between mb-4">
+                                <span>Kargo İndirimi</span>
+                                <span>0.00 TL</span>
+                            </div>
+                        )}
                         <hr className="my-4" />
                         <div className="flex justify-between text-lg font-bold">
                             <span>Toplam</span>
-                            <span>0 TL</span>
+                            <span className="text-primary">{grandTotal.toFixed(2)} TL</span>
                         </div>
                         <button
                             onClick={() => {

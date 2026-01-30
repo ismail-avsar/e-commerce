@@ -1,14 +1,35 @@
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     removeFromCart,
     updateProductCount,
     toggleProductCheck,
 } from '../store/actions/shoppingCartActions';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const ShoppingCartPage = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { cart } = useSelector((state) => state.shoppingCart);
+    const [couponCode, setCouponCode] = useState('');
+    const [isCouponApplied, setIsCouponApplied] = useState(false);
+
+    const applyCoupon = () => {
+        if (couponCode.trim() === '') {
+            // Boşsa işlem yapma
+            return;
+        }
+        // Mock doğrulama
+        if (couponCode.toUpperCase() === 'BERKAY10') {
+            setIsCouponApplied(true);
+            // Burada gerçek bir indirim logic'i store'a dispatch edilebilir
+            // Şimdilik sadece UI state güncelliyoruz
+        } else {
+            setIsCouponApplied(false);
+            // Hatalı kod mesajı gösterilebilir (Toast ile vs, ama import edilmemiş şu an)
+            alert('Geçersiz indirim kodu');
+        }
+    };
 
     const checkedItems = cart.filter((item) => item.checked);
 
@@ -23,7 +44,6 @@ const ShoppingCartPage = () => {
     const handleDecrement = (productId, currentCount) => {
         if (currentCount > 1) {
             dispatch(updateProductCount(productId, currentCount - 1));
-        } else {
         }
     };
 
@@ -125,7 +145,10 @@ const ShoppingCartPage = () => {
                     <div className="w-full lg:w-80 h-fit">
                         <div className="flex flex-col gap-4">
                             {/* Üst Kısım Sepeti Onayla Butonu */}
-                            <button className="w-full bg-primary text-white py-3 rounded font-semibold hover:bg-opacity-90 transition-colors text-base">
+                            <button
+                                onClick={() => history.push("/order")}
+                                className="w-full bg-primary text-white py-3 rounded font-semibold hover:bg-opacity-90 transition-colors text-base"
+                            >
                                 Sepeti Onayla <i className="fa-solid fa-chevron-right ml-2 text-xs"></i>
                             </button>
 
@@ -158,13 +181,33 @@ const ShoppingCartPage = () => {
                                     </span>
                                 </div>
 
-                                {/* İndirim Kodu Gir Butonu */}
-                                <button className="w-full bg-white border border-gray-200 text-primary font-semibold py-3 rounded flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-sm mb-4">
-                                    <i className="fa-solid fa-plus text-xs"></i> İNDİRİM KODU GİR
-                                </button>
+                                {/* İndirim Kodu Alanı */}
+                                <div className="mb-4">
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            value={couponCode}
+                                            onChange={(e) => setCouponCode(e.target.value)}
+                                            placeholder="İndirim Kodu"
+                                            className="flex-1 border border-gray-300 rounded-l px-3 py-2 focus:outline-none focus:border-primary text-sm"
+                                        />
+                                        <button
+                                            onClick={applyCoupon}
+                                            className="bg-primary text-white px-4 py-2 rounded-r text-sm font-semibold hover:bg-opacity-90 transition-colors"
+                                        >
+                                            Uygula
+                                        </button>
+                                    </div>
+                                    {isCouponApplied && (
+                                        <p className="text-green-600 text-xs mt-1">"{couponCode}" kodu uygulandı!</p>
+                                    )}
+                                </div>
 
                                 {/* Alt Kısım Sepeti Onayla Butonu */}
-                                <button className="w-full bg-primary text-white py-3 rounded font-semibold hover:bg-opacity-90 transition-colors text-base">
+                                <button
+                                    onClick={() => history.push("/order")}
+                                    className="w-full bg-primary text-white py-3 rounded font-semibold hover:bg-opacity-90 transition-colors text-base"
+                                >
                                     Sepeti Onayla <i className="fa-solid fa-chevron-right ml-2 text-xs"></i>
                                 </button>
                             </div>
