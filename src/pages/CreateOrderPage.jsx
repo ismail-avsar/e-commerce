@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 const CreateOrderPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { user, addressList, creditCards } = useSelector((state) => state.client);
+    const { creditCards } = useSelector((state) => state.client);
     const { cart } = useSelector((state) => state.shoppingCart);
     const [activeTab, setActiveTab] = useState('address'); // address (adres), payment (ödeme)
     const [selectedAddressId, setSelectedAddressId] = useState(null);
@@ -113,7 +113,6 @@ const CreateOrderPage = () => {
                                         return;
                                     }
 
-                                    const selectedAddress = addressList.find(a => a.id === selectedAddressId);
                                     const selectedCard = creditCards.find(c => c.id === selectedCardId);
                                     const cartProducts = cart.map(item => ({
                                         product_id: item.product.id,

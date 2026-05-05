@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchOrders } from '../store/actions/orderActions';
@@ -68,8 +68,8 @@ const PreviousOrdersPage = () => {
                             </thead>
                             <tbody className="text-gray-600 text-sm font-light">
                                 {orderList.map((order) => (
-                                    <>
-                                        <tr key={order.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                                    <Fragment key={order.id}>
+                                        <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                                             <td className="py-3 px-6 whitespace-nowrap font-medium text-primary">
                                                 #{order.id}
                                             </td>
@@ -113,7 +113,7 @@ const PreviousOrdersPage = () => {
                                                 </td>
                                             </tr>
                                         )}
-                                    </>
+                                    </Fragment>
                                 ))}
                             </tbody>
                         </table>

@@ -191,8 +191,8 @@ const ShopPage = () => {
                                         .replace(/ö/g, 'o')
                                         .replace(/ç/g, 'c')
                                         .replace(/\s+/g, '-')
-                                        .replace(/[^\w\-]+/g, '')
-                                        .replace(/\-\-+/g, '-')
+                                        .replace(/[^\w-]+/g, '')
+                                        .replace(/--+/g, '-')
                                         .replace(/^-+/, '')
                                         .replace(/-+$/, '');
                                 };

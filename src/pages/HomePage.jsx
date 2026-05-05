@@ -1,11 +1,51 @@
 import ProductCard from '../components/ProductCard';
 import HomeSlider from "../components/HomeSlider";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import api from "../api/api";
 
+const demoProducts = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const slugify = (text) => {
+    if (!text) return '';
+    return text.toString().toLowerCase()
+        .replace(/ÄŸ/g, 'g')
+        .replace(/Ã¼/g, 'u')
+        .replace(/ÅŸ/g, 's')
+        .replace(/Ä±/g, 'i')
+        .replace(/Ã¶/g, 'o')
+        .replace(/Ã§/g, 'c')
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]+/g, '')
+        .replace(/--+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+};
 
 const HomePage = () => {
-    const products = [1, 2, 3, 4, 5, 6, 7, 8];
     const categories = useSelector(state => state.global.categories);
+    const [bestsellerProducts, setBestsellerProducts] = useState([]);
+    const [useDemoProducts, setUseDemoProducts] = useState(false);
+
+    useEffect(() => {
+        api.get('/products?limit=8&offset=0&sort=rating:desc')
+            .then((response) => {
+                setBestsellerProducts(response.data.products || []);
+                setUseDemoProducts(false);
+            })
+            .catch((error) => {
+                console.error('Bestseller products could not be fetched:', error);
+                setBestsellerProducts([]);
+                setUseDemoProducts(true);
+            });
+    }, []);
+
+    const getProductDetailUrl = (product) => {
+        const category = categories.find(c => c.id === product.category_id);
+        const gender = category?.code?.startsWith('k:') ? 'kadin' : 'erkek';
+        const categoryTitle = category?.title || 'genel';
+        return `/shop/${gender}/${slugify(categoryTitle)}/${product.category_id}/${slugify(product.name)}/${product.id}`;
+    };
 
     return (
         <div className="w-full">
@@ -28,7 +68,7 @@ const HomePage = () => {
                             .map((category) => (
                                 <div key={category.id} className="relative w-full sm:w-[calc(50%-1rem)] md:w-[calc(20%-1.6rem)] aspect-[3/4] group overflow-hidden shadow-md">
                                     <img
-                                        src={category.img}
+                                        src={category.image_url || category.img}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         alt={category.title}
                                     />
@@ -61,21 +101,43 @@ const HomePage = () => {
                     </div>
 
                     <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[48px]">
-                        {products.map((p) => (
-                            <div
-                                key={p}
-                                className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
-                            >
-                                <ProductCard
-                                    productId={p}
-                                    image={`/assets/products/product-${p}.jpg`}
-                                    title="Graphic Design"
-                                    category="English Department"
-                                    originalPrice="16.48"
-                                    salePrice="6.48"
-                                />
-                            </div>
-                        ))}
+                        {useDemoProducts ? (
+                            demoProducts.map((p) => (
+                                <div
+                                    key={p}
+                                    className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
+                                >
+                                    <ProductCard
+                                        productId={p}
+                                        image={`/assets/products/product-${p}.jpg`}
+                                        title="Graphic Design"
+                                        category="English Department"
+                                        originalPrice="16.48"
+                                        salePrice="6.48"
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            bestsellerProducts.map((product) => {
+                                const category = categories.find(c => c.id === product.category_id);
+                                return (
+                                    <div
+                                        key={product.id}
+                                        className="w-full md:w-[calc(50%-15px)] lg:w-[calc(25%-22.5px)]"
+                                    >
+                                        <ProductCard
+                                            productId={product.id}
+                                            image={product.images?.[0]?.url || ""}
+                                            title={product.name}
+                                            category={category?.title || "General"}
+                                            originalPrice={product.price}
+                                            salePrice={product.price}
+                                            detailUrl={getProductDetailUrl(product)}
+                                        />
+                                    </div>
+                                );
+                            })
+                        )}
                     </div>
                 </div>
             </section>

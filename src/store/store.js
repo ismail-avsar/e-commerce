@@ -18,4 +18,13 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
+store.subscribe(() => {
+    try {
+        const { cart } = store.getState().shoppingCart;
+        localStorage.setItem('shoppingCart', JSON.stringify(cart));
+    } catch (error) {
+        console.error('Sepet localStorage icine kaydedilemedi:', error);
+    }
+});
+
 export default store;

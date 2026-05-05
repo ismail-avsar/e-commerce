@@ -9,8 +9,19 @@ import {
     RESET_CART,
 } from '../actions/shoppingCartActions';
 
+const loadCartFromStorage = () => {
+    try {
+        const storedCart = localStorage.getItem('shoppingCart');
+        return storedCart ? JSON.parse(storedCart) : [];
+    } catch (error) {
+        console.error('Sepet localStorage icinden okunamadi:', error);
+        localStorage.removeItem('shoppingCart');
+        return [];
+    }
+};
+
 const initialState = {
-    cart: [], // [{ count: 1, checked: true, product: { ... } }]
+    cart: loadCartFromStorage(), // [{ count: 1, checked: true, product: { ... } }]
     payment: {},
     address: {},
 };
