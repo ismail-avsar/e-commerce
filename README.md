@@ -1,18 +1,30 @@
 # Bandage E-Commerce
 
-Bandage E-Commerce, Workintech e-commerce bitirme odevleri kapsaminda gelistirilmis full-stack bir alisveris uygulamasidir. Frontend React ile yazildi, backend ise Spring Boot + PostgreSQL ile ayri bir servis olarak hazirlandi.
+Bandage E-Commerce, Workintech e-commerce bitirme odevleri kapsaminda gelistirilmis full-stack bir alisveris uygulamasidir. Frontend React ile, backend Spring Boot + PostgreSQL ile gelistirildi.
 
-Bu README frontend reposu icindir. Uygulama gercek backend API'sine baglanacak sekilde ayarlanmistir.
+Bu README frontend reposu icindir. Uygulama canli ortamda Render uzerindeki gercek backend API'sine baglanir.
 
 ## Canli Demo
 
 Frontend Vercel uzerinde yayindadir:
 
 ```text
-https://e-commerce-two-fawn-25.vercel.app/
+https://e-commerce-two-fawn-25.vercel.app
 ```
 
-Not: Canli frontend'in tam siparis ve kullanici akislarini calistirabilmesi icin backend servisinin de erisilebilir bir ortamda calisiyor olmasi gerekir. Lokal testlerde backend `http://localhost:8080` uzerinden kullanilmistir.
+Backend Render uzerinde yayindadir:
+
+```text
+https://e-commerce-backend-tpne.onrender.com
+```
+
+Frontend production ortaminda backend adresini Vercel environment variable uzerinden okur:
+
+```env
+VITE_API_BASE_URL=https://e-commerce-backend-tpne.onrender.com
+```
+
+Lokal gelistirmede bu env verilmezse frontend varsayilan olarak `http://localhost:8080` adresini kullanir.
 
 ## Proje Durumu
 
@@ -28,6 +40,7 @@ Proje, T01-T23 issue akisini kapsayacak sekilde tamamlandi.
 - Adres ve kart yonetimi
 - Siparis olusturma
 - Gecmis siparisleri listeleme
+- Vercel frontend + Render backend canli entegrasyonu
 
 ## Teknolojiler
 
@@ -56,12 +69,14 @@ Backend ayri projede gelistirildi.
 - BCrypt
 - Spring Data JPA
 - PostgreSQL
+- Docker
+- Render
 
 ## Calistirma
 
 ### 1. Backend
 
-Backend servisinin `http://localhost:8080` adresinde calisiyor olmasi gerekir.
+Backend servisinin lokal ortamda `http://localhost:8080` adresinde calisiyor olmasi gerekir.
 
 PostgreSQL ayari:
 
@@ -72,8 +87,6 @@ spring.datasource.password=${DB_PASSWORD}
 ```
 
 Backend basladiginda seed data otomatik hazirlanir.
-
-`DB_PASSWORD` kendi bilgisayarinizdaki PostgreSQL sifresidir. Gercek sifre GitHub'a yuklenmemelidir.
 
 Hazir test kullanicilari:
 
@@ -112,11 +125,19 @@ npm.cmd run preview
 
 Frontend API baglantisi `src/api/api.js` icindedir.
 
-Mevcut ayar:
+Production API adresi Vercel uzerinde su env ile tanimlanir:
+
+```env
+VITE_API_BASE_URL=https://e-commerce-backend-tpne.onrender.com
+```
+
+Kod tarafinda fallback su sekildedir:
 
 ```js
-baseURL: "http://localhost:8080"
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
 ```
+
+Backend seed data icindeki urun gorsel URL'leri lokal backend adresiyle gelebilir. Frontend API katmani bu URL'leri canli backend adresine normalize eder.
 
 Mock API kapali durumdadir:
 
@@ -154,6 +175,14 @@ Authorization: JWT_TOKEN
 | POST | `/order` | Siparis olusturur |
 | GET | `/order` | Gecmis siparisleri getirir |
 
+## Deployment Ozeti
+
+- Frontend Vercel production olarak deploy edildi.
+- Backend Render uzerinde Docker runtime ile deploy edildi.
+- Backend PostgreSQL veritabani Render Blueprint ile olusturuldu.
+- Frontend `VITE_API_BASE_URL` ile Render backend URL'ine baglandi.
+- Son production deployment Vercel'de `Normalize backend asset URLs` commit'i ile yayina alindi.
+
 ## Test Edilen Akislar
 
 Teslim oncesi su akislar kontrol edildi:
@@ -174,6 +203,7 @@ Teslim oncesi su akislar kontrol edildi:
 - Sayfa yenilenince sepetin korunmasi
 - Siparis olusturma
 - Gecmis siparisleri goruntuleme
+- Vercel frontend'in Render backend'e baglanmasi
 
 Son kontrol:
 
@@ -182,7 +212,7 @@ npm.cmd run lint
 npm.cmd run build
 ```
 
-Iki komut da temiz gecmistir.
+Canli Vercel build basariyla tamamlanmistir.
 
 ## Odev Issue Karsiliklari
 
@@ -206,8 +236,8 @@ Iki komut da temiz gecmistir.
 
 - Sepet frontend tarafinda Redux ile yonetilir ve localStorage ile korunur.
 - Gercek odeme entegrasyonu yoktur; kart verisi odev kapsaminda demo amaclidir.
-- Backend urun gorsellerini local static dosyalar uzerinden servis eder.
-- `card_no` bilgisi demo akisi icin response icinde donmektedir. Gercek bir projede bu alan mutlaka maskelenmelidir.
+- Backend urun gorsellerini static dosyalar uzerinden servis eder.
+- Kart ve odeme akisi egitim/odev kapsaminda demo amaclidir.
 
 ## Yazar
 
