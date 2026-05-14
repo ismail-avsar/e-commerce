@@ -7,6 +7,24 @@ const api = axios.create({
     baseURL: API_BASE_URL
 });
 
+const normalizeBackendAssetUrls = (value) => {
+    if (typeof value === 'string') {
+        return value.replace('http://localhost:8080', API_BASE_URL);
+    }
+
+    if (Array.isArray(value)) {
+        return value.map(normalizeBackendAssetUrls);
+    }
+
+    if (value && typeof value === 'object') {
+        return Object.fromEntries(
+            Object.entries(value).map(([key, item]) => [key, normalizeBackendAssetUrls(item)])
+        );
+    }
+
+    return value;
+};
+
 // --- MOCK API TOGGLE ---
 const USE_MOCK_API = false;
 
@@ -31,7 +49,10 @@ api.interceptors.request.use(
 
 // Response interceptor
 api.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        response.data = normalizeBackendAssetUrls(response.data);
+        return response;
+    },
     (error) => {
         if (error.response?.status === 401) {
             localStorage.removeItem('token');
